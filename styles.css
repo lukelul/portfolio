@@ -830,6 +830,13 @@ section::before {
     border-radius: 12px;
 }
 
+.video-views {
+    margin-top: 8px;
+    font-size: 0.75rem;
+    color: #888;
+    text-align: right;
+}
+
 /* Education Section */
 .education {
     background: var(--bg-secondary);
