@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yanda (Luke) Lu - Portfolio</title>
-    <link rel="stylesheet" href="styles.css?v=9">
+    <link rel="stylesheet" href="styles.css?v=10">
     <!-- Minecraft Font from CDN -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,13 +16,9 @@
         <div class="container">
             <div class="nav-brand">Yanda Lu</div>
             <ul class="nav-menu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#experience" class="nav-link">Experience</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#awards" class="nav-link">Awards</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="#" class="nav-link tab-btn active" data-tab="home">Home</a></li>
+                <li><a href="#" class="nav-link tab-btn" data-tab="experience">Experience</a></li>
+                <li><a href="#" class="nav-link tab-btn" data-tab="inhabit">Inhabit</a></li>
             </ul>
             <div class="hamburger">
                 <span></span>
@@ -32,425 +28,441 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    Hi, I'm <span class="highlight">Yanda (Luke) Lu</span>
-                </h1>
-                <p class="hero-subtitle">Mechanical Engineer & Robotics Innovator</p>
-                <p class="hero-description">
-                    Aspiring mechanical engineer and robotics innovator with global experience in design, leadership, and AI integration. Passionate about applying engineering principles to real-world problems through interdisciplinary collaboration and rapid prototyping.
-                </p>
-                <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-primary">View My Work</a>
-                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <div class="floating-card">
-                    <img src="profile-photo.webp" alt="Yanda (Luke) Lu" class="profile-photo">
-                </div>
-            </div>
-        </div>
-        <div class="scroll-indicator">
-            <span></span>
-        </div>
-    </section>
+    <!-- HOME TAB -->
+    <div id="tab-home" class="tab-panel active">
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>
-                        I'm a mechanical engineering student at UT Austin with a passion for robotics, rapid prototyping, and AI integration. 
-                        My work spans from leading world-champion robotics teams to developing cutting-edge humanoid arm systems at research centers.
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        Hi, I'm <span class="highlight">Yanda (Luke) Lu</span>
+                    </h1>
+                    <p class="hero-subtitle">Mechanical Engineer & Robotics Innovator</p>
+                    <p class="hero-description">
+                        Aspiring mechanical engineer and robotics innovator with global experience in design, leadership, and AI integration. Passionate about applying engineering principles to real-world problems through interdisciplinary collaboration and rapid prototyping.
                     </p>
-                    <p>
-                        Through my experience at YouiBot, UT Center for Autonomy, and as founder of Robocoaching, I've developed expertise in CAD design, 
-                        rapid prototyping, and interdisciplinary collaboration. I thrive in fast-paced environments and love bringing innovative ideas to life.
-                    </p>
-                    <div class="about-info">
-                        <div class="info-item">
-                            <strong>Location:</strong> Plano, TX 75025
-                        </div>
-                        <div class="info-item">
-                            <strong>Phone:</strong> <a href="tel:19452082750">(945) 208-2750</a>
-                        </div>
-                        <div class="info-item">
-                            <strong>Email:</strong> <a href="mailto:lukelupvp@gmail.com">lukelupvp@gmail.com</a>
-                        </div>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary tab-btn" data-tab="experience">View My Work</a>
+                        <a href="#contact" class="btn btn-secondary">Get In Touch</a>
                     </div>
-                    <div class="about-stats">
-                        <div class="stat-item">
-                            <div class="stat-number">20+</div>
-                            <div class="stat-label">Robots Designed</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">14K+</div>
-                            <div class="stat-label">Community Members</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">2024</div>
-                            <div class="stat-label">World Champion</div>
-                        </div>
+                </div>
+                <div class="hero-image">
+                    <div class="floating-card">
+                        <img src="profile-photo.webp" alt="Yanda (Luke) Lu" class="profile-photo">
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="experience">
-        <div class="container">
-            <h2 class="section-title">Experience</h2>
-            <div class="experience-timeline">
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <h3 class="experience-title">Mechanical Engineer</h3>
-                        <span class="experience-company">YouiBot, Shenzhen</span>
-                        <span class="experience-date">June 2025 - July 2025</span>
-                    </div>
-                    <ul class="experience-details">
-                        <li>Led design of humanoid robot arm and forearm using SolidWorks</li>
-                        <li>Collaborated with electrical and control systems teams for seamless integration</li>
-                        <li>Focused on fast-paced prototyping, often working extended hours to finalize and deliver CAD designs under tight deadlines</li>
-                    </ul>
-                    <div class="experience-video">
-                        <iframe 
-                            src="https://www.youtube.com/embed/ZP2O0Cz-5no"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen
-                            class="youtube-video">
-                        </iframe>
-                    </div>
-                    <p class="video-views">100K+ views</p>
-                </div>
-
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <h3 class="experience-title">Robotics Researcher</h3>
-                        <span class="experience-company">UT Center for Autonomy, Austin</span>
-                        <span class="experience-date">August 2025 - Present</span>
-                    </div>
-                    <ul class="experience-details">
-                        <li>Led design of 6-DOF humanoid arm system integrating HopeJr and SO101 components using SolidWorks and Onshape</li>
-                        <li>Developed unified test bench platform combining multi-vendor robotic arms for autonomous manipulation research</li>
-                    </ul>
-                    <div class="experience-video">
-                        <iframe 
-                            src="https://www.youtube.com/embed/f3KUGk-C5i0"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen
-                            class="youtube-video">
-                        </iframe>
-                    </div>
-                    <p class="video-views">25K views</p>
-                </div>
-
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <h3 class="experience-title">Founder, CEO, Consultant</h3>
-                        <span class="experience-company">Robocoaching, Online</span>
-                        <span class="experience-date">August 2021 - Present</span>
-                    </div>
-                    <ul class="experience-details">
-                        <li>Built a global, student-led coaching program under the Robolytics brand (11,000+ members, 2M+ views)</li>
-                        <li>Connected top-tier robotics teams with students through a paid mentorship model</li>
-                        <li>Offered advanced tutorials, CAD libraries, and GitHub resources to help competitors level up and succeed on the world stage</li>
-                    </ul>
-                </div>
-
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <h3 class="experience-title">Robotics Team Leader</h3>
-                        <span class="experience-company">VEX Robotics, Dallas</span>
-                        <span class="experience-date">May 2021 - July 2025</span>
-                    </div>
-                    <ul class="experience-details">
-                        <li>2024 World Champion, U.S. Open Champion, Skills World Record Holder</li>
-                        <li>Led team to 30+ awards</li>
-                        <li>Designed 20+ robots in Autodesk Inventor</li>
-                    </ul>
-                </div>
-
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <h3 class="experience-title">Mechanical Engineer Co-op</h3>
-                        <span class="experience-company">Paradigm Robotics</span>
-                        <span class="experience-date">December 2025 - February 2026</span>
-                    </div>
-                    <ul class="experience-details">
-                        <li>Served as mechanical engineer co-op contributing to robotics hardware design and development</li>
-                        <li>Applied CAD and rapid prototyping skills in a professional robotics engineering environment</li>
-                    </ul>
-                </div>
+            <div class="scroll-indicator">
+                <span></span>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Education Section -->
-    <section id="education" class="education">
-        <div class="container">
-            <h2 class="section-title">Education</h2>
-            <div class="education-timeline">
-                <div class="education-item">
-                    <div class="education-header">
-                        <h3 class="education-degree">BS in Mechanical Engineering</h3>
-                        <span class="education-school">University of Texas at Austin</span>
-                        <span class="education-date">Expected: May 2029</span>
-                    </div>
-                    <p class="education-description">
-                        Focus areas: Robotics, rapid prototyping, and mechanical systems design. 
-                        Hands-on engineering experience through UT Center for Autonomy. Real-world experience in research, teamwork, and innovation.
-                    </p>
-                </div>
-
-                <div class="education-item">
-                    <div class="education-header">
-                        <h3 class="education-degree">High School Diploma</h3>
-                        <span class="education-school">PCA, Plano</span>
-                        <span class="education-date">August 2019 - May 2025</span>
-                    </div>
-                    <p class="education-description">
-                        GPA: 4.0+, Principal's Honor Roll. 
-                        AP Courses: CS A & P, Calc AB, Chem, Physics I & C, US History, Gov/Econ, Stats, English III & IV, Macro, Chinese
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2 class="section-title">Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="cast-poster.jpg.jpg" alt="CAST STEM Team 003 Poster - Audio Driven Talking Face" class="project-img">
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Audio Driven Talking Face</h3>
-                        <p class="project-description">
-                            Led and presented 1st place-winning research on improving audio-driven facial animation using FLAME and BEAT models at UT Dallas CAST.
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>
+                            I'm a mechanical engineering student at UT Austin with a passion for robotics, rapid prototyping, and AI integration.
+                            My work spans from leading world-champion robotics teams to developing cutting-edge humanoid arm systems at research centers.
                         </p>
-                        <div class="project-tags">
-                            <span class="tag">AI/ML</span>
-                            <span class="tag">Research</span>
-                            <span class="tag">Python</span>
+                        <p>
+                            Through my experience at YouiBot, UT Center for Autonomy, and as founder of Robocoaching, I've developed expertise in CAD design,
+                            rapid prototyping, and interdisciplinary collaboration. I thrive in fast-paced environments and love bringing innovative ideas to life.
+                        </p>
+                        <div class="about-info">
+                            <div class="info-item">
+                                <strong>Location:</strong> Plano, TX 75025
+                            </div>
+                            <div class="info-item">
+                                <strong>Phone:</strong> <a href="tel:19452082750">(945) 208-2750</a>
+                            </div>
+                            <div class="info-item">
+                                <strong>Email:</strong> <a href="mailto:lukelupvp@gmail.com">lukelupvp@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="about-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">20+</div>
+                                <div class="stat-label">Robots Designed</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">14K+</div>
+                                <div class="stat-label">Community Members</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">2024</div>
+                                <div class="stat-label">World Champion</div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="container">
-            <h2 class="section-title">Skills & Technologies</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3 class="skill-category-title">CAD Software</h3>
-                    <div class="skill-items">
-                        <div class="skill-item">
-                            <span class="skill-name">SolidWorks</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 95%"></div>
-                            </div>
+        <!-- Education Section -->
+        <section id="education" class="education">
+            <div class="container">
+                <h2 class="section-title">Education</h2>
+                <div class="education-timeline">
+                    <div class="education-item">
+                        <div class="education-header">
+                            <h3 class="education-degree">BS in Mechanical Engineering</h3>
+                            <span class="education-school">University of Texas at Austin</span>
+                            <span class="education-date">Expected: May 2029</span>
                         </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Autodesk Inventor</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Onshape</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%"></div>
-                            </div>
-                        </div>
+                        <p class="education-description">
+                            Focus areas: Robotics, rapid prototyping, and mechanical systems design.
+                            Hands-on engineering experience through UT Center for Autonomy. Real-world experience in research, teamwork, and innovation.
+                        </p>
                     </div>
-                </div>
 
-                <div class="skill-category">
-                    <h3 class="skill-category-title">Programming</h3>
-                    <div class="skill-items">
-                        <div class="skill-item">
-                            <span class="skill-name">Python</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 90%"></div>
-                            </div>
+                    <div class="education-item">
+                        <div class="education-header">
+                            <h3 class="education-degree">High School Diploma</h3>
+                            <span class="education-school">PCA, Plano</span>
+                            <span class="education-date">August 2019 - May 2025</span>
                         </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Java</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">C++</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 80%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">JavaScript</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 75%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h3 class="skill-category-title">AI & Tools</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">GPT Systems</span>
-                        <span class="skill-tag">ML Models</span>
-                        <span class="skill-tag">Git</span>
-                        <span class="skill-tag">Replit</span>
-                        <span class="skill-tag">VoiceFlow</span>
-                        <span class="skill-tag">OBS</span>
-                        <span class="skill-tag">Leadership</span>
-                        <span class="skill-tag">Content Creation</span>
+                        <p class="education-description">
+                            GPA: 4.0+, Principal's Honor Roll.
+                            AP Courses: CS A & P, Calc AB, Chem, Physics I & C, US History, Gov/Econ, Stats, English III & IV, Macro, Chinese
+                        </p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Awards Section -->
-    <section id="awards" class="awards">
-        <div class="container">
-            <h2 class="section-title">Awards & Recognition</h2>
-            <div class="awards-grid">
-                <div class="award-card">
-                    <div class="award-icon">🏆</div>
-                    <h3 class="award-title">VEX Robotics World Champion 2024</h3>
-                    <p class="award-description">
-                        Awarded to the top global team with the highest combined Programming and Driver Skills scores out of 12,000+ teams.
-                    </p>
-                </div>
+        <!-- Awards Section -->
+        <section id="awards" class="awards">
+            <div class="container">
+                <h2 class="section-title">Awards & Recognition</h2>
+                <div class="awards-grid">
+                    <div class="award-card">
+                        <div class="award-icon">🏆</div>
+                        <h3 class="award-title">VEX Robotics World Champion 2024</h3>
+                        <p class="award-description">
+                            Awarded to the top global team with the highest combined Programming and Driver Skills scores out of 12,000+ teams.
+                        </p>
+                    </div>
 
-                <div class="award-card">
-                    <div class="award-icon">📺</div>
-                    <h3 class="award-title">YouTube Bronze Creator Award</h3>
-                    <p class="award-description">
-                        Channels with over 10,000 verified subscribers.
-                    </p>
-                </div>
+                    <div class="award-card">
+                        <div class="award-icon">📺</div>
+                        <h3 class="award-title">YouTube Bronze Creator Award</h3>
+                        <p class="award-description">
+                            Channels with over 10,000 verified subscribers.
+                        </p>
+                    </div>
 
-                <div class="award-card">
-                    <div class="award-icon">🌟</div>
-                    <h3 class="award-title">Google Community Challenge Award</h3>
-                    <p class="award-description">
-                        Recognized for making significant contributions to the global robotics community through education, mentorship, and innovation.
-                    </p>
-                </div>
+                    <div class="award-card">
+                        <div class="award-icon">🌟</div>
+                        <h3 class="award-title">Google Community Challenge Award</h3>
+                        <p class="award-description">
+                            Recognized for making significant contributions to the global robotics community through education, mentorship, and innovation.
+                        </p>
+                    </div>
 
-                <div class="award-card">
-                    <div class="award-icon">🏅</div>
-                    <h3 class="award-title">Texas Venture Group Hackathon Winner 2026</h3>
-                    <p class="award-description">
-                        Won the Texas Venture Group hackathon with team HeatSync, competing against top student entrepreneurs and innovators at UT Austin.
-                    </p>
-                </div>
+                    <div class="award-card">
+                        <div class="award-icon">🏅</div>
+                        <h3 class="award-title">Texas Venture Group Hackathon Winner 2026</h3>
+                        <p class="award-description">
+                            Won the Texas Venture Group hackathon with team HeatSync, competing against top student entrepreneurs and innovators at UT Austin.
+                        </p>
+                    </div>
 
-                <div class="award-card">
-                    <div class="award-icon">🎓</div>
-                    <h3 class="award-title">CIE/USA Young Achiever</h3>
-                    <p class="award-description">
-                        Presented to top-performing students nationwide through a competitive selection process based on academic excellence and STEM impact.
-                    </p>
+                    <div class="award-card">
+                        <div class="award-icon">🎓</div>
+                        <h3 class="award-title">CIE/USA Young Achiever</h3>
+                        <p class="award-description">
+                            Presented to top-performing students nationwide through a competitive selection process based on academic excellence and STEM impact.
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Languages Section -->
-    <section id="languages" class="languages">
-        <div class="container">
-            <h2 class="section-title">Languages</h2>
-            <div class="languages-list">
-                <div class="language-item">
-                    <span class="language-name">English</span>
-                    <span class="language-level">Native</span>
-                </div>
-                <div class="language-item">
-                    <span class="language-name">Mandarin</span>
-                    <span class="language-level">Native</span>
+        <!-- Languages Section -->
+        <section id="languages" class="languages">
+            <div class="container">
+                <h2 class="section-title">Languages</h2>
+                <div class="languages-list">
+                    <div class="language-item">
+                        <span class="language-name">English</span>
+                        <span class="language-level">Native</span>
+                    </div>
+                    <div class="language-item">
+                        <span class="language-name">Mandarin</span>
+                        <span class="language-level">Native</span>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <p class="contact-description">
-                I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
-            </p>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">📧</div>
-                        <div>
-                            <h3>Email</h3>
-                            <a href="mailto:lukelupvp@gmail.com">lukelupvp@gmail.com</a>
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="contact-description">
+                    I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+                </p>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <div>
+                                <h3>Email</h3>
+                                <a href="mailto:lukelupvp@gmail.com">lukelupvp@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📱</div>
+                            <div>
+                                <h3>Phone</h3>
+                                <a href="tel:19452082750">(945) 208-2750</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div>
+                                <h3>Location</h3>
+                                <p>Plano, TX 75025</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">📱</div>
-                        <div>
-                            <h3>Phone</h3>
-                            <a href="tel:19452082750">(945) 208-2750</a>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
                         </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </div><!-- end #tab-home -->
+
+    <!-- EXPERIENCE TAB -->
+    <div id="tab-experience" class="tab-panel">
+
+        <!-- Experience Section -->
+        <section id="experience" class="experience">
+            <div class="container">
+                <h2 class="section-title">Experience</h2>
+                <div class="experience-timeline">
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <h3 class="experience-title">Mechanical Engineer</h3>
+                            <span class="experience-company">YouiBot, Shenzhen</span>
+                            <span class="experience-date">June 2025 - July 2025</span>
+                        </div>
+                        <ul class="experience-details">
+                            <li>Led design of humanoid robot arm and forearm using SolidWorks</li>
+                            <li>Collaborated with electrical and control systems teams for seamless integration</li>
+                            <li>Focused on fast-paced prototyping, often working extended hours to finalize and deliver CAD designs under tight deadlines</li>
+                        </ul>
+                        <div class="experience-video">
+                            <iframe
+                                src="https://www.youtube.com/embed/ZP2O0Cz-5no"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen
+                                class="youtube-video">
+                            </iframe>
+                        </div>
+                        <p class="video-views">100K+ views</p>
                     </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">📍</div>
-                        <div>
-                            <h3>Location</h3>
-                            <p>Plano, TX 75025</p>
+
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <h3 class="experience-title">Robotics Researcher</h3>
+                            <span class="experience-company">UT Center for Autonomy, Austin</span>
+                            <span class="experience-date">August 2025 - Present</span>
+                        </div>
+                        <ul class="experience-details">
+                            <li>Led design of 6-DOF humanoid arm system integrating HopeJr and SO101 components using SolidWorks and Onshape</li>
+                            <li>Developed unified test bench platform combining multi-vendor robotic arms for autonomous manipulation research</li>
+                        </ul>
+                        <div class="experience-video">
+                            <iframe
+                                src="https://www.youtube.com/embed/f3KUGk-C5i0"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen
+                                class="youtube-video">
+                            </iframe>
+                        </div>
+                        <p class="video-views">25K views</p>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <h3 class="experience-title">Founder, CEO, Consultant</h3>
+                            <span class="experience-company">Robocoaching, Online</span>
+                            <span class="experience-date">August 2021 - Present</span>
+                        </div>
+                        <ul class="experience-details">
+                            <li>Built a global, student-led coaching program under the Robolytics brand (11,000+ members, 2M+ views)</li>
+                            <li>Connected top-tier robotics teams with students through a paid mentorship model</li>
+                            <li>Offered advanced tutorials, CAD libraries, and GitHub resources to help competitors level up and succeed on the world stage</li>
+                        </ul>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <h3 class="experience-title">Robotics Team Leader</h3>
+                            <span class="experience-company">VEX Robotics, Dallas</span>
+                            <span class="experience-date">May 2021 - July 2025</span>
+                        </div>
+                        <ul class="experience-details">
+                            <li>2024 World Champion, U.S. Open Champion, Skills World Record Holder</li>
+                            <li>Led team to 30+ awards</li>
+                            <li>Designed 20+ robots in Autodesk Inventor</li>
+                        </ul>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <h3 class="experience-title">Mechanical Engineer Co-op</h3>
+                            <span class="experience-company">Paradigm Robotics</span>
+                            <span class="experience-date">December 2025 - February 2026</span>
+                        </div>
+                        <ul class="experience-details">
+                            <li>Served as mechanical engineer co-op contributing to robotics hardware design and development</li>
+                            <li>Applied CAD and rapid prototyping skills in a professional robotics engineering environment</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects">
+            <div class="container">
+                <h2 class="section-title">Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="cast-poster.jpg.jpg" alt="CAST STEM Team 003 Poster - Audio Driven Talking Face" class="project-img">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Audio Driven Talking Face</h3>
+                            <p class="project-description">
+                                Led and presented 1st place-winning research on improving audio-driven facial animation using FLAME and BEAT models at UT Dallas CAST.
+                            </p>
+                            <div class="project-tags">
+                                <span class="tag">AI/ML</span>
+                                <span class="tag">Research</span>
+                                <span class="tag">Python</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <form class="contact-form">
-                    <div class="form-group">
-                        <input type="text" id="name" name="name" placeholder="Your Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" id="email" name="email" placeholder="Your Email" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
-                </form>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills">
+            <div class="container">
+                <h2 class="section-title">Skills & Technologies</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3 class="skill-category-title">CAD Software</h3>
+                        <div class="skill-items">
+                            <div class="skill-item">
+                                <span class="skill-name">SolidWorks</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">Autodesk Inventor</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">Onshape</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 85%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3 class="skill-category-title">Programming</h3>
+                        <div class="skill-items">
+                            <div class="skill-item">
+                                <span class="skill-name">Python</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">Java</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">C++</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 80%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">JavaScript</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 75%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3 class="skill-category-title">AI & Tools</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">GPT Systems</span>
+                            <span class="skill-tag">ML Models</span>
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">Replit</span>
+                            <span class="skill-tag">VoiceFlow</span>
+                            <span class="skill-tag">OBS</span>
+                            <span class="skill-tag">Leadership</span>
+                            <span class="skill-tag">Content Creation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div><!-- end #tab-experience -->
+
+    <!-- INHABIT TAB -->
+    <div id="tab-inhabit" class="tab-panel">
+        <section class="inhabit-placeholder">
+            <div class="container">
+                <h2 class="section-title">Inhabit</h2>
+                <p class="inhabit-coming-soon">Coming soon.</p>
+            </div>
+        </section>
+    </div><!-- end #tab-inhabit -->
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <p>&copy; 2024 Yanda (Luke) Lu. All rights reserved.</p>
             <div class="footer-links">
-                <a href="#home">Home</a>
-                <a href="#about">About</a>
-                <a href="#experience">Experience</a>
-                <a href="#projects">Projects</a>
-                <a href="#skills">Skills</a>
-                <a href="#awards">Awards</a>
-                <a href="#contact">Contact</a>
+                <a href="#" class="tab-btn" data-tab="home">Home</a>
+                <a href="#" class="tab-btn" data-tab="experience">Experience</a>
+                <a href="#" class="tab-btn" data-tab="inhabit">Inhabit</a>
             </div>
         </div>
     </footer>
