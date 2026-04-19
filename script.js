@@ -145,6 +145,15 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // Speaking toast
+    const toast = document.getElementById('speaking-toast');
+    if (toast) {
+        setTimeout(() => toast.classList.add('show'), 1200);
+        toast.querySelector('.toast-close').addEventListener('click', () => {
+            toast.classList.remove('show');
+        });
+    }
+
     // Contact form
     const contactForm = document.querySelector('.contact-form');
     if (contactForm) {

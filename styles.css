@@ -830,6 +830,80 @@ section::before {
     border-radius: 12px;
 }
 
+/* Speaking toast */
+.speaking-toast {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    background: var(--bg-card, #fff);
+    border: 1px solid var(--teal-blue);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.85rem 1rem;
+    z-index: 9999;
+    max-width: 320px;
+    transform: translateY(120%);
+    opacity: 0;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.speaking-toast.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.toast-icon {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+}
+
+.toast-text {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.82rem;
+    line-height: 1.4;
+    flex: 1;
+}
+
+.toast-text strong {
+    color: var(--text-primary);
+}
+
+.toast-text span {
+    color: var(--teal-blue);
+}
+
+.toast-link {
+    font-size: 0.8rem;
+    color: var(--teal-blue);
+    text-decoration: none;
+    font-weight: 700;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.toast-link:hover {
+    text-decoration: underline;
+}
+
+.toast-close {
+    background: none;
+    border: none;
+    color: #aaa;
+    cursor: pointer;
+    font-size: 0.8rem;
+    padding: 0;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.toast-close:hover {
+    color: #555;
+}
+
 /* Tab panels */
 .tab-panel {
     display: none;
