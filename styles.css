@@ -1006,6 +1006,10 @@ section::before {
     border-radius: 12px;
 }
 
+.project-card .video-views {
+    padding-left: 0.75rem;
+}
+
 .video-views {
     margin-top: 4px;
     font-size: 0.75rem;
