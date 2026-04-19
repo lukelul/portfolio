@@ -480,9 +480,12 @@
                     </p>
                 </div>
             </div>
-            <iframe src="inhabit-pitch.pdf" class="inhabit-pitch-pdf" title="Inhabit Pitch Deck">
-                <p>Your browser cannot display PDFs. <a href="inhabit-pitch.pdf" target="_blank">Download the pitch deck</a>.</p>
-            </iframe>
+            <div class="inhabit-pdf-wrapper">
+                <button class="inhabit-fullscreen-btn" onclick="document.getElementById('inhabit-pdf').requestFullscreen()">⛶ Full Screen</button>
+                <iframe id="inhabit-pdf" src="inhabit-pitch.pdf" class="inhabit-pitch-pdf" title="Inhabit Pitch Deck" allowfullscreen>
+                    <p>Your browser cannot display PDFs. <a href="inhabit-pitch.pdf" target="_blank">Download the pitch deck</a>.</p>
+                </iframe>
+            </div>
         </section>
     </div><!-- end #tab-inhabit -->
 
