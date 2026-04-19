@@ -846,13 +846,15 @@ section::before {
     padding: 6rem 0;
 }
 
-.inhabit-pitch-img {
+.inhabit-pitch-pdf {
     width: 100%;
     max-width: 900px;
+    height: 600px;
     border-radius: 12px;
     box-shadow: var(--shadow-md);
     margin-top: 2rem;
     display: block;
+    border: none;
 }
 
 .youtube-facade {
