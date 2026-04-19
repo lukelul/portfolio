@@ -132,6 +132,19 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // YouTube facade: click to load iframe
+    document.querySelectorAll('.youtube-facade').forEach(facade => {
+        facade.addEventListener('click', function () {
+            const id = this.getAttribute('data-videoid');
+            const iframe = document.createElement('iframe');
+            iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1`;
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+            iframe.allowFullscreen = true;
+            this.innerHTML = '';
+            this.appendChild(iframe);
+        });
+    });
+
     // Contact form
     const contactForm = document.querySelector('.contact-form');
     if (contactForm) {

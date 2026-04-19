@@ -852,6 +852,62 @@ section::before {
     margin-top: 1rem;
 }
 
+.youtube-facade {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    box-shadow: var(--shadow-md);
+    aspect-ratio: 16 / 9;
+}
+
+.youtube-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: filter 0.2s ease;
+}
+
+.youtube-facade:hover .youtube-thumb {
+    filter: brightness(0.75);
+}
+
+.youtube-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 0, 0, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 68px;
+    height: 68px;
+    font-size: 1.6rem;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 4px;
+    transition: transform 0.2s ease, background 0.2s ease;
+    pointer-events: none;
+}
+
+.youtube-facade:hover .youtube-play {
+    transform: translate(-50%, -50%) scale(1.1);
+    background: red;
+}
+
+.youtube-facade iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: none;
+    border-radius: 12px;
+}
+
 .video-views {
     margin-top: 8px;
     font-size: 0.75rem;
