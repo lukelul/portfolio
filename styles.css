@@ -846,13 +846,30 @@ section::before {
     padding: 6rem 0;
 }
 
+.inhabit-intro {
+    max-width: 750px;
+    margin: 1.5rem 0 2rem;
+}
+
+.inhabit-role {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--teal-blue);
+    margin-bottom: 0.5rem;
+}
+
+.inhabit-desc {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
 .inhabit-pitch-pdf {
     width: 100%;
-    max-width: 900px;
-    height: 600px;
+    height: 80vh;
     border-radius: 12px;
     box-shadow: var(--shadow-md);
-    margin-top: 2rem;
+    margin-top: 1rem;
     display: block;
     border: none;
 }
