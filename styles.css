@@ -1,4 +1,5 @@
 :root {
+    --site-font: 'Press Start 2P', 'Minecraft', 'Courier New', monospace;
     /* Premium Color Palette - Earthy & Aquatic Tones */
     --dark-teal: #1a4d3d;           /* Dark teal/deep green */
     --muted-green: #5a7a6b;         /* Muted green */
@@ -46,7 +47,7 @@ html {
 }
 
 body {
-    font-family: 'Press Start 2P', 'Minecraft', 'Courier New', monospace;
+    font-family: var(--site-font);
     color: var(--text-primary);
     line-height: 1.8;
     overflow-x: hidden;
@@ -70,14 +71,14 @@ body::before {
 
 /* Adjust font sizes for better readability with pixel font */
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Press Start 2P', 'Minecraft', 'Courier New', monospace;
+    font-family: var(--site-font);
     line-height: 1.4;
     font-weight: normal; /* Pixel fonts don't use bold weights */
     letter-spacing: -1px; /* Narrower for headings */
 }
 
 p, li, span, a, div, button, input, textarea {
-    font-family: 'Press Start 2P', 'Minecraft', 'Courier New', monospace;
+    font-family: var(--site-font);
     letter-spacing: -1px; /* Narrower letter spacing */
 }
 
@@ -161,6 +162,28 @@ p, li, span, a, div, button, input, textarea {
     background: var(--text-primary);
     border-radius: 3px;
     transition: all 0.3s ease;
+}
+
+.font-toggle {
+    background: transparent;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.35rem 0.75rem;
+    cursor: pointer;
+    color: var(--text-primary);
+    font-family: var(--site-font);
+    font-size: 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    white-space: nowrap;
+    transition: border-color 0.2s ease, color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.font-toggle:hover {
+    border-color: var(--teal-blue);
+    color: var(--teal-blue);
 }
 
 /* Hero Section */

@@ -154,6 +154,26 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Font cycler
+    const fonts = [
+        { label: 'PIXEL',  value: "'Press Start 2P', 'Minecraft', 'Courier New', monospace" },
+        { label: 'SANS',   value: "'Inter', 'Helvetica Neue', Arial, sans-serif" },
+        { label: 'SERIF',  value: "'Playfair Display', Georgia, serif" },
+        { label: 'MONO',   value: "'Space Mono', 'Courier New', monospace" },
+        { label: 'HAND',   value: "'Caveat', cursive" },
+    ];
+    let fontIndex = 0;
+    const fontToggle = document.getElementById('font-toggle');
+    const fontLabel = document.getElementById('font-label');
+    if (fontToggle) {
+        fontToggle.addEventListener('click', () => {
+            fontIndex = (fontIndex + 1) % fonts.length;
+            const { label, value } = fonts[fontIndex];
+            document.documentElement.style.setProperty('--site-font', value);
+            fontLabel.textContent = label;
+        });
+    }
+
     // Contact form
     const contactForm = document.querySelector('.contact-form');
     if (contactForm) {
