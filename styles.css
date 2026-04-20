@@ -1,5 +1,7 @@
 :root {
     --site-font: 'Press Start 2P', 'Minecraft', 'Courier New', monospace;
+    --body-font-size: 0.7rem;
+    --base-letter-spacing: -1px;
     /* Premium Color Palette - Earthy & Aquatic Tones */
     --dark-teal: #1a4d3d;           /* Dark teal/deep green */
     --muted-green: #5a7a6b;         /* Muted green */
@@ -52,8 +54,8 @@ body {
     line-height: 1.8;
     overflow-x: hidden;
     background-color: var(--bg-primary);
-    font-size: 0.7rem; /* Smaller base size for pixel font readability */
-    letter-spacing: -1px; /* Narrower letter spacing */
+    font-size: var(--body-font-size);
+    letter-spacing: var(--base-letter-spacing);
     position: relative;
 }
 
@@ -74,12 +76,12 @@ h1, h2, h3, h4, h5, h6 {
     font-family: var(--site-font);
     line-height: 1.4;
     font-weight: normal; /* Pixel fonts don't use bold weights */
-    letter-spacing: -1px; /* Narrower for headings */
+    letter-spacing: var(--base-letter-spacing);
 }
 
 p, li, span, a, div, button, input, textarea {
     font-family: var(--site-font);
-    letter-spacing: -1px; /* Narrower letter spacing */
+    letter-spacing: var(--base-letter-spacing);
 }
 
 .container {

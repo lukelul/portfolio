@@ -156,11 +156,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Font cycler
     const fonts = [
-        { label: 'PIXEL',  value: "'Press Start 2P', 'Minecraft', 'Courier New', monospace" },
-        { label: 'SANS',   value: "'Inter', 'Helvetica Neue', Arial, sans-serif" },
-        { label: 'SERIF',  value: "'Playfair Display', Georgia, serif" },
-        { label: 'MONO',   value: "'Space Mono', 'Courier New', monospace" },
-        { label: 'HAND',   value: "'Caveat', cursive" },
+        { label: 'PIXEL', value: "'Press Start 2P', 'Minecraft', 'Courier New', monospace", size: '0.7rem',  spacing: '-1px' },
+        { label: 'SANS',  value: "'Inter', 'Helvetica Neue', Arial, sans-serif",             size: '1rem',   spacing: '0px'  },
+        { label: 'SERIF', value: "'Playfair Display', Georgia, serif",                       size: '1rem',   spacing: '0px'  },
+        { label: 'MONO',  value: "'Space Mono', 'Courier New', monospace",                   size: '0.875rem', spacing: '0px' },
+        { label: 'HAND',  value: "'Caveat', cursive",                                        size: '1.2rem', spacing: '0px'  },
     ];
     let fontIndex = 0;
     const fontToggle = document.getElementById('font-toggle');
@@ -168,8 +168,11 @@ document.addEventListener('DOMContentLoaded', function () {
     if (fontToggle) {
         fontToggle.addEventListener('click', () => {
             fontIndex = (fontIndex + 1) % fonts.length;
-            const { label, value } = fonts[fontIndex];
-            document.documentElement.style.setProperty('--site-font', value);
+            const { label, value, size, spacing } = fonts[fontIndex];
+            const root = document.documentElement;
+            root.style.setProperty('--site-font', value);
+            root.style.setProperty('--body-font-size', size);
+            root.style.setProperty('--base-letter-spacing', spacing);
             fontLabel.textContent = label;
         });
     }
