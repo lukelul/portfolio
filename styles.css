@@ -165,25 +165,41 @@ p, li, span, a, div, button, input, textarea {
 }
 
 .font-toggle {
-    background: transparent;
-    border: 2px solid var(--border-color);
-    border-radius: 8px;
-    padding: 0.35rem 0.75rem;
+    background: none;
+    border: none;
+    padding: 0;
     cursor: pointer;
     color: var(--text-primary);
     font-family: var(--site-font);
-    font-size: 0.6rem;
+    font-size: 0.7rem;
+    font-weight: 500;
     display: flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.3rem;
     white-space: nowrap;
-    transition: border-color 0.2s ease, color 0.2s ease;
     flex-shrink: 0;
+    position: relative;
+    transition: color 0.3s ease;
+    letter-spacing: -1px;
 }
 
 .font-toggle:hover {
-    border-color: var(--teal-blue);
     color: var(--teal-blue);
+}
+
+.font-toggle::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--teal-blue);
+    transition: width 0.3s ease;
+}
+
+.font-toggle:hover::after {
+    width: 100%;
 }
 
 /* Hero Section */
