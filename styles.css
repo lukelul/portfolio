@@ -1,6 +1,6 @@
 :root {
     --site-font: 'Press Start 2P', 'Minecraft', 'Courier New', monospace;
-    --body-font-size: 0.7rem;
+    --root-font-size: 16px;
     --base-letter-spacing: -1px;
     /* Premium Color Palette - Earthy & Aquatic Tones */
     --dark-teal: #1a4d3d;           /* Dark teal/deep green */
@@ -46,6 +46,7 @@
 
 html {
     scroll-behavior: smooth;
+    font-size: var(--root-font-size);
 }
 
 body {
@@ -54,7 +55,7 @@ body {
     line-height: 1.8;
     overflow-x: hidden;
     background-color: var(--bg-primary);
-    font-size: var(--body-font-size);
+    font-size: 0.7rem;
     letter-spacing: var(--base-letter-spacing);
     position: relative;
 }
