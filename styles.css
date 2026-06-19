@@ -1,7 +1,7 @@
 :root {
-    --site-font: 'Press Start 2P', 'Minecraft', 'Courier New', monospace;
-    --root-font-size: 16px;
-    --base-letter-spacing: -1px;
+    --site-font: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    --root-font-size: 22px;
+    --base-letter-spacing: 0px;
     /* Premium Color Palette - Earthy & Aquatic Tones */
     --dark-teal: #1a4d3d;           /* Dark teal/deep green */
     --muted-green: #5a7a6b;         /* Muted green */
@@ -1558,60 +1558,33 @@ section::before {
 }
 
 /* ============================================================
-   EXPERIENCE TIMELINE ANIMATED LINE
+   EXPERIENCE TIMELINE — CURVY SVG LINE
    ============================================================ */
 .experience-timeline {
     position: relative;
-    padding-left: 12px;
+    padding-left: 48px;
 }
 
-.exp-line-track {
-    position: absolute;
-    left: -10px;
-    top: 0;
-    bottom: 0;
-    width: 3px;
-    background: var(--border-color);
-    border-radius: 3px;
-    overflow: hidden;
-}
+/* Hide old straight-line elements */
+.exp-line-track { display: none; }
 
-.exp-line-fill {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 0%;
-    background: linear-gradient(180deg, var(--teal-blue), var(--muted-green));
-    border-radius: 3px;
-    transition: height 0.15s linear;
-}
-
-/* Timeline dot on each experience item */
 .experience-item {
     position: relative;
-}
-
-.experience-item::before {
-    content: '';
-    position: absolute;
-    left: -18px;
-    top: 26px;
-    width: 13px;
-    height: 13px;
-    border-radius: 50%;
-    background: var(--cream-white);
-    border: 3px solid var(--border-color);
-    transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
     z-index: 1;
 }
 
-.experience-item.sr-visible::before {
-    border-color: var(--teal-blue);
-}
+/* Remove old CSS dot — SVG handles dots now */
+.experience-item::before { display: none; }
 
-.experience-item:hover::before {
-    background: var(--teal-blue);
-    transform: scale(1.25);
+.exp-curve-svg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50px;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+    z-index: 0;
 }
 
 /* ============================================================
