@@ -1592,7 +1592,7 @@ section::before {
     color: white;
     display: flex;
     align-items: center;
-    padding-top: 80px;
+    padding-top: 7rem;
     padding-bottom: 3rem;
     position: relative;
     overflow: hidden;

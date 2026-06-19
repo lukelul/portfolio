@@ -52,6 +52,16 @@ var cadData = {
         desc: 'Designed for Paradigm Robotics to solve a real logistics problem: safely organizing and charging robot battery packs during and between outdoor test sessions. The tower features open shelving for quick battery access, integrated cable routing channels to keep charging cables managed, a top carry handle for portability between test sites, and corner reinforcements for field durability. Flat-pack friendly and assembled without fasteners — designed to be rapidly reproduced for any testing facility.',
         tools: ['SolidWorks', 'Sheet Goods Design', 'Laser Cut Pattern Generation', 'Structural Load Analysis', 'Flat-pack Assembly Design', 'FDM 3D Printing']
     },
+    'vex-2024': {
+        title: 'VEX Robotics — 2024 World Champion · Texas States · US Open',
+        desc: 'A competition robot I co-designed that went on to win three of the most prestigious titles in VEX Robotics in a single season — the 2024 Texas State Championship, 2024 US Open, and the 2024 VEX World Championship. Every mechanism was engineered for maximum performance under match conditions: the drivetrain, scoring mechanisms, and intake were all designed and iterated rapidly across the season. This robot represents the culmination of years of competitive design experience at the highest level of the sport.',
+        tools: ['Autodesk Inventor', 'VEX CAD Libraries', 'Mechanism Design', 'Rapid Prototyping', 'Competitive Analysis', 'Pneumatics', 'Custom Fabrication']
+    },
+    'vex-2025': {
+        title: 'VEX Robotics — 2025 Texas State Champion · Solo Design',
+        desc: 'A competition robot I designed entirely myself that won the 2025 Texas State Championship. Starting from a blank canvas, I engineered every subsystem — drivetrain geometry, lift mechanism, intake, and endgame — iterating quickly from sketch to functional hardware. Designing solo means owning every decision: gear ratios, motor allocations, structural rigidity, and strategic scoring priority were all calculated and validated through build-and-test cycles. The result was a robot that performed flawlessly under championship pressure.',
+        tools: ['Autodesk Inventor', 'Custom Fabrication', 'Drivetrain Design', 'Linkage Mechanism', 'Motor & Gear Ratio Calculation', 'Rapid Prototyping', 'Competitive Strategy']
+    },
     'projector-pen': {
         title: 'Projector Pen — Write on Any Wall',
         desc: 'Designed the complete hardware chassis and CAD casing for a handheld projector pen that can write and draw on any wall surface. The device packs a compact micro-projector, control electronics, and battery into an ergonomic handheld enclosure, all designed from scratch. Every dimension of the housing was modeled around tight spatial constraints — balancing heat dissipation, electronics clearance, button placement, and a form factor slim enough to hold comfortably like a pen.',
