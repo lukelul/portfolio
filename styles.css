@@ -1835,6 +1835,7 @@ section::before {
     flex-direction: column;
     gap: 1rem;
     background: var(--cream-white);
+    min-height: 0;
 }
 
 .pm-close {
