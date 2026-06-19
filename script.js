@@ -24,7 +24,8 @@ function switchTab(tabName) {
         }, 120);
     }
 
-    updateScrollSidebar();
+    // Update sidebar for the new tab
+    setTimeout(updateScrollSidebar, 50);
 }
 
 // ============================================================
@@ -71,7 +72,6 @@ function animateCounter(el) {
     var after = raw.slice(match.index + match[1].length);
     var duration = 1400;
     var t0 = performance.now();
-
     function tick(now) {
         var p = Math.min((now - t0) / duration, 1);
         var eased = 1 - Math.pow(1 - p, 3);
@@ -91,31 +91,67 @@ var counterObserver = new IntersectionObserver(function (entries) {
 }, { threshold: 0.6 });
 
 // ============================================================
-//  SCROLL SIDEBAR
+//  SCROLL SIDEBAR — works on both Home and Experience tabs
 // ============================================================
-var homeSections = ['about', 'education', 'awards', 'languages', 'contact'];
+var tabConfig = {
+    'home': {
+        sections: ['about', 'education', 'awards', 'languages', 'contact'],
+        labels:   ['About', 'Education', 'Awards', 'Languages', 'Contact'],
+        heroThreshold: true   // fade in after hero
+    },
+    'experience': {
+        sections: ['experience', 'projects', 'skills'],
+        labels:   ['Experience', 'Projects', 'Skills'],
+        heroThreshold: false
+    }
+};
+
 var sidebarEl = null;
 var sidebarFillEl = null;
+
+function getActiveTab() {
+    if (document.getElementById('tab-home').classList.contains('active'))       return 'home';
+    if (document.getElementById('tab-experience').classList.contains('active')) return 'experience';
+    return null;
+}
 
 function updateScrollSidebar() {
     if (!sidebarEl) sidebarEl = document.getElementById('scroll-sidebar');
     if (!sidebarFillEl) sidebarFillEl = document.getElementById('sidebar-fill');
     if (!sidebarEl) return;
 
-    var homeTab = document.getElementById('tab-home');
-    var homeActive = homeTab && homeTab.classList.contains('active');
+    var activeTab = getActiveTab();
+    var config = activeTab ? tabConfig[activeTab] : null;
 
-    if (!homeActive) {
+    if (!config) {
         sidebarEl.style.opacity = '0';
         sidebarEl.style.pointerEvents = 'none';
         return;
     }
 
+    var dots = Array.from(document.querySelectorAll('.sdot'));
     var scrollY = window.scrollY;
-    var hero = document.querySelector('.hero');
-    var heroH = hero ? hero.offsetHeight : 600;
 
-    if (scrollY > heroH * 0.45) {
+    // Update dot labels and visibility based on active tab
+    dots.forEach(function (dot, i) {
+        var label = dot.querySelector('.sdot-label');
+        if (i < config.labels.length) {
+            if (label) label.textContent = config.labels[i];
+            dot.style.display = '';
+        } else {
+            dot.style.display = 'none';
+            dot.classList.remove('active');
+        }
+    });
+
+    // Determine show threshold
+    var threshold = 100;
+    if (config.heroThreshold) {
+        var hero = document.querySelector('.hero');
+        threshold = hero ? hero.offsetHeight * 0.45 : 600;
+    }
+
+    if (scrollY > threshold) {
         sidebarEl.style.opacity = '1';
         sidebarEl.style.pointerEvents = 'auto';
     } else {
@@ -123,18 +159,19 @@ function updateScrollSidebar() {
         sidebarEl.style.pointerEvents = 'none';
     }
 
+    // Highlight the section currently in view
     var activeIdx = -1;
-    homeSections.forEach(function (id, i) {
+    config.sections.forEach(function (id, i) {
         var sec = document.getElementById(id);
         if (sec && sec.getBoundingClientRect().top <= window.innerHeight * 0.52) {
             activeIdx = i;
         }
     });
-
-    document.querySelectorAll('.sdot').forEach(function (dot, i) {
-        dot.classList.toggle('active', i === activeIdx);
+    dots.forEach(function (dot, i) {
+        dot.classList.toggle('active', i === activeIdx && i < config.sections.length);
     });
 
+    // Fill the track
     if (sidebarFillEl) {
         var totalH = document.documentElement.scrollHeight - window.innerHeight;
         var pct = totalH > 0 ? Math.min((scrollY / totalH) * 100, 100) : 0;
@@ -263,7 +300,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Font cycler — starts at SANS (index 1) since that's the CSS default
+    // Font cycler — starts at SANS (index 1) to match CSS default
     var fonts = [
         { label: 'PIXEL', value: "'Press Start 2P', 'Minecraft', 'Courier New', monospace", rootSize: '16px', spacing: '-1px' },
         { label: 'SANS',  value: "'Inter', 'Helvetica Neue', Arial, sans-serif",             rootSize: '22px', spacing: '0px'  },
@@ -271,9 +308,9 @@ document.addEventListener('DOMContentLoaded', function () {
         { label: 'MONO',  value: "'Space Mono', 'Courier New', monospace",                   rootSize: '20px', spacing: '0px'  },
         { label: 'HAND',  value: "'Caveat', cursive",                                        rootSize: '24px', spacing: '0px'  },
     ];
-    var fontIndex = 1; // SANS is default
+    var fontIndex = 1;
     var fontToggle = document.getElementById('font-toggle');
-    var fontLabel = document.getElementById('font-label');
+    var fontLabel  = document.getElementById('font-label');
     if (fontToggle) {
         fontToggle.addEventListener('click', function () {
             fontIndex = (fontIndex + 1) % fonts.length;
@@ -291,7 +328,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (contactForm) {
         contactForm.addEventListener('submit', function (e) {
             e.preventDefault();
-            var name = new FormData(contactForm).get('name');
+            var name  = new FormData(contactForm).get('name');
             var email = new FormData(contactForm).get('email');
             alert('Thank you for your message, ' + name + '! I\'ll get back to you at ' + email + ' soon.');
             contactForm.reset();
@@ -301,22 +338,22 @@ document.addEventListener('DOMContentLoaded', function () {
     // Project image magnifier
     document.querySelectorAll('.project-card').forEach(function (card) {
         var projectImage = card.querySelector('.project-image');
-        var projectImg = card.querySelector('.project-img');
+        var projectImg   = card.querySelector('.project-img');
         if (!projectImage || !projectImg) return;
         projectImage.addEventListener('mouseenter', function () {
             projectImg.style.transition = 'transform 0.1s ease-out';
-            projectImg.style.objectFit = 'contain';
+            projectImg.style.objectFit  = 'contain';
         });
         projectImage.addEventListener('mousemove', function (e) {
             var rect = projectImage.getBoundingClientRect();
             var xPct = (e.clientX - rect.left) / rect.width;
-            var yPct = (e.clientY - rect.top) / rect.height;
+            var yPct = (e.clientY - rect.top)  / rect.height;
             var z = 1.3;
             var ia = projectImg.naturalWidth / projectImg.naturalHeight;
             var ca = rect.width / rect.height;
             var dw = ia > ca ? rect.height * ia : rect.width;
             var dh = ia > ca ? rect.height : rect.width / ia;
-            var mx = Math.max(0, (dw * z - rect.width) / (2 * z));
+            var mx = Math.max(0, (dw * z - rect.width)  / (2 * z));
             var my = Math.max(0, (dh * z - rect.height) / (2 * z));
             var tx = (xPct - 0.5) * 2 * mx * 0.3;
             var ty = (yPct - 0.5) * 2 * my * 0.3;
@@ -324,12 +361,12 @@ document.addEventListener('DOMContentLoaded', function () {
         });
         projectImage.addEventListener('mouseleave', function () {
             projectImg.style.transition = 'transform 0.3s ease-out';
-            projectImg.style.transform = 'scale(1)';
-            projectImg.style.objectFit = 'cover';
+            projectImg.style.transform  = 'scale(1)';
+            projectImg.style.objectFit  = 'cover';
         });
     });
 
-    // Scroll reveals
+    // ── Scroll reveals ───────────────────────────────────────
     setupReveal('.section-title',    'up');
     setupReveal('.about-text p',     'up',    80);
     setupReveal('.about-info',       'up');
@@ -343,22 +380,26 @@ document.addEventListener('DOMContentLoaded', function () {
     setupReveal('.cad-photo-wrap',   'up',    60);
     setupReveal('.cad-hero-content', 'up');
 
-    // Counter animation on stat numbers
+    // ── Counter animation ────────────────────────────────────
     document.querySelectorAll('.stat-number').forEach(function (el) {
         counterObserver.observe(el);
     });
 
-    // Scroll sidebar
-    sidebarEl = document.getElementById('scroll-sidebar');
-    sidebarFillEl = document.getElementById('sidebar-fill');
+    // ── Scroll sidebar setup ─────────────────────────────────
+    sidebarEl      = document.getElementById('scroll-sidebar');
+    sidebarFillEl  = document.getElementById('sidebar-fill');
+
     document.querySelectorAll('.sdot').forEach(function (dot, i) {
         dot.addEventListener('click', function () {
-            var sec = document.getElementById(homeSections[i]);
+            var activeTab = getActiveTab();
+            var config = activeTab ? tabConfig[activeTab] : null;
+            if (!config || i >= config.sections.length) return;
+            var sec = document.getElementById(config.sections[i]);
             if (sec) window.scrollTo({ top: sec.offsetTop - 90, behavior: 'smooth' });
         });
     });
 
-    // Lightbox
+    // ── Lightbox ─────────────────────────────────────────────
     var lb = document.getElementById('lightbox');
     if (lb) {
         lb.addEventListener('click', function (e) {
@@ -374,15 +415,15 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Hero particles
+    // ── Hero particles ───────────────────────────────────────
     createParticles();
 
-    // Scroll handler
+    // ── Scroll handler ───────────────────────────────────────
     window.addEventListener('scroll', function () {
         updateScrollSidebar();
     }, { passive: true });
 
-    // Initial state
+    // ── Initial state ────────────────────────────────────────
     updateScrollSidebar();
     triggerVisibleReveals();
 });
