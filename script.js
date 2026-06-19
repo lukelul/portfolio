@@ -11,22 +11,17 @@ function switchTab(tabName) {
     document.querySelectorAll('.nav-link.tab-btn[data-tab="' + tabName + '"]').forEach(b => b.classList.add('active'));
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
-
     setTimeout(triggerVisibleReveals, 120);
 
     if (tabName === 'experience') {
         setTimeout(function () {
-            // Build curved SVG line on first visit
-            if (!expCurve) expCurve = buildExpCurve();
-            updateExpCurve();
-            // Animate skill bars
             document.querySelectorAll('.skill-progress').forEach(function (bar) {
                 var w = bar.getAttribute('data-width') || bar.style.width;
                 bar.setAttribute('data-width', w);
                 bar.style.width = '0%';
                 setTimeout(function () { bar.style.width = w; }, 50);
             });
-        }, 80);
+        }, 120);
     }
 
     updateScrollSidebar();
@@ -145,128 +140,6 @@ function updateScrollSidebar() {
         var pct = totalH > 0 ? Math.min((scrollY / totalH) * 100, 100) : 0;
         sidebarFillEl.style.height = pct + '%';
     }
-}
-
-// ============================================================
-//  CURVY EXPERIENCE TIMELINE SVG
-// ============================================================
-var expCurve = null;
-
-function buildExpCurve() {
-    var tl = document.querySelector('#tab-experience .experience-timeline');
-    if (!tl) return null;
-    // Remove any existing SVG
-    var old = tl.querySelector('.exp-curve-svg');
-    if (old) old.remove();
-
-    var ns = 'http://www.w3.org/2000/svg';
-    var svg = document.createElementNS(ns, 'svg');
-    svg.setAttribute('class', 'exp-curve-svg');
-
-    var items = Array.from(tl.querySelectorAll('.experience-item'));
-    var containerH = tl.offsetHeight;
-    var cx = 22;   // center x of the curve lane
-    var amp = 10;  // left/right oscillation
-
-    // Collect item midpoints
-    var pts = items.map(function (item, i) {
-        var top = item.offsetTop;
-        var h = item.offsetHeight;
-        return {
-            x: cx + (i % 2 === 0 ? amp : -amp),
-            y: top + h * 0.38
-        };
-    });
-
-    // Build smooth cubic bezier path
-    var d = 'M ' + cx + ',0';
-    if (pts.length > 0) {
-        var first = pts[0];
-        d += ' C ' + cx + ',' + (first.y * 0.3) +
-             ' ' + first.x + ',' + (first.y * 0.7) +
-             ' ' + first.x + ',' + first.y;
-
-        for (var i = 1; i < pts.length; i++) {
-            var prev = pts[i - 1];
-            var curr = pts[i];
-            var midY = (prev.y + curr.y) / 2;
-            d += ' C ' + prev.x + ',' + midY +
-                 ' ' + curr.x + ',' + midY +
-                 ' ' + curr.x + ',' + curr.y;
-        }
-        var last = pts[pts.length - 1];
-        d += ' C ' + last.x + ',' + (containerH * 0.88) +
-             ' ' + cx + ',' + (containerH * 0.94) +
-             ' ' + cx + ',' + containerH;
-    }
-
-    // Gradient definition
-    var defs = document.createElementNS(ns, 'defs');
-    var grad = document.createElementNS(ns, 'linearGradient');
-    grad.id = 'expGrad';
-    grad.setAttribute('gradientUnits', 'userSpaceOnUse');
-    grad.setAttribute('x1', '0'); grad.setAttribute('y1', '0');
-    grad.setAttribute('x2', '0'); grad.setAttribute('y2', String(containerH));
-    [['0%', '#5a9ca3'], ['100%', '#5a7a6b']].forEach(function (pair) {
-        var s = document.createElementNS(ns, 'stop');
-        s.setAttribute('offset', pair[0]);
-        s.setAttribute('stop-color', pair[1]);
-        grad.appendChild(s);
-    });
-    defs.appendChild(grad);
-    svg.appendChild(defs);
-
-    // Glow layer (wide, faint)
-    var glow = document.createElementNS(ns, 'path');
-    glow.setAttribute('d', d);
-    glow.setAttribute('fill', 'none');
-    glow.setAttribute('stroke', 'rgba(90,156,163,0.14)');
-    glow.setAttribute('stroke-width', '12');
-    glow.setAttribute('stroke-linecap', 'round');
-    svg.appendChild(glow);
-
-    // Main line
-    var path = document.createElementNS(ns, 'path');
-    path.setAttribute('d', d);
-    path.setAttribute('fill', 'none');
-    path.setAttribute('stroke', 'url(#expGrad)');
-    path.setAttribute('stroke-width', '2.5');
-    path.setAttribute('stroke-linecap', 'round');
-    svg.appendChild(path);
-
-    // Dots at each item position
-    pts.forEach(function (pt) {
-        var circle = document.createElementNS(ns, 'circle');
-        circle.setAttribute('cx', String(pt.x));
-        circle.setAttribute('cy', String(pt.y));
-        circle.setAttribute('r', '5');
-        circle.setAttribute('fill', '#f5f2e8');
-        circle.setAttribute('stroke', '#5a9ca3');
-        circle.setAttribute('stroke-width', '2.5');
-        svg.appendChild(circle);
-    });
-
-    tl.insertBefore(svg, tl.firstChild);
-
-    // Set up dash animation (starts fully hidden)
-    var length = path.getTotalLength();
-    path.style.strokeDasharray = String(length);
-    path.style.strokeDashoffset = String(length);
-    glow.style.strokeDasharray = String(length);
-    glow.style.strokeDashoffset = String(length);
-
-    return { path: path, glow: glow, length: length };
-}
-
-function updateExpCurve() {
-    if (!expCurve) return;
-    var tl = document.querySelector('#tab-experience .experience-timeline');
-    if (!tl) return;
-    var rect = tl.getBoundingClientRect();
-    var progress = Math.max(0, Math.min(1, (window.innerHeight * 0.8 - rect.top) / tl.offsetHeight));
-    var offset = expCurve.length * (1 - progress);
-    expCurve.path.style.strokeDashoffset = String(offset);
-    expCurve.glow.style.strokeDashoffset = String(offset);
 }
 
 // ============================================================
@@ -390,7 +263,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Font cycler — starts at index 1 (SANS) since that's the CSS default
+    // Font cycler — starts at SANS (index 1) since that's the CSS default
     var fonts = [
         { label: 'PIXEL', value: "'Press Start 2P', 'Minecraft', 'Courier New', monospace", rootSize: '16px', spacing: '-1px' },
         { label: 'SANS',  value: "'Inter', 'Helvetica Neue', Arial, sans-serif",             rootSize: '22px', spacing: '0px'  },
@@ -398,7 +271,7 @@ document.addEventListener('DOMContentLoaded', function () {
         { label: 'MONO',  value: "'Space Mono', 'Courier New', monospace",                   rootSize: '20px', spacing: '0px'  },
         { label: 'HAND',  value: "'Caveat', cursive",                                        rootSize: '24px', spacing: '0px'  },
     ];
-    var fontIndex = 1; // default is SANS
+    var fontIndex = 1; // SANS is default
     var fontToggle = document.getElementById('font-toggle');
     var fontLabel = document.getElementById('font-label');
     if (fontToggle) {
@@ -470,7 +343,7 @@ document.addEventListener('DOMContentLoaded', function () {
     setupReveal('.cad-photo-wrap',   'up',    60);
     setupReveal('.cad-hero-content', 'up');
 
-    // Counter animation
+    // Counter animation on stat numbers
     document.querySelectorAll('.stat-number').forEach(function (el) {
         counterObserver.observe(el);
     });
@@ -504,10 +377,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // Hero particles
     createParticles();
 
-    // Unified scroll handler
+    // Scroll handler
     window.addEventListener('scroll', function () {
         updateScrollSidebar();
-        updateExpCurve();
     }, { passive: true });
 
     // Initial state
