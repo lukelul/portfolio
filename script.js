@@ -4,7 +4,7 @@
 var cadData = {
     'youibot': {
         title: 'YouiBot Humanoid — Forearm & InspireHand Integration',
-        desc: 'At YouiBot in Shenzhen, I independently led the design of the humanoid robot\'s forearm and the full kinematic linkage to the InspireHand end effector — every bracket, joint interface, and fastening point designed and iterated in SolidWorks. Working in a fast-paced R&D environment under tight deadlines, I engineered around strict electrical constraints: routing harnesses through the arm structure, selecting motors by calculating joint torque requirements from first principles, and turning around physical prototypes same-day. The arm went from concept CAD to production hardware in a matter of weeks.',
+        desc: 'At YouiBot in Shenzhen, I independently led the design of the humanoid robot arm — designing and fabricating the entire forearm assembly and the kinematic linkage to the InspireHand end effector entirely myself. The arm is part of Ling Shu, the world\'s first cross-scenario humanoid robot featuring a "one-brain-multi-form" architecture, co-developed by YouiBot Robotics and the Embodied Intelligent Robot Research Institute (a joint venture with Xi\'an Jiaotong University). Working under intense deadlines in a fast-paced R&D environment, I engineered around strict electrical constraints — routing harnesses through the arm structure, calculating joint torque requirements from first principles to select the right motors, and turning physical prototypes around same-day.',
         tools: ['SolidWorks', 'InspireHand SDK', 'Torque & Motor Sizing', 'Cable Routing', 'FDM 3D Printing', 'CNC Machining', 'Rapid Prototyping']
     },
     'inhabit-arm': {
@@ -51,6 +51,12 @@ var cadData = {
         title: 'Battery & Charger Storage Tower — Paradigm Robotics',
         desc: 'Designed for Paradigm Robotics to solve a real logistics problem: safely organizing and charging robot battery packs during and between outdoor test sessions. The tower features open shelving for quick battery access, integrated cable routing channels to keep charging cables managed, a top carry handle for portability between test sites, and corner reinforcements for field durability. Flat-pack friendly and assembled without fasteners — designed to be rapidly reproduced for any testing facility.',
         tools: ['SolidWorks', 'Sheet Goods Design', 'Laser Cut Pattern Generation', 'Structural Load Analysis', 'Flat-pack Assembly Design', 'FDM 3D Printing']
+    },
+    'projector-pen': {
+        title: 'Projector Pen — Write on Any Wall',
+        desc: 'Designed the complete hardware chassis and CAD casing for a handheld projector pen that can write and draw on any wall surface. The device packs a compact micro-projector, control electronics, and battery into an ergonomic handheld enclosure, all designed from scratch. Every dimension of the housing was modeled around tight spatial constraints — balancing heat dissipation, electronics clearance, button placement, and a form factor slim enough to hold comfortably like a pen.',
+        tools: ['SolidWorks', 'FDM 3D Printing', 'Electronics Integration', 'Surface Modeling', 'Thermal Management', 'Embedded Hardware Design', 'Ergonomic Form Design'],
+        video: 'cad-11.mp4'
     }
 };
 
@@ -64,8 +70,22 @@ function openPhotoModal(wrap) {
     if (!data || !img) return;
 
     var modal = document.getElementById('photo-modal');
-    document.getElementById('pm-img').src = img.src;
-    document.getElementById('pm-img').alt = img.alt;
+    var pmImg   = document.getElementById('pm-img');
+    var pmVideo = document.getElementById('pm-video');
+
+    if (data.video) {
+        pmImg.style.display = 'none';
+        pmVideo.style.display = 'block';
+        pmVideo.src = data.video;
+        pmVideo.load();
+    } else {
+        pmVideo.style.display = 'none';
+        pmVideo.src = '';
+        pmImg.style.display = 'block';
+        pmImg.src = img.src;
+        pmImg.alt = img.alt;
+    }
+
     document.getElementById('pm-title').textContent = data.title;
     document.getElementById('pm-desc').textContent = data.desc;
 
@@ -85,6 +105,8 @@ function openPhotoModal(wrap) {
 function closePhotoModal() {
     var modal = document.getElementById('photo-modal');
     if (!modal) return;
+    var pmVideo = document.getElementById('pm-video');
+    if (pmVideo) { pmVideo.pause(); pmVideo.src = ''; }
     modal.classList.remove('open');
     document.body.style.overflow = '';
 }
