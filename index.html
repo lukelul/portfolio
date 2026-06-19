@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yanda (Luke) Lu - Portfolio</title>
-    <link rel="stylesheet" href="styles.css?v=15">
+    <link rel="stylesheet" href="styles.css?v=16">
     <!-- Minecraft Font from CDN -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +18,7 @@
             <ul class="nav-menu">
                 <li><a href="#" class="nav-link tab-btn active" data-tab="home">Home</a></li>
                 <li><a href="#" class="nav-link tab-btn" data-tab="experience">Experience</a></li>
-                <li><a href="#" class="nav-link tab-btn" data-tab="inhabit">Inhabit</a></li>
+                <li><a href="#" class="nav-link tab-btn" data-tab="cad">CAD</a></li>
             </ul>
             <button id="font-toggle" class="font-toggle" title="Change font">Aa <span id="font-label">PIXEL</span></button>
             <div class="hamburger">
@@ -28,6 +28,16 @@
             </div>
         </div>
     </nav>
+
+    <!-- Scroll Sidebar (home tab progress dots) -->
+    <div id="scroll-sidebar">
+        <div class="sidebar-track"><div id="sidebar-fill"></div></div>
+        <div class="sdot"><div class="sdot-ring"></div><span class="sdot-label">About</span></div>
+        <div class="sdot"><div class="sdot-ring"></div><span class="sdot-label">Education</span></div>
+        <div class="sdot"><div class="sdot-ring"></div><span class="sdot-label">Awards</span></div>
+        <div class="sdot"><div class="sdot-ring"></div><span class="sdot-label">Languages</span></div>
+        <div class="sdot"><div class="sdot-ring"></div><span class="sdot-label">Contact</span></div>
+    </div>
 
     <!-- HOME TAB -->
     <div id="tab-home" class="tab-panel active">
@@ -44,7 +54,7 @@
                         Aspiring mechanical engineer and robotics innovator with global experience in design, leadership, and AI integration. Passionate about applying engineering principles to real-world problems through interdisciplinary collaboration and rapid prototyping.
                     </p>
                     <div class="hero-buttons">
-                        <a href="#" class="btn btn-primary tab-btn" data-tab="experience">View My Work</a>
+                        <a href="#" class="btn btn-primary tab-btn" data-tab="cad">View My Work</a>
                         <a href="#contact" class="btn btn-secondary">Get In Touch</a>
                     </div>
                 </div>
@@ -449,26 +459,57 @@
 
     </div><!-- end #tab-experience -->
 
-    <!-- INHABIT TAB -->
-    <div id="tab-inhabit" class="tab-panel">
-        <section class="inhabit-placeholder">
+    <!-- CAD TAB -->
+    <div id="tab-cad" class="tab-panel">
+
+        <!-- Hero Banner -->
+        <div class="cad-hero">
             <div class="container">
-                <h2 class="section-title">Inhabit</h2>
-                <div class="inhabit-intro">
-                    <p class="inhabit-role">Founder & Builder</p>
-                    <p class="inhabit-desc">
-                        Inhabit is building an inexpensive, modular teleoperation system that can be reassembled and matched to any robot arm — making scalable robotics data collection accessible to every lab and team.
-                    </p>
+                <div class="cad-hero-content">
+                    <h1>CAD &amp; Design</h1>
+                    <p>Designing robots, mechanisms, and hardware systems from scratch. From competition drive bases to humanoid arms — every part modeled, rendered, and built to spec.</p>
                 </div>
             </div>
-            <div class="inhabit-pdf-wrapper">
-                <button class="inhabit-fullscreen-btn" onclick="document.getElementById('inhabit-pdf').requestFullscreen()">⛶ Full Screen</button>
-                <iframe id="inhabit-pdf" src="inhabit-pitch.pdf" class="inhabit-pitch-pdf" title="Inhabit Pitch Deck" allowfullscreen>
-                    <p>Your browser cannot display PDFs. <a href="inhabit-pitch.pdf" target="_blank">Download the pitch deck</a>.</p>
-                </iframe>
+        </div>
+
+        <!-- Gallery -->
+        <section class="cad-gallery-section">
+            <div class="container">
+                <p class="section-title cad-gallery-title">Design Portfolio</p>
+                <div class="cad-gallery">
+                    <div class="cad-photo-wrap">
+                        <img src="cad-7.png" alt="6-DOF Robot Arm Concept Render" loading="lazy">
+                        <div class="cad-photo-cap">6-DOF Robot Arm · Concept Render</div>
+                    </div>
+                    <div class="cad-photo-wrap">
+                        <img src="cad-6.png" alt="Modular Arm Joint Render" loading="lazy">
+                        <div class="cad-photo-cap">Modular Arm Joint · Rendered</div>
+                    </div>
+                    <div class="cad-photo-wrap">
+                        <img src="cad-1.jpeg" alt="YouiBot Humanoid Robot" loading="lazy">
+                        <div class="cad-photo-cap">YouiBot Humanoid · Production Unit</div>
+                    </div>
+                    <div class="cad-photo-wrap">
+                        <img src="cad-5.png" alt="Humanoid Torso Assembly SolidWorks" loading="lazy">
+                        <div class="cad-photo-cap">Humanoid Torso Assembly · SolidWorks</div>
+                    </div>
+                    <div class="cad-photo-wrap">
+                        <img src="cad-3.png" alt="Competition Drive Base SolidWorks" loading="lazy">
+                        <div class="cad-photo-cap">Competition Drive Base · SolidWorks</div>
+                    </div>
+                    <div class="cad-photo-wrap">
+                        <img src="cad-4.png" alt="LED Score Display Assembly SolidWorks" loading="lazy">
+                        <div class="cad-photo-cap">LED Score Display · SolidWorks</div>
+                    </div>
+                    <div class="cad-photo-wrap">
+                        <img src="cad-2.png" alt="Portable Storage Tower SolidWorks" loading="lazy">
+                        <div class="cad-photo-cap">Portable Storage Tower · SolidWorks</div>
+                    </div>
+                </div>
             </div>
         </section>
-    </div><!-- end #tab-inhabit -->
+
+    </div><!-- end #tab-cad -->
 
     <!-- Footer -->
     <footer class="footer">
@@ -477,7 +518,7 @@
             <div class="footer-links">
                 <a href="#" class="tab-btn" data-tab="home">Home</a>
                 <a href="#" class="tab-btn" data-tab="experience">Experience</a>
-                <a href="#" class="tab-btn" data-tab="inhabit">Inhabit</a>
+                <a href="#" class="tab-btn" data-tab="cad">CAD</a>
             </div>
         </div>
     </footer>
@@ -486,13 +527,19 @@
     <div id="speaking-toast" class="speaking-toast">
         <div class="toast-icon">🎤</div>
         <div class="toast-text">
-            <strong>Speaking Next Month!</strong>
+            <strong>I spoke last month in Paris!</strong>
             <span>GOSIM Paris 2026</span>
         </div>
         <a href="https://paris2026.gosim.org/speakers/luke-lu/" target="_blank" rel="noopener" class="toast-link">View →</a>
         <button class="toast-close" aria-label="Dismiss">✕</button>
     </div>
 
-    <script src="script.js?v=5"></script>
+    <!-- Lightbox -->
+    <div id="lightbox">
+        <button class="lb-close" aria-label="Close">✕</button>
+        <img id="lb-img" src="" alt="CAD Design">
+    </div>
+
+    <script src="script.js?v=6"></script>
 </body>
 </html>
