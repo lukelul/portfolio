@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yanda (Luke) Lu - Portfolio</title>
-    <link rel="stylesheet" href="styles.css?v=19">
+    <link rel="stylesheet" href="styles.css?v=20">
     <!-- Minecraft Font from CDN -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -502,45 +502,45 @@
             <div class="container">
                 <p class="section-title cad-gallery-title">Design Portfolio</p>
                 <div class="cad-gallery">
-                    <div class="cad-photo-wrap">
-                        <img src="cad-7.png" alt="Inhabit V1 6-DOF Arm with Exoskeleton Teleop Render" loading="lazy">
-                        <div class="cad-photo-cap">Inhabit V1 · 6-DOF Arm & Exoskeleton Teleop · Rendered</div>
-                    </div>
-                    <div class="cad-photo-wrap">
-                        <img src="cad-6.png" alt="Inhabit Modular Arm Joint Render" loading="lazy">
-                        <div class="cad-photo-cap">Inhabit · Modular Arm Joint · Rendered</div>
-                    </div>
-                    <div class="cad-photo-wrap">
+                    <div class="cad-photo-wrap" data-key="youibot">
                         <img src="cad-1.jpeg" alt="YouiBot Humanoid — Forearm and InspireHand Linkage Design" loading="lazy">
                         <div class="cad-photo-cap">YouiBot · Forearm & InspireHand Linkage · SolidWorks</div>
                     </div>
-                    <div class="cad-photo-wrap">
-                        <img src="cad-5.png" alt="Robotic Exoskeleton with Picatinny Rail Attachments SolidWorks" loading="lazy">
-                        <div class="cad-photo-cap">Robotic Exoskeleton · Picatinny Rail Attachments · SolidWorks</div>
+                    <div class="cad-photo-wrap" data-key="inhabit-arm">
+                        <img src="cad-7.png" alt="Inhabit V1 6-DOF Arm with Exoskeleton Teleop Render" loading="lazy">
+                        <div class="cad-photo-cap">Inhabit V1 · 6-DOF Arm & Exoskeleton Teleop · Rendered</div>
                     </div>
-                    <div class="cad-photo-wrap">
-                        <img src="cad-3.png" alt="Autonomous Cleaning Robot SolidWorks" loading="lazy">
-                        <div class="cad-photo-cap">Autonomous Cleaning Robot · SolidWorks</div>
+                    <div class="cad-photo-wrap" data-key="inhabit-joint">
+                        <img src="cad-6.png" alt="Inhabit Modular Arm Joint Render" loading="lazy">
+                        <div class="cad-photo-cap">Inhabit · Modular Arm Joint · Rendered</div>
                     </div>
-                    <div class="cad-photo-wrap">
-                        <img src="cad-4.png" alt="HackUTD 2025 LED Matrix Interactive Game Hardware SolidWorks" loading="lazy">
-                        <div class="cad-photo-cap">HackUTD 2025 · LED Matrix Game Hardware · SolidWorks</div>
-                    </div>
-                    <div class="cad-photo-wrap">
-                        <img src="cad-2.png" alt="Battery and Charger Storage Tower Paradigm Robotics SolidWorks" loading="lazy">
-                        <div class="cad-photo-cap">Battery & Charger Storage · Paradigm Robotics · SolidWorks</div>
-                    </div>
-                    <div class="cad-photo-wrap">
+                    <div class="cad-photo-wrap" data-key="inhabit-render">
                         <img src="cad-9.webp" alt="Inhabit 6-DOF Modular Arm Full Render" loading="lazy">
                         <div class="cad-photo-cap">Inhabit · 6-DOF Modular Arm · Rendered</div>
                     </div>
-                    <div class="cad-photo-wrap">
+                    <div class="cad-photo-wrap" data-key="inhabit-compat">
+                        <img src="cad-10.webp" alt="Inhabit Multi-Platform Teleoperation System" loading="lazy">
+                        <div class="cad-photo-cap">Inhabit · Multi-Platform Teleoperation</div>
+                    </div>
+                    <div class="cad-photo-wrap" data-key="exo-hand">
                         <img src="cad-8.webp" alt="Robotic Exoskeleton Teleop Hand Build vs CAD" loading="lazy">
                         <div class="cad-photo-cap">Robotic Exoskeleton Teleop Hand · Build vs. CAD</div>
                     </div>
-                    <div class="cad-photo-wrap">
-                        <img src="cad-10.webp" alt="Inhabit Multi-Platform Teleoperation System" loading="lazy">
-                        <div class="cad-photo-cap">Inhabit · Multi-Platform Teleoperation</div>
+                    <div class="cad-photo-wrap" data-key="exo-torso">
+                        <img src="cad-5.png" alt="Robotic Exoskeleton with Picatinny Rail Attachments SolidWorks" loading="lazy">
+                        <div class="cad-photo-cap">Robotic Exoskeleton · Picatinny Rail Attachments · SolidWorks</div>
+                    </div>
+                    <div class="cad-photo-wrap" data-key="hackutd">
+                        <img src="cad-4.png" alt="HackUTD 2025 LED Matrix Interactive Game Hardware SolidWorks" loading="lazy">
+                        <div class="cad-photo-cap">HackUTD 2025 · LED Matrix Game Hardware · SolidWorks</div>
+                    </div>
+                    <div class="cad-photo-wrap" data-key="cleaner">
+                        <img src="cad-3.png" alt="Autonomous Cleaning Robot SolidWorks" loading="lazy">
+                        <div class="cad-photo-cap">Autonomous Cleaning Robot · SolidWorks</div>
+                    </div>
+                    <div class="cad-photo-wrap" data-key="paradigm">
+                        <img src="cad-2.png" alt="Battery and Charger Storage Tower Paradigm Robotics SolidWorks" loading="lazy">
+                        <div class="cad-photo-cap">Battery & Charger Storage · Paradigm Robotics · SolidWorks</div>
                     </div>
                 </div>
             </div>
@@ -571,12 +571,25 @@
         <button class="toast-close" aria-label="Dismiss">✕</button>
     </div>
 
-    <!-- Lightbox -->
-    <div id="lightbox">
-        <button class="lb-close" aria-label="Close">✕</button>
-        <img id="lb-img" src="" alt="CAD Design">
+    <!-- Photo Detail Modal -->
+    <div id="photo-modal">
+        <div class="pm-backdrop"></div>
+        <div class="pm-card">
+            <button class="pm-close" aria-label="Close">✕</button>
+            <div class="pm-img-wrap">
+                <img id="pm-img" src="" alt="">
+            </div>
+            <div class="pm-info">
+                <h2 id="pm-title"></h2>
+                <p id="pm-desc"></p>
+                <div class="pm-tools">
+                    <div class="pm-tools-label">Tools &amp; Tech</div>
+                    <div id="pm-tools-list"></div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <script src="script.js?v=8"></script>
+    <script src="script.js?v=9"></script>
 </body>
 </html>

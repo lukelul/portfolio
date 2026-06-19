@@ -1,4 +1,95 @@
 // ============================================================
+//  CAD PHOTO DATA
+// ============================================================
+var cadData = {
+    'youibot': {
+        title: 'YouiBot Humanoid — Forearm & InspireHand Integration',
+        desc: 'At YouiBot in Shenzhen, I independently led the design of the humanoid robot\'s forearm and the full kinematic linkage to the InspireHand end effector — every bracket, joint interface, and fastening point designed and iterated in SolidWorks. Working in a fast-paced R&D environment under tight deadlines, I engineered around strict electrical constraints: routing harnesses through the arm structure, selecting motors by calculating joint torque requirements from first principles, and turning around physical prototypes same-day. The arm went from concept CAD to production hardware in a matter of weeks.',
+        tools: ['SolidWorks', 'InspireHand SDK', 'Torque & Motor Sizing', 'Cable Routing', 'FDM 3D Printing', 'CNC Machining', 'Rapid Prototyping']
+    },
+    'inhabit-arm': {
+        title: 'Inhabit V1 — 6-DOF Arm & Exoskeleton Teleoperation System',
+        desc: 'The V1 prototype of Inhabit\'s modular teleoperation platform — a purpose-built 6-DOF robot arm paired with a custom robotic exoskeleton glove that captures the operator\'s hand motion and streams it as real-time control input. The arm was designed from scratch to be reconfigurable and compatible with a range of end effectors, with every joint sized for tabletop manipulation payloads. The entire system was kept deliberately low-cost and buildable so any lab could replicate it without proprietary hardware.',
+        tools: ['SolidWorks', 'Onshape', 'Keyshot', 'Servo Actuator Sizing', 'Inverse Kinematics', '3D Printing', 'Real-time Serial Control']
+    },
+    'inhabit-joint': {
+        title: 'Inhabit — Modular Arm Joint System',
+        desc: 'A close-up render of Inhabit\'s proprietary modular joint design. Each joint in the Inhabit arm uses a standardized interface so the arm length and configuration can be reconfigured without any special tooling — disassembly in under a minute. The black aluminum clamps lock each joint under load, and the green LED rings provide visual joint-state feedback to the operator. Designed with tight tolerance stacking requirements to keep backlash low across the full chain.',
+        tools: ['SolidWorks', 'Keyshot', 'Tolerance Stack Analysis', 'Aluminum Extrusion Design', 'Generative Design', 'Low-volume Manufacturing']
+    },
+    'inhabit-render': {
+        title: 'Inhabit — 6-DOF Modular Arm',
+        desc: 'A full render of the Inhabit arm in a typical teleoperation pose, showing all six degrees of freedom. Link lengths are modular and swappable, and the end effector mount is standardized for quick swaps between grippers and tools. The design prioritized off-the-shelf servo actuators, 3D-printed structural links, and snap-together assembly — so any team could build and reconfigure it without machining access. The green accent rings mark each active revolute joint.',
+        tools: ['SolidWorks', 'Keyshot', 'DH Parameter Analysis', 'Servo Motor Integration', 'Forward/Inverse Kinematics', '3D Printing']
+    },
+    'inhabit-compat': {
+        title: 'Inhabit — Universal Robot Compatibility',
+        desc: 'Inhabit\'s teleoperation system is designed to be hardware-agnostic from day one. This render illustrates cross-platform compatibility with Universal Robots arms, Hugging Face\'s LeRobot platform, and Unitree humanoid robots — all driven by the same Inhabit operator interface. The modular joint architecture allows the arm to be adapted to match the kinematic profile of any target robot, dramatically lowering the setup cost for AI robotics teams collecting demonstration data.',
+        tools: ['SolidWorks', 'ROS2', 'Robot Kinematics Mapping', 'Cross-platform Hardware Integration', 'Keyshot', 'URDF Export']
+    },
+    'exo-hand': {
+        title: 'Robotic Exoskeleton Teleoperation Hand',
+        desc: 'A custom-built robotic exoskeleton glove designed for intuitive, low-latency robot teleoperation. The operator wears the exoskeleton and their finger movements are captured in real time and transmitted to a robot hand. The physical prototype shows the servo-actuated finger linkages assembled with off-the-shelf hardware, developed alongside the CAD model in an iterative build-test loop. Designed to be lightweight, wearable for extended sessions, and fully reproducible with widely available parts.',
+        tools: ['SolidWorks', 'Arduino', 'Servo Actuators', 'Flex Sensors', 'I2C Communication', 'Linkage Mechanism Design', '3D Printing', 'Embedded C++']
+    },
+    'exo-torso': {
+        title: 'Robotic Exoskeleton — Picatinny Rail Attachment System',
+        desc: 'A modular exoskeleton torso design with integrated Picatinny rail mounting points across the chest and shoulder panels, conforming to MIL-STD-1913. The rail interface allows sensors, cameras, and payload modules to be added or swapped without redesigning the chassis. The structure was designed for wearability and rigidity under dynamic loads, with organic surface blending at joint interfaces and reinforced gussets at high-stress nodes.',
+        tools: ['SolidWorks', 'Surface Modeling', 'Structural FEA', 'MIL-STD-1913 Rail Standards', 'Composite Layup Design', '3D Printing', 'Ergonomic Fit Analysis']
+    },
+    'hackutd': {
+        title: 'HackUTD 2025 — Interactive LED Matrix Game',
+        desc: 'Designed and built the entire hardware stack for our HackUTD 2025 project in under 24 hours. The system featured a motorized LED matrix that physically tilted and moved as part of gameplay, paired with a secondary mini display as the main game interface. Players interacted directly with the physical displays — no keyboard, no screen. Every PCB mount, motor bracket, and structural panel was modeled in SolidWorks and printed live during the hackathon, going from blank page to playable game by morning.',
+        tools: ['SolidWorks', 'Arduino', 'LED Matrix Drivers', 'Stepper Motors', 'I2C/SPI Display Protocols', 'Rapid Prototyping', 'FDM 3D Printing', 'Embedded C++']
+    },
+    'cleaner': {
+        title: 'Autonomous Cleaning Robot',
+        desc: 'A fully self-designed autonomous cleaning robot built around off-the-shelf Amazon electronics to keep the BOM cost as low as possible. The chassis was designed in SolidWorks around a differential drive base with onboard obstacle avoidance sensors and a modular cleaning payload bay. Every structural component was designed for easy FDM printing and tool-free assembly, making the full robot reproducible at a fraction of the cost of commercial cleaning robots.',
+        tools: ['SolidWorks', 'Arduino', 'Ultrasonic Sensors', 'DC Motor Controllers', 'Differential Drive Design', 'FDM 3D Printing', 'Embedded C++', 'Sensor Fusion']
+    },
+    'paradigm': {
+        title: 'Battery & Charger Storage Tower — Paradigm Robotics',
+        desc: 'Designed for Paradigm Robotics to solve a real logistics problem: safely organizing and charging robot battery packs during and between outdoor test sessions. The tower features open shelving for quick battery access, integrated cable routing channels to keep charging cables managed, a top carry handle for portability between test sites, and corner reinforcements for field durability. Flat-pack friendly and assembled without fasteners — designed to be rapidly reproduced for any testing facility.',
+        tools: ['SolidWorks', 'Sheet Goods Design', 'Laser Cut Pattern Generation', 'Structural Load Analysis', 'Flat-pack Assembly Design', 'FDM 3D Printing']
+    }
+};
+
+// ============================================================
+//  PHOTO MODAL
+// ============================================================
+function openPhotoModal(wrap) {
+    var key = wrap.getAttribute('data-key');
+    var data = cadData[key];
+    var img = wrap.querySelector('img');
+    if (!data || !img) return;
+
+    var modal = document.getElementById('photo-modal');
+    document.getElementById('pm-img').src = img.src;
+    document.getElementById('pm-img').alt = img.alt;
+    document.getElementById('pm-title').textContent = data.title;
+    document.getElementById('pm-desc').textContent = data.desc;
+
+    var toolsList = document.getElementById('pm-tools-list');
+    toolsList.innerHTML = '';
+    data.tools.forEach(function (tool) {
+        var tag = document.createElement('span');
+        tag.className = 'pm-tool-tag';
+        tag.textContent = tool;
+        toolsList.appendChild(tag);
+    });
+
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closePhotoModal() {
+    var modal = document.getElementById('photo-modal');
+    if (!modal) return;
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+// ============================================================
 //  TAB SYSTEM
 // ============================================================
 function switchTab(tabName) {
@@ -24,7 +115,6 @@ function switchTab(tabName) {
         }, 120);
     }
 
-    // Update sidebar for the new tab
     setTimeout(updateScrollSidebar, 50);
 }
 
@@ -91,13 +181,13 @@ var counterObserver = new IntersectionObserver(function (entries) {
 }, { threshold: 0.6 });
 
 // ============================================================
-//  SCROLL SIDEBAR — works on both Home and Experience tabs
+//  SCROLL SIDEBAR
 // ============================================================
 var tabConfig = {
     'home': {
         sections: ['about', 'education', 'awards', 'languages', 'contact'],
         labels:   ['About', 'Education', 'Awards', 'Languages', 'Contact'],
-        heroThreshold: true   // fade in after hero
+        heroThreshold: true
     },
     'experience': {
         sections: ['experience', 'projects', 'skills'],
@@ -132,7 +222,6 @@ function updateScrollSidebar() {
     var dots = Array.from(document.querySelectorAll('.sdot'));
     var scrollY = window.scrollY;
 
-    // Update dot labels and visibility based on active tab
     dots.forEach(function (dot, i) {
         var label = dot.querySelector('.sdot-label');
         if (i < config.labels.length) {
@@ -144,7 +233,6 @@ function updateScrollSidebar() {
         }
     });
 
-    // Determine show threshold
     var threshold = 100;
     if (config.heroThreshold) {
         var hero = document.querySelector('.hero');
@@ -159,7 +247,6 @@ function updateScrollSidebar() {
         sidebarEl.style.pointerEvents = 'none';
     }
 
-    // Highlight the section currently in view
     var activeIdx = -1;
     config.sections.forEach(function (id, i) {
         var sec = document.getElementById(id);
@@ -171,31 +258,11 @@ function updateScrollSidebar() {
         dot.classList.toggle('active', i === activeIdx && i < config.sections.length);
     });
 
-    // Fill the track
     if (sidebarFillEl) {
         var totalH = document.documentElement.scrollHeight - window.innerHeight;
         var pct = totalH > 0 ? Math.min((scrollY / totalH) * 100, 100) : 0;
         sidebarFillEl.style.height = pct + '%';
     }
-}
-
-// ============================================================
-//  LIGHTBOX
-// ============================================================
-function openLightbox(src) {
-    var lb = document.getElementById('lightbox');
-    var img = document.getElementById('lb-img');
-    if (!lb || !img) return;
-    img.src = src;
-    lb.classList.add('open');
-    document.body.style.overflow = 'hidden';
-}
-
-function closeLightbox() {
-    var lb = document.getElementById('lightbox');
-    if (!lb) return;
-    lb.classList.remove('open');
-    document.body.style.overflow = '';
 }
 
 // ============================================================
@@ -300,7 +367,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Font cycler — starts at SANS (index 1) to match CSS default
+    // Font cycler
     var fonts = [
         { label: 'PIXEL', value: "'Press Start 2P', 'Minecraft', 'Courier New', monospace", rootSize: '16px', spacing: '-1px' },
         { label: 'SANS',  value: "'Inter', 'Helvetica Neue', Arial, sans-serif",             rootSize: '22px', spacing: '0px'  },
@@ -385,7 +452,7 @@ document.addEventListener('DOMContentLoaded', function () {
         counterObserver.observe(el);
     });
 
-    // ── Scroll sidebar setup ─────────────────────────────────
+    // ── Scroll sidebar ───────────────────────────────────────
     sidebarEl      = document.getElementById('scroll-sidebar');
     sidebarFillEl  = document.getElementById('sidebar-fill');
 
@@ -399,20 +466,21 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // ── Lightbox ─────────────────────────────────────────────
-    var lb = document.getElementById('lightbox');
-    if (lb) {
-        lb.addEventListener('click', function (e) {
-            if (e.target === lb || e.target.classList.contains('lb-close')) closeLightbox();
-        });
-        document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape') closeLightbox();
-        });
-    }
+    // ── CAD photo modal ──────────────────────────────────────
     document.querySelectorAll('.cad-photo-wrap').forEach(function (wrap) {
         wrap.addEventListener('click', function () {
-            openLightbox(wrap.querySelector('img').src);
+            openPhotoModal(wrap);
         });
+    });
+
+    var modal = document.getElementById('photo-modal');
+    if (modal) {
+        modal.querySelector('.pm-backdrop').addEventListener('click', closePhotoModal);
+        modal.querySelector('.pm-close').addEventListener('click', closePhotoModal);
+    }
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closePhotoModal();
     });
 
     // ── Hero particles ───────────────────────────────────────
