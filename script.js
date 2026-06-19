@@ -8,34 +8,34 @@ var cadData = {
         tools: ['SolidWorks', 'InspireHand SDK', 'Torque & Motor Sizing', 'Cable Routing', 'FDM 3D Printing', 'CNC Machining', 'Rapid Prototyping']
     },
     'inhabit-arm': {
-        title: 'Inhabit V1 — 6-DOF Arm & Exoskeleton Teleoperation System',
-        desc: 'The V1 prototype of Inhabit\'s modular teleoperation platform — a purpose-built 6-DOF robot arm paired with a custom robotic exoskeleton glove that captures the operator\'s hand motion and streams it as real-time control input. The arm was designed from scratch to be reconfigurable and compatible with a range of end effectors, with every joint sized for tabletop manipulation payloads. The entire system was kept deliberately low-cost and buildable so any lab could replicate it without proprietary hardware.',
-        tools: ['SolidWorks', 'Onshape', 'Keyshot', 'Servo Actuator Sizing', 'Inverse Kinematics', '3D Printing', 'Real-time Serial Control']
+        title: 'Inhabit V1 — 6-DOF Arm & Exoskeleton Glove',
+        desc: 'Inhabit V1 is the original prototype of the teleoperation system — a custom-built 6-DOF robot arm paired with a wearable exoskeleton glove that captures the operator\'s hand and finger movements in real time and streams them directly to the arm. Every component was designed from scratch: the arm links, joint interfaces, and glove mechanism all use off-the-shelf actuators and 3D-printed structure so any lab can build and replicate it without proprietary hardware. The goal was intuitive, low-latency teleoperation at the lowest possible cost.',
+        tools: ['SolidWorks', 'Onshape', 'Keyshot', 'Servo Actuators', 'Flex Sensors', 'Real-time Serial Control', 'Linkage Mechanism Design', '3D Printing']
     },
     'inhabit-joint': {
-        title: 'Inhabit — Modular Arm Joint System',
-        desc: 'A close-up render of Inhabit\'s proprietary modular joint design. Each joint in the Inhabit arm uses a standardized interface so the arm length and configuration can be reconfigured without any special tooling — disassembly in under a minute. The black aluminum clamps lock each joint under load, and the green LED rings provide visual joint-state feedback to the operator. Designed with tight tolerance stacking requirements to keep backlash low across the full chain.',
-        tools: ['SolidWorks', 'Keyshot', 'Tolerance Stack Analysis', 'Aluminum Extrusion Design', 'Generative Design', 'Low-volume Manufacturing']
+        title: 'Inhabit V2 — Modular Arm & Universal Robot Compatibility',
+        desc: 'Inhabit V2 is the refined evolution of the platform — redesigned modular joint architecture, cleaner manufacturing, and universal robot compatibility. The standardized joint interface lets the arm be fully reconfigured in under a minute without any tooling, and the end effector mount is hot-swappable. V2 is hardware-agnostic by design: the same operator interface drives Universal Robots arms, Hugging Face\'s LeRobot platform, and Unitree humanoid robots, dramatically cutting setup cost for AI robotics teams collecting demonstration data.',
+        tools: ['SolidWorks', 'Keyshot', 'ROS2', 'Modular Joint Architecture', 'Tolerance Stack Analysis', 'URDF Export', 'Cross-platform Integration', '3D Printing']
     },
     'inhabit-render': {
-        title: 'Inhabit — 6-DOF Modular Arm',
-        desc: 'A full render of the Inhabit arm in a typical teleoperation pose, showing all six degrees of freedom. Link lengths are modular and swappable, and the end effector mount is standardized for quick swaps between grippers and tools. The design prioritized off-the-shelf servo actuators, 3D-printed structural links, and snap-together assembly — so any team could build and reconfigure it without machining access. The green accent rings mark each active revolute joint.',
-        tools: ['SolidWorks', 'Keyshot', 'DH Parameter Analysis', 'Servo Motor Integration', 'Forward/Inverse Kinematics', '3D Printing']
+        title: 'Inhabit V2 — Modular Arm & Universal Robot Compatibility',
+        desc: 'Inhabit V2 is the refined evolution of the platform — redesigned modular joint architecture, cleaner manufacturing, and universal robot compatibility. The standardized joint interface lets the arm be fully reconfigured in under a minute without any tooling, and the end effector mount is hot-swappable. V2 is hardware-agnostic by design: the same operator interface drives Universal Robots arms, Hugging Face\'s LeRobot platform, and Unitree humanoid robots, dramatically cutting setup cost for AI robotics teams collecting demonstration data.',
+        tools: ['SolidWorks', 'Keyshot', 'ROS2', 'Modular Joint Architecture', 'Tolerance Stack Analysis', 'URDF Export', 'Cross-platform Integration', '3D Printing']
     },
     'inhabit-compat': {
-        title: 'Inhabit — Universal Robot Compatibility',
-        desc: 'Inhabit\'s teleoperation system is designed to be hardware-agnostic from day one. This render illustrates cross-platform compatibility with Universal Robots arms, Hugging Face\'s LeRobot platform, and Unitree humanoid robots — all driven by the same Inhabit operator interface. The modular joint architecture allows the arm to be adapted to match the kinematic profile of any target robot, dramatically lowering the setup cost for AI robotics teams collecting demonstration data.',
-        tools: ['SolidWorks', 'ROS2', 'Robot Kinematics Mapping', 'Cross-platform Hardware Integration', 'Keyshot', 'URDF Export']
+        title: 'Inhabit V2 — Modular Arm & Universal Robot Compatibility',
+        desc: 'Inhabit V2 is the refined evolution of the platform — redesigned modular joint architecture, cleaner manufacturing, and universal robot compatibility. The standardized joint interface lets the arm be fully reconfigured in under a minute without any tooling, and the end effector mount is hot-swappable. V2 is hardware-agnostic by design: the same operator interface drives Universal Robots arms, Hugging Face\'s LeRobot platform, and Unitree humanoid robots, dramatically cutting setup cost for AI robotics teams collecting demonstration data.',
+        tools: ['SolidWorks', 'Keyshot', 'ROS2', 'Modular Joint Architecture', 'Tolerance Stack Analysis', 'URDF Export', 'Cross-platform Integration', '3D Printing']
     },
     'exo-hand': {
-        title: 'Robotic Exoskeleton Teleoperation Hand',
-        desc: 'A custom-built robotic exoskeleton glove designed for intuitive, low-latency robot teleoperation. The operator wears the exoskeleton and their finger movements are captured in real time and transmitted to a robot hand. The physical prototype shows the servo-actuated finger linkages assembled with off-the-shelf hardware, developed alongside the CAD model in an iterative build-test loop. Designed to be lightweight, wearable for extended sessions, and fully reproducible with widely available parts.',
-        tools: ['SolidWorks', 'Arduino', 'Servo Actuators', 'Flex Sensors', 'I2C Communication', 'Linkage Mechanism Design', '3D Printing', 'Embedded C++']
+        title: 'Inhabit V1 — 6-DOF Arm & Exoskeleton Glove',
+        desc: 'Inhabit V1 is the original prototype of the teleoperation system — a custom-built 6-DOF robot arm paired with a wearable exoskeleton glove that captures the operator\'s hand and finger movements in real time and streams them directly to the arm. Every component was designed from scratch: the arm links, joint interfaces, and glove mechanism all use off-the-shelf actuators and 3D-printed structure so any lab can build and replicate it without proprietary hardware. The goal was intuitive, low-latency teleoperation at the lowest possible cost.',
+        tools: ['SolidWorks', 'Onshape', 'Keyshot', 'Servo Actuators', 'Flex Sensors', 'Real-time Serial Control', 'Linkage Mechanism Design', '3D Printing']
     },
     'exo-torso': {
         title: 'Robotic Exoskeleton — Picatinny Rail Attachment System',
-        desc: 'A modular exoskeleton torso design with integrated Picatinny rail mounting points across the chest and shoulder panels, conforming to MIL-STD-1913. The rail interface allows sensors, cameras, and payload modules to be added or swapped without redesigning the chassis. The structure was designed for wearability and rigidity under dynamic loads, with organic surface blending at joint interfaces and reinforced gussets at high-stress nodes.',
-        tools: ['SolidWorks', 'Surface Modeling', 'Structural FEA', 'MIL-STD-1913 Rail Standards', 'Composite Layup Design', '3D Printing', 'Ergonomic Fit Analysis']
+        desc: 'A modular exoskeleton torso with integrated Picatinny rail mounting points across the chest and shoulder panels (MIL-STD-1913), allowing sensors, cameras, and payload modules to be added or swapped without redesigning the chassis. Originally built as a Halloween costume, the design ended up being mechanically serious enough to evolve into a real wearable robotics platform — fully wearable, structurally rigid under dynamic loads, with organic surface blending at joint interfaces and reinforced gussets at high-stress nodes.',
+        tools: ['SolidWorks', 'Surface Modeling', 'Structural FEA', 'MIL-STD-1913 Rail Standards', '3D Printing', 'Ergonomic Fit Analysis', 'Wearable Hardware Design']
     },
     'hackutd': {
         title: 'HackUTD 2025 — Interactive LED Matrix Game',
