@@ -76,12 +76,12 @@ var cadData = {
 function openPhotoModal(wrap) {
     var key = wrap.getAttribute('data-key');
     var data = cadData[key];
-    var img = wrap.querySelector('img');
-    if (!data || !img) return;
+    if (!data) return;
 
     var modal = document.getElementById('photo-modal');
     var pmImg   = document.getElementById('pm-img');
     var pmVideo = document.getElementById('pm-video');
+    var img = wrap.querySelector('img');
 
     if (data.video) {
         pmImg.style.display = 'none';
@@ -92,8 +92,7 @@ function openPhotoModal(wrap) {
         pmVideo.style.display = 'none';
         pmVideo.src = '';
         pmImg.style.display = 'block';
-        pmImg.src = img.src;
-        pmImg.alt = img.alt;
+        if (img) { pmImg.src = img.src; pmImg.alt = img.alt; }
     }
 
     document.getElementById('pm-title').textContent = data.title;
