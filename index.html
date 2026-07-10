@@ -77,18 +77,11 @@
                 <div class="about-content">
                     <div class="about-text">
                         <p>
-                            I'm a mechanical engineering student at UT Austin with a passion for robotics, rapid prototyping, and AI integration.
-                            My work spans from leading world-champion robotics teams to developing cutting-edge humanoid arm systems at research centers.
+                            Mechanical engineering student at UT Austin building real robots — from humanoid arms at YouiBot to Inhabit's teleoperation hardware.
                         </p>
-                        <p>
-                            Through my experience at YouiBot, UT Center for Autonomy, and as founder of Robocoaching, I've developed expertise in CAD design,
-                            rapid prototyping, and interdisciplinary collaboration. I thrive in fast-paced environments and love bringing innovative ideas to life.
+                        <p class="about-belief">
+                            Robotics is the next platform shift, and whoever makes hardware and data collection radically cheaper wins it.
                         </p>
-                        <div class="about-info">
-                            <div class="info-item">
-                                <strong>Email:</strong> <a href="mailto:lukelupvp@gmail.com">lukelupvp@gmail.com</a>
-                            </div>
-                        </div>
                         <div class="about-stats">
                             <div class="stat-item">
                                 <div class="stat-number">20+</div>
@@ -108,6 +101,51 @@
             </div>
         </section>
 
+        <!-- Featured Work Section -->
+        <section id="featured-work" class="featured-work">
+            <div class="container">
+                <h2 class="section-title">Featured Work</h2>
+                <div class="projects-grid">
+                    <button type="button" class="project-card featured-card" data-open-cad="inhabit-compat">
+                        <div class="project-image">
+                            <img src="cad-10.webp" alt="Inhabit V2 — Universal Robot Compatibility" class="project-img">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Inhabit V2 — Modular Robot Arm</h3>
+                            <p class="project-description">Universal-compatibility teleoperation arm, redesigned for fast reconfiguration.</p>
+                        </div>
+                    </button>
+                    <button type="button" class="project-card featured-card" data-open-cad="youibot">
+                        <div class="project-image">
+                            <img src="cad-1.jpeg" alt="YouiBot Humanoid — Forearm and InspireHand Linkage Design" class="project-img">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">YouiBot Humanoid Arm</h3>
+                            <p class="project-description">Led the forearm + InspireHand linkage design for Ling Shu, a cross-scenario humanoid.</p>
+                        </div>
+                    </button>
+                    <button type="button" class="project-card featured-card" data-open-cad="vex-2024">
+                        <div class="project-image">
+                            <img src="cad-12.webp" alt="VEX Robot — 2024 Texas States, US Open, World Champion" class="project-img">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">VEX World Champion 2024</h3>
+                            <p class="project-description">Co-designed the robot that took Texas States, US Open, and Worlds in one season.</p>
+                        </div>
+                    </button>
+                    <button type="button" class="project-card featured-card" data-open-cad="exo-torso">
+                        <div class="project-image">
+                            <img src="cad-5.png" alt="Robotic Exoskeleton with Picatinny Rail Attachments SolidWorks" class="project-img">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Wearable Exoskeleton</h3>
+                            <p class="project-description">Started as a Halloween costume, ended up a real wearable robotics platform.</p>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </section>
+
         <!-- Education Section -->
         <section id="education" class="education">
             <div class="container">
@@ -120,20 +158,7 @@
                             <span class="education-date">Expected: May 2029</span>
                         </div>
                         <p class="education-description">
-                            Focus areas: Robotics, rapid prototyping, and mechanical systems design.
-                            Hands-on engineering experience through UT Center for Autonomy. Real-world experience in research, teamwork, and innovation.
-                        </p>
-                    </div>
-
-                    <div class="education-item">
-                        <div class="education-header">
-                            <h3 class="education-degree">High School Diploma</h3>
-                            <span class="education-school">PCA, Plano</span>
-                            <span class="education-date">August 2019 - May 2025</span>
-                        </div>
-                        <p class="education-description">
-                            GPA: 4.0+, Principal's Honor Roll.
-                            AP Courses: CS A & P, Calc AB, Chem, Physics I & C, US History, Gov/Econ, Stats, English III & IV, Macro, Chinese
+                            Focus: robotics, rapid prototyping, and mechanical systems design — hands-on through UT Center for Autonomy.
                         </p>
                     </div>
                 </div>
@@ -515,14 +540,6 @@
                         <img src="cad-7.png" alt="Inhabit V1 — 6-DOF Arm and Exoskeleton Glove" loading="lazy">
                         <div class="cad-photo-cap">Inhabit V1 · 6-DOF Arm & Exoskeleton Glove</div>
                     </div>
-                    <div class="cad-photo-wrap" data-key="inhabit-joint">
-                        <img src="cad-6.png" alt="Inhabit V2 — Modular Arm Joint" loading="lazy">
-                        <div class="cad-photo-cap">Inhabit V2 · Modular Arm Joint · Rendered</div>
-                    </div>
-                    <div class="cad-photo-wrap" data-key="inhabit-render">
-                        <img src="cad-9.webp" alt="Inhabit V2 — 6-DOF Modular Arm Full Render" loading="lazy">
-                        <div class="cad-photo-cap">Inhabit V2 · 6-DOF Modular Arm · Rendered</div>
-                    </div>
                     <div class="cad-photo-wrap" data-key="inhabit-compat">
                         <img src="cad-10.webp" alt="Inhabit V2 — Universal Robot Compatibility" loading="lazy">
                         <div class="cad-photo-cap">Inhabit V2 · Universal Robot Compatibility</div>
@@ -608,6 +625,7 @@
                 <video id="pm-video" controls loop muted playsinline style="display:none;width:100%;height:100%;object-fit:cover;"></video>
                 <canvas id="pm-canvas" style="display:none;width:100%;height:100%;"></canvas>
                 <div id="pm-canvas-hint" class="pm-canvas-hint" style="display:none;">drag the glowing handle to move it · drag elsewhere to orbit · scroll to zoom</div>
+                <div id="pm-gallery" class="pm-gallery" style="display:none;"></div>
             </div>
             <div class="pm-info">
                 <h2 id="pm-title"></h2>

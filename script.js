@@ -12,20 +12,11 @@ var cadData = {
         desc: 'Inhabit V1 is the original prototype of the teleoperation system — a custom-built 6-DOF robot arm paired with a wearable exoskeleton glove that captures the operator\'s hand and finger movements in real time and streams them directly to the arm. Every component was designed from scratch: the arm links, joint interfaces, and glove mechanism all use off-the-shelf actuators and 3D-printed structure so any lab can build and replicate it without proprietary hardware. The goal was intuitive, low-latency teleoperation at the lowest possible cost.',
         tools: ['SolidWorks', 'Onshape', 'Keyshot', 'Servo Actuators', 'Flex Sensors', 'Real-time Serial Control', 'Linkage Mechanism Design', '3D Printing']
     },
-    'inhabit-joint': {
-        title: 'Inhabit V2 — Modular Arm & Universal Robot Compatibility',
-        desc: 'Inhabit V2 is the refined evolution of the platform — redesigned modular joint architecture, cleaner manufacturing, and universal robot compatibility. The standardized joint interface lets the arm be fully reconfigured in under a minute without any tooling, and the end effector mount is hot-swappable. V2 is hardware-agnostic by design: the same operator interface drives Universal Robots arms, Hugging Face\'s LeRobot platform, and Unitree humanoid robots, dramatically cutting setup cost for AI robotics teams collecting demonstration data.',
-        tools: ['SolidWorks', 'Keyshot', 'ROS2', 'Modular Joint Architecture', 'Tolerance Stack Analysis', 'URDF Export', 'Cross-platform Integration', '3D Printing']
-    },
-    'inhabit-render': {
-        title: 'Inhabit V2 — Modular Arm & Universal Robot Compatibility',
-        desc: 'Inhabit V2 is the refined evolution of the platform — redesigned modular joint architecture, cleaner manufacturing, and universal robot compatibility. The standardized joint interface lets the arm be fully reconfigured in under a minute without any tooling, and the end effector mount is hot-swappable. V2 is hardware-agnostic by design: the same operator interface drives Universal Robots arms, Hugging Face\'s LeRobot platform, and Unitree humanoid robots, dramatically cutting setup cost for AI robotics teams collecting demonstration data.',
-        tools: ['SolidWorks', 'Keyshot', 'ROS2', 'Modular Joint Architecture', 'Tolerance Stack Analysis', 'URDF Export', 'Cross-platform Integration', '3D Printing']
-    },
     'inhabit-compat': {
         title: 'Inhabit V2 — Modular Arm & Universal Robot Compatibility',
         desc: 'Inhabit V2 is the refined evolution of the platform — redesigned modular joint architecture, cleaner manufacturing, and universal robot compatibility. The standardized joint interface lets the arm be fully reconfigured in under a minute without any tooling, and the end effector mount is hot-swappable. V2 is hardware-agnostic by design: the same operator interface drives Universal Robots arms, Hugging Face\'s LeRobot platform, and Unitree humanoid robots, dramatically cutting setup cost for AI robotics teams collecting demonstration data.',
-        tools: ['SolidWorks', 'Keyshot', 'ROS2', 'Modular Joint Architecture', 'Tolerance Stack Analysis', 'URDF Export', 'Cross-platform Integration', '3D Printing']
+        tools: ['SolidWorks', 'Keyshot', 'ROS2', 'Modular Joint Architecture', 'Tolerance Stack Analysis', 'URDF Export', 'Cross-platform Integration', '3D Printing'],
+        images: ['cad-10.webp', 'cad-9.webp', 'cad-6.png']
     },
     'live-inhabit': {
         title: 'Inhabit Leader Arm — Live 3D Mesh',
@@ -101,6 +92,7 @@ function openPhotoModal(wrap) {
     var pmVideo = document.getElementById('pm-video');
     var pmCanvas = document.getElementById('pm-canvas');
     var pmCanvasHint = document.getElementById('pm-canvas-hint');
+    var pmGallery = document.getElementById('pm-gallery');
     var img = wrap.querySelector('img');
 
     pmImg.style.display = 'none';
@@ -109,6 +101,8 @@ function openPhotoModal(wrap) {
     pmVideo.src = '';
     pmCanvas.style.display = 'none';
     pmCanvasHint.style.display = 'none';
+    pmGallery.style.display = 'none';
+    pmGallery.innerHTML = '';
     if (window.RobotShowcase) window.RobotShowcase.disposeModal();
 
     if (data.robot) {
@@ -119,6 +113,24 @@ function openPhotoModal(wrap) {
         pmVideo.style.display = 'block';
         pmVideo.src = data.video;
         pmVideo.load();
+    } else if (data.images) {
+        pmImg.style.display = 'block';
+        pmImg.src = data.images[0];
+        pmImg.alt = data.title;
+        if (data.images.length > 1) {
+            pmGallery.style.display = 'flex';
+            data.images.forEach(function (src, i) {
+                var thumb = document.createElement('img');
+                thumb.src = src;
+                thumb.className = 'pm-gallery-thumb' + (i === 0 ? ' active' : '');
+                thumb.addEventListener('click', function () {
+                    pmImg.src = src;
+                    pmGallery.querySelectorAll('.pm-gallery-thumb').forEach(function (t) { t.classList.remove('active'); });
+                    thumb.classList.add('active');
+                });
+                pmGallery.appendChild(thumb);
+            });
+        }
     } else {
         pmImg.style.display = 'block';
         if (img) { pmImg.src = img.src; pmImg.alt = img.alt; }
@@ -539,6 +551,18 @@ document.addEventListener('DOMContentLoaded', function () {
     // ── CAD photo modal ──────────────────────────────────────
     document.querySelectorAll('.cad-photo-wrap').forEach(function (wrap) {
         wrap.addEventListener('click', function () {
+            openPhotoModal(wrap);
+        });
+    });
+
+    // ── Home page "Featured Work" cards — jump straight to that project's
+    // spot in the CAD tab and open its detail modal ──────────────────────
+    document.querySelectorAll('[data-open-cad]').forEach(function (card) {
+        card.addEventListener('click', function () {
+            var key = card.getAttribute('data-open-cad');
+            var wrap = document.querySelector('.cad-photo-wrap[data-key="' + key + '"]');
+            if (!wrap) return;
+            switchTab('cad');
             openPhotoModal(wrap);
         });
     });
