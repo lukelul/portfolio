@@ -599,7 +599,8 @@ document.addEventListener('DOMContentLoaded', function () {
             document.querySelectorAll('.cad-filter-link').forEach(function (l) { l.classList.remove('active'); });
             link.classList.add('active');
             document.querySelectorAll('.cad-photo-wrap').forEach(function (wrap) {
-                var show = filter === 'all' || wrap.getAttribute('data-category') === filter;
+                var categories = (wrap.getAttribute('data-category') || '').split(' ');
+                var show = filter === 'all' || categories.indexOf(filter) !== -1;
                 wrap.classList.toggle('cad-filtered-out', !show);
             });
         });
