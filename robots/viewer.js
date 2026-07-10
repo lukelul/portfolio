@@ -15,6 +15,31 @@ import { solveIK } from "./ik.js";
  * @returns {{ dispose(): void }}
  */
 export function mountRobotViewer(canvas, { urdfUrl, meshBaseUrl, mode = "thumb", targetSize = 1.5, chain, tipLinkName }) {
+  const parent = canvas.parentElement;
+  if (parent && getComputedStyle(parent).position === "static") parent.style.position = "relative";
+
+  function overlay(text) {
+    const el = document.createElement("div");
+    el.textContent = text;
+    el.style.cssText =
+      "position:absolute;inset:0;display:flex;align-items:center;justify-content:center;" +
+      "color:rgba(255,255,255,0.65);font:11px monospace;letter-spacing:0.05em;text-transform:uppercase;" +
+      "text-align:center;padding:1rem;pointer-events:none;background:rgba(8,15,10,0.35);";
+    parent?.appendChild(el);
+    return el;
+  }
+
+  const hasWebGL = (() => {
+    try { return !!(canvas.getContext("webgl2") || canvas.getContext("webgl")); }
+    catch { return false; }
+  })();
+  if (!hasWebGL) {
+    const noWebglEl = overlay("WebGL unavailable in this browser — can't render this mesh here.");
+    return { dispose() { noWebglEl.remove(); } };
+  }
+
+  const loadingEl = overlay("loading mesh…");
+
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -95,7 +120,11 @@ export function mountRobotViewer(canvas, { urdfUrl, meshBaseUrl, mode = "thumb",
     }
 
     loaded = true;
-  }).catch((err) => console.warn("robot viewer load failed:", urdfUrl, err));
+    loadingEl.remove();
+  }).catch((err) => {
+    console.warn("robot viewer load failed:", urdfUrl, err);
+    loadingEl.textContent = "couldn't load this mesh — check your connection and reload.";
+  });
 
   function resize() {
     const w = canvas.clientWidth || canvas.parentElement.clientWidth || 400;
@@ -225,6 +254,7 @@ export function mountRobotViewer(canvas, { urdfUrl, meshBaseUrl, mode = "thumb",
 
   return {
     dispose() {
+      loadingEl.remove();
       stop();
       resizeObserver.disconnect();
       if (intersectionObserver) intersectionObserver.disconnect();
