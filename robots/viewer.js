@@ -1,15 +1,20 @@
 import * as THREE from "three";
 import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.162.0/examples/jsm/controls/OrbitControls.js";
 import { loadURDFArm } from "./urdfArm.js";
+import { solveIK } from "./ik.js";
 
 /**
  * Mounts a small, self-contained robot viewer into a canvas.
- * mode: "thumb" (auto-rotating rig, no controls, gated by IntersectionObserver)
- *       "modal" (bigger, drag-to-orbit / scroll-to-zoom, runs until disposed)
+ * mode: "thumb" (auto-rotating rig, idle joint sway, gated by IntersectionObserver)
+ *       "modal" (bigger; drag the end-effector handle to IK-drive the chain,
+ *                drag empty space to orbit, scroll to zoom)
  *
+ * @param {object} opts
+ * @param {string[]} [opts.chain] - joint names, base -> tip (modal mode only)
+ * @param {string} [opts.tipLinkName] - link whose world position is the effective end-effector
  * @returns {{ dispose(): void }}
  */
-export function mountRobotViewer(canvas, { urdfUrl, meshBaseUrl, mode = "thumb", targetSize = 1.5 }) {
+export function mountRobotViewer(canvas, { urdfUrl, meshBaseUrl, mode = "thumb", targetSize = 1.5, chain, tipLinkName }) {
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -26,22 +31,41 @@ export function mountRobotViewer(canvas, { urdfUrl, meshBaseUrl, mode = "thumb",
   const rig = new THREE.Group();
   scene.add(rig);
 
+  const canDrag = mode === "modal" && chain && chain.length && tipLinkName;
+
   let controls = null;
   if (mode === "modal") {
     controls = new OrbitControls(camera, renderer.domElement);
     controls.enablePan = false;
     controls.minDistance = 0.8;
     controls.maxDistance = 5;
-    controls.autoRotate = true;
+    controls.autoRotate = !canDrag;
     controls.autoRotateSpeed = 0.7;
     controls.target.set(0, 0, 0);
   }
 
+  // Handle — a visible glow marking the grabbable end effector, plus a
+  // generous invisible sphere for easy hit-testing.
+  let handle = null;
+  let handleHit = null;
+  if (canDrag) {
+    handle = new THREE.Mesh(
+      new THREE.SphereGeometry(0.028, 16, 16),
+      new THREE.MeshStandardMaterial({ color: 0x0c1216, emissive: 0xb8ff3c, emissiveIntensity: 1.4, roughness: 0.3 }),
+    );
+    handle.renderOrder = 10;
+    scene.add(handle);
+    handleHit = new THREE.Mesh(new THREE.SphereGeometry(0.09, 12, 12), new THREE.MeshBasicMaterial({ visible: false }));
+    scene.add(handleHit);
+  }
+
   let joints = {};
   let jointNames = [];
+  let chainJoints = null;
+  let tipObject = null;
   let loaded = false;
 
-  loadURDFArm({ urdfUrl, meshBaseUrl }).then(({ root, joints: j }) => {
+  loadURDFArm({ urdfUrl, meshBaseUrl }).then(({ root, joints: j, linkGroups }) => {
     joints = j;
     jointNames = Object.keys(joints);
 
@@ -61,6 +85,15 @@ export function mountRobotViewer(canvas, { urdfUrl, meshBaseUrl, mode = "thumb",
     normalized.add(converter);
     rig.add(normalized);
 
+    if (canDrag) {
+      chainJoints = chain.map((name) => joints[name]).filter(Boolean);
+      tipObject = linkGroups[tipLinkName] ?? null;
+      if (!tipObject || chainJoints.length !== chain.length) {
+        console.warn("robot viewer: chain/tip not fully resolved, dragging disabled", urdfUrl);
+        chainJoints = null;
+      }
+    }
+
     loaded = true;
   }).catch((err) => console.warn("robot viewer load failed:", urdfUrl, err));
 
@@ -75,6 +108,56 @@ export function mountRobotViewer(canvas, { urdfUrl, meshBaseUrl, mode = "thumb",
   const resizeObserver = new ResizeObserver(resize);
   resizeObserver.observe(canvas);
   resize();
+
+  // ─── Drag-to-IK (modal mode with a resolved chain) ───────────────────
+  const raycaster = new THREE.Raycaster();
+  const ndc = new THREE.Vector2();
+  const dragPlane = new THREE.Plane();
+  const planeHit = new THREE.Vector3();
+  let dragging = false;
+
+  function ndcFromEvent(e) {
+    const rect = canvas.getBoundingClientRect();
+    ndc.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+    ndc.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+  }
+
+  function onPointerDown(e) {
+    if (!chainJoints || !tipObject) return;
+    ndcFromEvent(e);
+    raycaster.setFromCamera(ndc, camera);
+    const hit = raycaster.intersectObject(handleHit, false);
+    if (hit.length === 0) return;
+    dragging = true;
+    if (controls) controls.enabled = false;
+    canvas.style.cursor = "grabbing";
+    e.stopPropagation();
+  }
+  function onPointerMove(e) {
+    if (!dragging || !tipObject) return;
+    ndcFromEvent(e);
+    raycaster.setFromCamera(ndc, camera);
+    const normal = new THREE.Vector3();
+    camera.getWorldDirection(normal);
+    const tipPos = new THREE.Vector3();
+    tipObject.getWorldPosition(tipPos);
+    dragPlane.setFromNormalAndCoplanarPoint(normal, tipPos);
+    if (raycaster.ray.intersectPlane(dragPlane, planeHit)) {
+      solveIK(rig, chainJoints, tipObject, planeHit);
+    }
+  }
+  function onPointerUp() {
+    if (!dragging) return;
+    dragging = false;
+    if (controls) controls.enabled = true;
+    canvas.style.cursor = "grab";
+  }
+
+  if (canDrag) {
+    canvas.addEventListener("pointerdown", onPointerDown);
+    window.addEventListener("pointermove", onPointerMove);
+    window.addEventListener("pointerup", onPointerUp);
+  }
 
   let running = false;
   let animId = null;
@@ -96,11 +179,21 @@ export function mountRobotViewer(canvas, { urdfUrl, meshBaseUrl, mode = "thumb",
     }
 
     if (loaded) {
-      jointNames.forEach((name, i) => {
-        const amp = 0.16 + 0.02 * (i % 5);
-        const freq = 0.18 + 0.03 * (i % 4);
-        joints[name].set(Math.sin(t * freq + i * 1.9) * amp);
-      });
+      if (mode === "thumb") {
+        jointNames.forEach((name, i) => {
+          const amp = 0.16 + 0.02 * (i % 5);
+          const freq = 0.18 + 0.03 * (i % 4);
+          joints[name].set(Math.sin(t * freq + i * 1.9) * amp);
+        });
+      }
+      if (handle && tipObject) {
+        const p = new THREE.Vector3();
+        tipObject.getWorldPosition(p);
+        handle.position.copy(p);
+        handleHit.position.copy(p);
+        const pulse = 1 + Math.sin(t * 3) * 0.15;
+        handle.scale.setScalar(pulse);
+      }
     }
 
     renderer.render(scene, camera);
@@ -126,6 +219,7 @@ export function mountRobotViewer(canvas, { urdfUrl, meshBaseUrl, mode = "thumb",
     );
     intersectionObserver.observe(canvas);
   } else {
+    if (canDrag) canvas.style.cursor = "grab";
     start();
   }
 
@@ -134,6 +228,11 @@ export function mountRobotViewer(canvas, { urdfUrl, meshBaseUrl, mode = "thumb",
       stop();
       resizeObserver.disconnect();
       if (intersectionObserver) intersectionObserver.disconnect();
+      if (canDrag) {
+        canvas.removeEventListener("pointerdown", onPointerDown);
+        window.removeEventListener("pointermove", onPointerMove);
+        window.removeEventListener("pointerup", onPointerUp);
+      }
       if (controls) controls.dispose();
       renderer.dispose();
       scene.traverse((o) => {

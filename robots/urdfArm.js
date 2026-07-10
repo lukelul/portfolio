@@ -20,7 +20,7 @@ function rpyToQuaternion([roll, pitch, yaw]) {
   return new THREE.Quaternion().setFromEuler(new THREE.Euler(roll, pitch, yaw, "XYZ"));
 }
 
-function loadMesh(url) {
+function loadMesh(url, sharedMaterial) {
   const ext = url.split(".").pop().toLowerCase();
   if (ext === "dae") {
     return new Promise((resolve, reject) => {
@@ -30,6 +30,10 @@ function loadMesh(url) {
           const scene = collada.scene;
           scene.traverse((o) => {
             if (o.isMesh) {
+              // Collada ships its own baked materials — override with the
+              // shared one so every robot reads as the same grayish metal
+              // regardless of source format (STL has no material to keep).
+              o.material = sharedMaterial;
               o.castShadow = true;
               o.receiveShadow = true;
             }
@@ -46,7 +50,7 @@ function loadMesh(url) {
       url,
       (geometry) => {
         geometry.computeVertexNormals();
-        resolve(geometry);
+        resolve(new THREE.Mesh(geometry, sharedMaterial));
       },
       undefined,
       reject,
@@ -113,8 +117,8 @@ function parseURDF(xmlText) {
  * @param {object} opts
  * @param {string} opts.urdfUrl
  * @param {string} opts.meshBaseUrl - directory containing the meshes, trailing slash
- * @param {THREE.Material} [opts.material] - shared material applied to every STL link mesh
- *   (Collada meshes keep their own baked-in materials)
+ * @param {THREE.Material} [opts.material] - shared material applied to every link mesh,
+ *   STL or Collada (Collada's own baked materials are overridden for a uniform look)
  * @returns {Promise<{root: THREE.Group, joints: Record<string, {type,limit,get,set}>, linkGroups: Record<string, THREE.Group>}>}
  */
 export async function loadURDFArm({ urdfUrl, meshBaseUrl, material }) {
@@ -143,13 +147,7 @@ export async function loadURDFArm({ urdfUrl, meshBaseUrl, material }) {
     if (link.meshFile) {
       const meshUrl = meshBaseUrl + link.meshFile;
       meshLoads.push(
-        loadMesh(meshUrl).then((result) => {
-          let obj;
-          if (result.isBufferGeometry) {
-            obj = new THREE.Mesh(result, sharedMaterial);
-          } else {
-            obj = result; // collada scene, already materialed
-          }
+        loadMesh(meshUrl, sharedMaterial).then((obj) => {
           obj.position.set(...link.visualOrigin.xyz);
           obj.quaternion.copy(rpyToQuaternion(link.visualOrigin.rpy));
           linkGroup.add(obj);
@@ -176,6 +174,13 @@ export async function loadURDFArm({ urdfUrl, meshBaseUrl, material }) {
         joints[joint.name] = {
           type: joint.type,
           limit: joint.limit,
+          // IK support: the pivot's world position is originGroup's world
+          // position (driven only rotates/translates from there), and the
+          // world-space rotation axis is `axisLocal` transformed by
+          // originGroup's world orientation (the frame the axis is defined
+          // in, before this joint's own variable rotation is applied).
+          pivotObject: originGroup,
+          axisLocal: axis,
           get: () => value,
           set: (v) => {
             value = joint.limit ? Math.max(joint.limit.lower, Math.min(joint.limit.upper, v)) : v;

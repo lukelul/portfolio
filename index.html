@@ -507,6 +507,10 @@
                         <img src="cad-1.jpeg" alt="YouiBot Humanoid — Forearm and InspireHand Linkage Design" loading="lazy">
                         <div class="cad-photo-cap">YouiBot · Forearm & InspireHand Linkage · SolidWorks</div>
                     </div>
+                    <div class="cad-photo-wrap cad-3d-tile" data-key="live-inhabit" data-robot-urdf="robots/inhabit-leader/inhabit-leader.urdf" data-robot-meshes="robots/inhabit-leader/meshes/" data-robot-chain="Joint_1,Joint_2,Joint_3,Joint_4,Joint_5,Joint_6,Joint_7" data-robot-tip="Link_7">
+                        <canvas width="520" height="600" aria-label="Live 3D viewer — Inhabit leader arm, drag the handle"></canvas>
+                        <div class="cad-photo-cap">Inhabit V2 · Live mesh · Drag the handle</div>
+                    </div>
                     <div class="cad-photo-wrap" data-key="inhabit-arm">
                         <img src="cad-7.png" alt="Inhabit V1 — 6-DOF Arm and Exoskeleton Glove" loading="lazy">
                         <div class="cad-photo-cap">Inhabit V1 · 6-DOF Arm & Exoskeleton Glove</div>
@@ -523,15 +527,11 @@
                         <img src="cad-10.webp" alt="Inhabit V2 — Universal Robot Compatibility" loading="lazy">
                         <div class="cad-photo-cap">Inhabit V2 · Universal Robot Compatibility</div>
                     </div>
-                    <div class="cad-photo-wrap cad-3d-tile" data-key="live-inhabit" data-robot-urdf="robots/inhabit-leader/inhabit-leader.urdf" data-robot-meshes="robots/inhabit-leader/meshes/">
-                        <canvas width="520" height="600" aria-label="Live 3D viewer — Inhabit leader arm"></canvas>
-                        <div class="cad-photo-cap">Inhabit V2 · Live mesh · Drag to rotate</div>
-                    </div>
-                    <div class="cad-photo-wrap cad-3d-tile" data-key="live-ur5" data-robot-urdf="robots/ur5/ur5.urdf" data-robot-meshes="robots/ur5/meshes/ur5/visual/">
+                    <div class="cad-photo-wrap cad-3d-tile" data-key="live-ur5" data-robot-urdf="robots/ur5/ur5.urdf" data-robot-meshes="robots/ur5/meshes/ur5/visual/" data-robot-chain="shoulder_pan_joint,shoulder_lift_joint,elbow_joint,wrist_1_joint,wrist_2_joint,wrist_3_joint" data-robot-tip="wrist_3_link">
                         <canvas width="520" height="600" aria-label="Live 3D viewer — Universal Robots UR5"></canvas>
                         <div class="cad-photo-cap">Universal Robots UR5 · Live mesh · Driven via Inhabit</div>
                     </div>
-                    <div class="cad-photo-wrap cad-3d-tile" data-key="live-g1" data-robot-urdf="robots/g1/g1_29dof.urdf" data-robot-meshes="robots/g1/meshes/">
+                    <div class="cad-photo-wrap cad-3d-tile" data-key="live-g1" data-robot-urdf="robots/g1/g1_29dof.urdf" data-robot-meshes="robots/g1/meshes/" data-robot-chain="waist_yaw_joint,waist_roll_joint,waist_pitch_joint,right_shoulder_pitch_joint,right_shoulder_roll_joint,right_shoulder_yaw_joint,right_elbow_joint,right_wrist_roll_joint,right_wrist_pitch_joint,right_wrist_yaw_joint" data-robot-tip="right_wrist_yaw_link">
                         <canvas width="520" height="600" aria-label="Live 3D viewer — Unitree G1 humanoid"></canvas>
                         <div class="cad-photo-cap">Unitree G1 · Live mesh · Driven via Inhabit</div>
                     </div>
@@ -587,14 +587,14 @@
         </div>
     </footer>
 
-    <!-- Speaking notification -->
+    <!-- Achievement notification -->
     <div id="speaking-toast" class="speaking-toast">
-        <div class="toast-icon">🎤</div>
+        <div class="toast-icon">🏆</div>
         <div class="toast-text">
-            <strong>I spoke last month in Paris!</strong>
-            <span>GOSIM Paris 2026</span>
+            <strong id="toast-headline">I won the UC Berkeley AI Hackathon!</strong>
+            <span id="toast-subline">Hardware winner · 1 week ago</span>
         </div>
-        <a href="https://paris2026.gosim.org/speakers/luke-lu/" target="_blank" rel="noopener" class="toast-link">View →</a>
+        <a href="https://devpost.com/software/ribbit-rtnfvg" target="_blank" rel="noopener" class="toast-link">View →</a>
         <button class="toast-close" aria-label="Dismiss">✕</button>
     </div>
 
@@ -607,7 +607,7 @@
                 <img id="pm-img" src="" alt="">
                 <video id="pm-video" controls loop muted playsinline style="display:none;width:100%;height:100%;object-fit:cover;"></video>
                 <canvas id="pm-canvas" style="display:none;width:100%;height:100%;"></canvas>
-                <div id="pm-canvas-hint" class="pm-canvas-hint" style="display:none;">drag to rotate · scroll to zoom</div>
+                <div id="pm-canvas-hint" class="pm-canvas-hint" style="display:none;">drag the glowing handle to move it · drag elsewhere to orbit · scroll to zoom</div>
             </div>
             <div class="pm-info">
                 <h2 id="pm-title"></h2>

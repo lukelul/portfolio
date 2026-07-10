@@ -29,21 +29,21 @@ var cadData = {
     },
     'live-inhabit': {
         title: 'Inhabit Leader Arm — Live 3D Mesh',
-        desc: 'The real Inhabit leader-arm CAD, exported straight from SolidWorks as a URDF and loaded live in your browser — not a photo or a render. Seven joints on real, non-planar hinge axes (not the simplified textbook 3-axis wrist most demos fake), sculpted right down to the handle grip an operator actually holds. Drag to orbit, scroll to zoom — you\'re looking at the actual mesh, the same one driving the teleop console at inhabitrobotics.com.',
-        tools: ['SolidWorks', 'URDF Export', 'Three.js', 'WebGL', 'Custom URDF Parser', 'Forward Kinematics'],
-        robot: { urdfUrl: 'robots/inhabit-leader/inhabit-leader.urdf', meshBaseUrl: 'robots/inhabit-leader/meshes/' }
+        desc: 'The real Inhabit leader-arm CAD, exported straight from SolidWorks as a URDF and loaded live in your browser — not a photo or a render. Seven joints on real, non-planar hinge axes (not the simplified textbook 3-axis wrist most demos fake), sculpted right down to the handle grip an operator actually holds. Drag the glowing handle to drive the arm through real inverse kinematics — drag empty space to orbit, scroll to zoom.',
+        tools: ['SolidWorks', 'URDF Export', 'Three.js', 'WebGL', 'Custom URDF Parser', 'Inverse Kinematics'],
+        robot: true
     },
     'live-ur5': {
         title: 'Universal Robots UR5 — Live 3D Mesh',
-        desc: 'The official UR5 model, loaded live from its published URDF and Collada meshes — one of the industrial arms the Inhabit leader is designed to drive one-to-one, no vendor-specific tooling required. Rendered client-side straight from the same description format the real robot ships with.',
-        tools: ['URDF', 'Collada (.dae)', 'Three.js', 'WebGL', 'ROS'],
-        robot: { urdfUrl: 'robots/ur5/ur5.urdf', meshBaseUrl: 'robots/ur5/meshes/ur5/visual/' }
+        desc: 'The official UR5 model, loaded live from its published URDF and Collada meshes — one of the industrial arms the Inhabit leader is designed to drive one-to-one, no vendor-specific tooling required. Drag the glowing handle at the wrist to drive all six joints through real inverse kinematics.',
+        tools: ['URDF', 'Collada (.dae)', 'Three.js', 'WebGL', 'Inverse Kinematics'],
+        robot: true
     },
     'live-g1': {
         title: 'Unitree G1 Humanoid — Live 3D Mesh',
-        desc: 'The full 29-DOF Unitree G1 humanoid, loaded live from its official URDF — every link from pelvis to fingertip, branching at the torso into both arms, both legs, and the head. Another target the Inhabit teleop kernel drives directly, proving the same operator interface generalizes from a single arm to a full humanoid.',
-        tools: ['URDF', 'Three.js', 'WebGL', 'Humanoid Kinematics', 'ROS2'],
-        robot: { urdfUrl: 'robots/g1/g1_29dof.urdf', meshBaseUrl: 'robots/g1/meshes/' }
+        desc: 'The full 29-DOF Unitree G1 humanoid, loaded live from its official URDF — every link from pelvis to fingertip, branching at the torso into both arms, both legs, and the head. Drag the glowing handle at the right hand to drive the waist + right arm through inverse kinematics, proving the same interface generalizes from a single arm to a full humanoid.',
+        tools: ['URDF', 'Three.js', 'WebGL', 'Humanoid Kinematics', 'Inverse Kinematics'],
+        robot: true
     },
     'exo-hand': {
         title: 'Inhabit V1 — 6-DOF Arm & Exoskeleton Glove',
@@ -114,7 +114,7 @@ function openPhotoModal(wrap) {
     if (data.robot) {
         pmCanvas.style.display = 'block';
         pmCanvasHint.style.display = 'block';
-        if (window.RobotShowcase) window.RobotShowcase.mountModal(pmCanvas, data.robot);
+        if (window.RobotShowcase) window.RobotShowcase.mountModal(pmCanvas, key);
     } else if (data.video) {
         pmVideo.style.display = 'block';
         pmVideo.src = data.video;
@@ -419,9 +419,18 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Speaking toast
+    // Achievement toast — "N week(s) ago" recomputed from a fixed anchor date
+    // every page load, so it keeps ticking up without ever needing an edit.
     var toast = document.getElementById('speaking-toast');
     if (toast) {
+        var HACKATHON_WEEK_ONE = new Date('2026-07-10T00:00:00');
+        var msPerWeek = 7 * 24 * 60 * 60 * 1000;
+        var weeksAgo = Math.max(1, Math.floor((Date.now() - HACKATHON_WEEK_ONE.getTime()) / msPerWeek) + 1);
+        var subline = document.getElementById('toast-subline');
+        if (subline) {
+            subline.textContent = 'Hardware winner · ' + weeksAgo + ' week' + (weeksAgo === 1 ? '' : 's') + ' ago';
+        }
+
         setTimeout(function () { toast.classList.add('show'); }, 1200);
         toast.querySelector('.toast-close').addEventListener('click', function () {
             toast.classList.remove('show');
