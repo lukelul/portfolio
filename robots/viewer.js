@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.162.0/examples/jsm/controls/OrbitControls.js";
-import { loadURDFArm } from "./urdfArm.js?v=2";
+import { loadURDFArm } from "./urdfArm.js?v=4";
 import { solveIK } from "./ik.js";
 
 /**
@@ -49,9 +49,9 @@ export function mountRobotViewer(canvas, { urdfUrl, meshBaseUrl, mode = "thumb",
   camera.position.set(1.3, 0.9, 1.9);
   camera.lookAt(0, 0, 0);
 
-  const d1 = new THREE.DirectionalLight(0x9fd8ff, 2.1); d1.position.set(3, 5, 4); scene.add(d1);
-  const d2 = new THREE.DirectionalLight(0x8ff0dc, 1.3); d2.position.set(-4, 2, -3); scene.add(d2);
-  scene.add(new THREE.AmbientLight(0x1a2530, 1.6));
+  const d1 = new THREE.DirectionalLight(0xffffff, 2.0); d1.position.set(3, 5, 4); scene.add(d1);
+  const d2 = new THREE.DirectionalLight(0xffffff, 1.0); d2.position.set(-4, 2, -3); scene.add(d2);
+  scene.add(new THREE.AmbientLight(0xffffff, 0.5));
 
   const rig = new THREE.Group();
   scene.add(rig);
