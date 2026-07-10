@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;700&family=Playfair+Display:wght@400;700&family=Space+Mono:wght@400;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.module.min.js"}}</script>
 </head>
 <body>
     <!-- Navigation -->
@@ -522,6 +523,18 @@
                         <img src="cad-10.webp" alt="Inhabit V2 — Universal Robot Compatibility" loading="lazy">
                         <div class="cad-photo-cap">Inhabit V2 · Universal Robot Compatibility</div>
                     </div>
+                    <div class="cad-photo-wrap cad-3d-tile" data-key="live-inhabit" data-robot-urdf="robots/inhabit-leader/inhabit-leader.urdf" data-robot-meshes="robots/inhabit-leader/meshes/">
+                        <canvas width="520" height="600" aria-label="Live 3D viewer — Inhabit leader arm"></canvas>
+                        <div class="cad-photo-cap">Inhabit V2 · Live mesh · Drag to rotate</div>
+                    </div>
+                    <div class="cad-photo-wrap cad-3d-tile" data-key="live-ur5" data-robot-urdf="robots/ur5/ur5.urdf" data-robot-meshes="robots/ur5/meshes/ur5/visual/">
+                        <canvas width="520" height="600" aria-label="Live 3D viewer — Universal Robots UR5"></canvas>
+                        <div class="cad-photo-cap">Universal Robots UR5 · Live mesh · Driven via Inhabit</div>
+                    </div>
+                    <div class="cad-photo-wrap cad-3d-tile" data-key="live-g1" data-robot-urdf="robots/g1/g1_29dof.urdf" data-robot-meshes="robots/g1/meshes/">
+                        <canvas width="520" height="600" aria-label="Live 3D viewer — Unitree G1 humanoid"></canvas>
+                        <div class="cad-photo-cap">Unitree G1 · Live mesh · Driven via Inhabit</div>
+                    </div>
                     <div class="cad-photo-wrap" data-key="exo-hand">
                         <img src="cad-8.webp" alt="Inhabit V1 — Exoskeleton Glove Build vs CAD" loading="lazy">
                         <div class="cad-photo-cap">Inhabit V1 · Exoskeleton Glove · Build vs. CAD</div>
@@ -593,6 +606,8 @@
             <div class="pm-img-wrap">
                 <img id="pm-img" src="" alt="">
                 <video id="pm-video" controls loop muted playsinline style="display:none;width:100%;height:100%;object-fit:cover;"></video>
+                <canvas id="pm-canvas" style="display:none;width:100%;height:100%;"></canvas>
+                <div id="pm-canvas-hint" class="pm-canvas-hint" style="display:none;">drag to rotate · scroll to zoom</div>
             </div>
             <div class="pm-info">
                 <h2 id="pm-title"></h2>
@@ -606,5 +621,6 @@
     </div>
 
     <script src="script.js?v=11"></script>
+    <script type="module" src="robots/main.js"></script>
 </body>
 </html>

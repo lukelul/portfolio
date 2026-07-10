@@ -27,6 +27,24 @@ var cadData = {
         desc: 'Inhabit V2 is the refined evolution of the platform — redesigned modular joint architecture, cleaner manufacturing, and universal robot compatibility. The standardized joint interface lets the arm be fully reconfigured in under a minute without any tooling, and the end effector mount is hot-swappable. V2 is hardware-agnostic by design: the same operator interface drives Universal Robots arms, Hugging Face\'s LeRobot platform, and Unitree humanoid robots, dramatically cutting setup cost for AI robotics teams collecting demonstration data.',
         tools: ['SolidWorks', 'Keyshot', 'ROS2', 'Modular Joint Architecture', 'Tolerance Stack Analysis', 'URDF Export', 'Cross-platform Integration', '3D Printing']
     },
+    'live-inhabit': {
+        title: 'Inhabit Leader Arm — Live 3D Mesh',
+        desc: 'The real Inhabit leader-arm CAD, exported straight from SolidWorks as a URDF and loaded live in your browser — not a photo or a render. Seven joints on real, non-planar hinge axes (not the simplified textbook 3-axis wrist most demos fake), sculpted right down to the handle grip an operator actually holds. Drag to orbit, scroll to zoom — you\'re looking at the actual mesh, the same one driving the teleop console at inhabitrobotics.com.',
+        tools: ['SolidWorks', 'URDF Export', 'Three.js', 'WebGL', 'Custom URDF Parser', 'Forward Kinematics'],
+        robot: { urdfUrl: 'robots/inhabit-leader/inhabit-leader.urdf', meshBaseUrl: 'robots/inhabit-leader/meshes/' }
+    },
+    'live-ur5': {
+        title: 'Universal Robots UR5 — Live 3D Mesh',
+        desc: 'The official UR5 model, loaded live from its published URDF and Collada meshes — one of the industrial arms the Inhabit leader is designed to drive one-to-one, no vendor-specific tooling required. Rendered client-side straight from the same description format the real robot ships with.',
+        tools: ['URDF', 'Collada (.dae)', 'Three.js', 'WebGL', 'ROS'],
+        robot: { urdfUrl: 'robots/ur5/ur5.urdf', meshBaseUrl: 'robots/ur5/meshes/ur5/visual/' }
+    },
+    'live-g1': {
+        title: 'Unitree G1 Humanoid — Live 3D Mesh',
+        desc: 'The full 29-DOF Unitree G1 humanoid, loaded live from its official URDF — every link from pelvis to fingertip, branching at the torso into both arms, both legs, and the head. Another target the Inhabit teleop kernel drives directly, proving the same operator interface generalizes from a single arm to a full humanoid.',
+        tools: ['URDF', 'Three.js', 'WebGL', 'Humanoid Kinematics', 'ROS2'],
+        robot: { urdfUrl: 'robots/g1/g1_29dof.urdf', meshBaseUrl: 'robots/g1/meshes/' }
+    },
     'exo-hand': {
         title: 'Inhabit V1 — 6-DOF Arm & Exoskeleton Glove',
         desc: 'Inhabit V1 is the original prototype of the teleoperation system — a custom-built 6-DOF robot arm paired with a wearable exoskeleton glove that captures the operator\'s hand and finger movements in real time and streams them directly to the arm. Every component was designed from scratch: the arm links, joint interfaces, and glove mechanism all use off-the-shelf actuators and 3D-printed structure so any lab can build and replicate it without proprietary hardware. The goal was intuitive, low-latency teleoperation at the lowest possible cost.',
@@ -81,16 +99,27 @@ function openPhotoModal(wrap) {
     var modal = document.getElementById('photo-modal');
     var pmImg   = document.getElementById('pm-img');
     var pmVideo = document.getElementById('pm-video');
+    var pmCanvas = document.getElementById('pm-canvas');
+    var pmCanvasHint = document.getElementById('pm-canvas-hint');
     var img = wrap.querySelector('img');
 
-    if (data.video) {
-        pmImg.style.display = 'none';
+    pmImg.style.display = 'none';
+    pmVideo.style.display = 'none';
+    pmVideo.pause();
+    pmVideo.src = '';
+    pmCanvas.style.display = 'none';
+    pmCanvasHint.style.display = 'none';
+    if (window.RobotShowcase) window.RobotShowcase.disposeModal();
+
+    if (data.robot) {
+        pmCanvas.style.display = 'block';
+        pmCanvasHint.style.display = 'block';
+        if (window.RobotShowcase) window.RobotShowcase.mountModal(pmCanvas, data.robot);
+    } else if (data.video) {
         pmVideo.style.display = 'block';
         pmVideo.src = data.video;
         pmVideo.load();
     } else {
-        pmVideo.style.display = 'none';
-        pmVideo.src = '';
         pmImg.style.display = 'block';
         if (img) { pmImg.src = img.src; pmImg.alt = img.alt; }
     }
@@ -116,6 +145,7 @@ function closePhotoModal() {
     if (!modal) return;
     var pmVideo = document.getElementById('pm-video');
     if (pmVideo) { pmVideo.pause(); pmVideo.src = ''; }
+    if (window.RobotShowcase) window.RobotShowcase.disposeModal();
     modal.classList.remove('open');
     document.body.style.overflow = '';
 }
