@@ -1820,6 +1820,14 @@ section::before {
     z-index: 1;
     display: grid;
     grid-template-columns: 55% 45%;
+    /* minmax(0, 1fr): without an explicit track size, an "auto" grid row
+       sizes itself to its tallest child's natural content height — so a
+       long description (or a tall image) grows the row past max-height,
+       and neither column's own overflow/scroll ever kicks in because each
+       one is laid out at its full natural height regardless of the card's
+       clipped outer box. Capping the row is what makes max-height actually
+       bound the columns instead of just visually clipping them. */
+    grid-template-rows: minmax(0, 1fr);
     max-width: 980px;
     width: 100%;
     max-height: 88vh;
@@ -1838,6 +1846,10 @@ section::before {
 .pm-img-wrap {
     background: #080f0a;
     min-height: 380px;
+    max-height: 88vh; /* match .pm-card's cap so a tall/portrait image can't
+                         push the whole modal past the viewport with no way
+                         to scroll to the rest — it gets cropped by
+                         object-fit:cover instead */
     overflow: hidden;
     position: relative;
 }
