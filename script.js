@@ -557,6 +557,20 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // ── CAD gallery category filter ──────────────────────────
+    document.querySelectorAll('.cad-filter-link').forEach(function (link) {
+        link.addEventListener('click', function (e) {
+            e.preventDefault();
+            var filter = link.getAttribute('data-filter');
+            document.querySelectorAll('.cad-filter-link').forEach(function (l) { l.classList.remove('active'); });
+            link.classList.add('active');
+            document.querySelectorAll('.cad-photo-wrap').forEach(function (wrap) {
+                var show = filter === 'all' || wrap.getAttribute('data-category') === filter;
+                wrap.classList.toggle('cad-filtered-out', !show);
+            });
+        });
+    });
+
     // ── Home page "Featured Work" cards — jump straight to that project's
     // spot in the CAD tab and open its detail modal ──────────────────────
     document.querySelectorAll('[data-open-cad]').forEach(function (card) {

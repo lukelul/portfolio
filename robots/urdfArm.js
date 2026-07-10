@@ -126,7 +126,7 @@ export async function loadURDFArm({ urdfUrl, meshBaseUrl, material }) {
   const { links, jointsByParent, rootName } = parseURDF(xmlText);
 
   const sharedMaterial = material ?? new THREE.MeshStandardMaterial({
-    color: 0xc9ced3, metalness: 0.6, roughness: 0.35,
+    color: 0xffffff, metalness: 0.6, roughness: 0.35,
   });
 
   const root = new THREE.Group();

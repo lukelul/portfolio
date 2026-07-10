@@ -1617,7 +1617,34 @@ section::before {
 
 .cad-gallery-title {
     text-align: center;
-    margin-bottom: 2.5rem !important;
+    margin-bottom: 1rem !important;
+}
+
+.cad-filter {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    margin-bottom: 2.5rem;
+}
+
+.cad-filter-link {
+    color: var(--text-primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.cad-filter-link:hover {
+    opacity: 0.55;
+}
+
+.cad-filter-link.active {
+    font-weight: 700;
+}
+
+.cad-photo-wrap.cad-filtered-out {
+    display: none;
 }
 
 .cad-gallery {
@@ -1631,12 +1658,26 @@ section::before {
 .cad-photo-wrap {
     break-inside: avoid;
     margin-bottom: 1.25rem;
+    background: #ffffff;
+    border: 1px solid var(--border-color);
     border-radius: 14px;
-    overflow: hidden;
+    padding: 8px;
     cursor: zoom-in;
     box-shadow: var(--shadow-md);
     position: relative;
     display: block;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.cad-photo-wrap:hover {
+    box-shadow: var(--shadow-xl);
+    transform: translateY(-3px);
+}
+
+.cad-media {
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
 }
 
 .cad-photo-wrap img {
@@ -1663,7 +1704,7 @@ section::before {
     opacity: 0;
     transform: translateY(8px);
     transition: opacity 0.3s ease, transform 0.3s ease;
-    border-radius: 0 0 14px 14px;
+    border-radius: 0 0 8px 8px;
 }
 
 .cad-photo-wrap:hover .cad-photo-cap {

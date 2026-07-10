@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.162.0/examples/jsm/controls/OrbitControls.js";
-import { loadURDFArm } from "./urdfArm.js";
+import { loadURDFArm } from "./urdfArm.js?v=2";
 import { solveIK } from "./ik.js";
 
 /**
