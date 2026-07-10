@@ -2,13 +2,13 @@
     --site-font: 'Inter', 'Helvetica Neue', Arial, sans-serif;
     --root-font-size: 22px;
     --base-letter-spacing: 0px;
-    /* Premium Color Palette - Earthy & Aquatic Tones */
-    --dark-teal: #1a4d3d;           /* Dark teal/deep green */
-    --muted-green: #5a7a6b;         /* Muted green */
-    --teal-blue: #5a9ca3;           /* Teal/blue-green */
-    --warm-tan: #c9a982;            /* Warm tan/light brown */
-    --cream-white: #f5f2e8;         /* Off-white/cream */
-    
+    /* Black & White Palette */
+    --dark-teal: #000000;           /* Primary text / dark fills */
+    --muted-green: #595959;         /* Secondary text (gray) */
+    --teal-blue: #000000;           /* Links / accents */
+    --warm-tan: #000000;            /* Accent (light-bg contexts only — dark-bg contexts hardcode white directly) */
+    --cream-white: #ffffff;         /* Background */
+
     /* Color Usage */
     --primary-color: var(--teal-blue);
     --primary-dark: var(--dark-teal);
@@ -19,14 +19,14 @@
     --bg-primary: var(--cream-white);
     --bg-secondary: #ffffff;
     --bg-dark: var(--dark-teal);
-    --border-color: #e0d9c8;
+    --border-color: #e5e5e5;
     --highlight-color: var(--warm-tan);
-    
+
     /* Shadows */
-    --shadow-sm: 0 1px 2px 0 rgba(26, 77, 61, 0.1);
-    --shadow-md: 0 4px 6px -1px rgba(26, 77, 61, 0.15);
-    --shadow-lg: 0 10px 15px -3px rgba(26, 77, 61, 0.2);
-    --shadow-xl: 0 20px 25px -5px rgba(26, 77, 61, 0.25);
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.25);
 }
 
 /* Minecraft Font */
@@ -67,7 +67,7 @@ body::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(26,77,61,0.12)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(0, 0, 0,0.12)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
     pointer-events: none;
     z-index: 0;
 }
@@ -96,7 +96,7 @@ p, li, span, a, div, button, input, textarea {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(245, 242, 232, 0.95);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     box-shadow: var(--shadow-sm);
     z-index: 1000;
@@ -211,7 +211,7 @@ p, li, span, a, div, button, input, textarea {
     display: flex;
     align-items: center;
     padding-top: 80px;
-    background: linear-gradient(135deg, #0f3d2e 0%, var(--dark-teal) 40%, #144033 100%);
+    background: #000000;
     color: white;
     position: relative;
     overflow: hidden;
@@ -252,8 +252,8 @@ p, li, span, a, div, button, input, textarea {
 }
 
 .highlight {
-    color: var(--warm-tan);
-    text-shadow: 0 0 20px rgba(201, 169, 130, 0.6);
+    color: #ffffff;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
 }
 
 .hero-subtitle {
@@ -293,9 +293,9 @@ p, li, span, a, div, button, input, textarea {
 }
 
 .btn-primary {
-    background: var(--warm-tan);
-    color: var(--dark-teal);
-    border: 2px solid var(--warm-tan);
+    background: #ffffff;
+    color: #000000;
+    border: 2px solid #ffffff;
 }
 
 .btn-primary:hover {
@@ -427,7 +427,7 @@ section::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(26,77,61,0.12)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(0, 0, 0,0.12)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
     pointer-events: none;
     z-index: 0;
 }
@@ -722,11 +722,6 @@ section::before {
     background: var(--bg-primary);
 }
 
-.contact-icon {
-    background: var(--teal-blue);
-    color: white;
-}
-
 .contact-description {
     text-align: center;
     color: var(--text-secondary);
@@ -750,18 +745,6 @@ section::before {
     display: flex;
     align-items: center;
     gap: 1rem;
-}
-
-.contact-icon {
-    font-size: 2rem;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--bg-secondary);
-    border-radius: 12px;
-    flex-shrink: 0;
 }
 
 .contact-item h3 {
@@ -906,11 +889,6 @@ section::before {
     opacity: 1;
 }
 
-.toast-icon {
-    font-size: 1.4rem;
-    flex-shrink: 0;
-}
-
 .toast-text {
     display: flex;
     flex-direction: column;
@@ -1047,7 +1025,7 @@ section::before {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: rgba(255, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.85);
     border: none;
     border-radius: 50%;
     width: 68px;
@@ -1100,7 +1078,7 @@ section::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid-white" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(26,77,61,0.06)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid-white)"/></svg>');
+    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid-white" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(0, 0, 0,0.06)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid-white)"/></svg>');
     pointer-events: none;
     z-index: 0;
 }
@@ -1187,11 +1165,6 @@ section::before {
     box-shadow: var(--shadow-xl);
 }
 
-.award-icon {
-    font-size: 1.6rem;
-    margin-bottom: 0.5rem;
-}
-
 .award-title {
     font-size: 0.85rem;
     font-weight: 600;
@@ -1219,7 +1192,7 @@ section::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid-white2" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(26,77,61,0.06)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid-white2)"/></svg>');
+    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid-white2" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(0, 0, 0,0.06)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid-white2)"/></svg>');
     pointer-events: none;
     z-index: 0;
 }
@@ -1292,7 +1265,7 @@ section::before {
 }
 
 .footer-links a:hover {
-    color: var(--warm-tan);
+    text-decoration: underline;
 }
 
 /* Animations */
@@ -1480,7 +1453,7 @@ section::before {
     bottom: 0;
     transform: translateX(-50%);
     width: 2px;
-    background: rgba(90, 156, 163, 0.18);
+    background: rgba(0, 0, 0, 0.18);
     border-radius: 2px;
     overflow: hidden;
 }
@@ -1506,7 +1479,7 @@ section::before {
     height: 10px;
     border-radius: 50%;
     background: var(--cream-white);
-    border: 2px solid rgba(90, 156, 163, 0.4);
+    border: 2px solid rgba(0, 0, 0, 0.4);
     transition: all 0.3s ease;
     position: relative;
     z-index: 1;
@@ -1517,7 +1490,7 @@ section::before {
     background: var(--teal-blue);
     border-color: var(--teal-blue);
     transform: scale(1.5);
-    box-shadow: 0 0 14px rgba(90, 156, 163, 0.6);
+    box-shadow: 0 0 14px rgba(0, 0, 0, 0.6);
 }
 
 .sdot-label {
@@ -1553,7 +1526,7 @@ section::before {
 .hero-particle {
     position: absolute;
     border-radius: 50%;
-    background: rgba(201, 169, 130, 0.22);
+    background: rgba(255, 255, 255, 0.22);
     animation: ptFloat 9s ease-in-out infinite;
     pointer-events: none;
 }
@@ -1595,7 +1568,7 @@ section::before {
    ============================================================ */
 .cad-hero {
     min-height: 44vh;
-    background: linear-gradient(135deg, #0a2e20 0%, var(--dark-teal) 55%, #1a5a6a 100%);
+    background: #000000;
     color: white;
     display: flex;
     align-items: center;
@@ -1623,9 +1596,9 @@ section::before {
     font-size: 2rem;
     text-transform: uppercase;
     letter-spacing: -2px;
-    color: var(--warm-tan);
+    color: #ffffff;
     margin-bottom: 1.2rem;
-    text-shadow: 0 0 30px rgba(201,169,130,0.4);
+    text-shadow: 0 0 30px rgba(255, 255, 255,0.4);
 }
 
 .cad-hero-content p {
@@ -1683,7 +1656,7 @@ section::before {
     left: 0;
     right: 0;
     padding: 1rem 1rem 0.85rem;
-    background: linear-gradient(0deg, rgba(8,25,18,0.88) 0%, transparent 100%);
+    background: linear-gradient(0deg, rgba(0, 0, 0,0.88) 0%, transparent 100%);
     color: rgba(255,255,255,0.92);
     font-size: 0.55rem;
     letter-spacing: 0;
@@ -1704,7 +1677,7 @@ section::before {
 #lightbox {
     position: fixed;
     inset: 0;
-    background: rgba(5, 18, 12, 0.94);
+    background: rgba(0, 0, 0, 0.94);
     z-index: 9998;
     display: flex;
     align-items: center;
@@ -1797,7 +1770,7 @@ section::before {
 .pm-backdrop {
     position: absolute;
     inset: 0;
-    background: rgba(5, 18, 12, 0.88);
+    background: rgba(0, 0, 0, 0.88);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
 }
@@ -1831,7 +1804,7 @@ section::before {
 }
 
 .pm-img-wrap {
-    background: #080f0a;
+    background: #000000;
     min-height: 380px;
     max-height: 88vh; /* match .pm-card's cap so a tall/portrait image can't
                          push the whole modal past the viewport with no way
@@ -1857,7 +1830,7 @@ section::before {
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: rgba(255,255,255,0.75);
-    background: rgba(8,25,18,0.55);
+    background: rgba(0, 0, 0,0.55);
     padding: 0.4rem 0.75rem;
     border-radius: 999px;
     pointer-events: none;
@@ -1888,7 +1861,7 @@ section::before {
 
 .pm-gallery-thumb.active {
     opacity: 1;
-    border-color: var(--teal-blue, #5a9ca3);
+    border-color: var(--teal-blue, #000000);
 }
 
 /* Live 3D tiles in the CAD gallery */
