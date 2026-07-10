@@ -347,6 +347,48 @@ p, li, span, a, div, button, input, textarea {
     50% { transform: translateY(-20px) rotate(5deg); }
 }
 
+/* Project thumbnails scattered in the side margins of the home page —
+   image-only, click jumps to that project's CAD-tab modal. Hidden below
+   ~1550px viewport width, where there's no longer clear margin space
+   outside the 1200px content column to float in without overlapping text. */
+.side-float {
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow-xl);
+    cursor: pointer;
+    z-index: 5;
+    animation: float 7s ease-in-out infinite;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.side-float img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.side-float:hover {
+    /* drop the bob/rotate animation on hover so the scale transition below
+       (an animation's transform otherwise always wins over a plain one) is
+       actually visible */
+    animation: none;
+    transform: scale(1.08);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+}
+
+.side-float.pos-left { left: 40px; }
+.side-float.pos-right { right: 40px; }
+
+.side-float.sf-b, .side-float.sf-d { animation-delay: -3.5s; }
+
+@media (max-width: 1550px) {
+    .side-float { display: none; }
+}
+
 .scroll-indicator {
     position: absolute;
     bottom: 30px;
@@ -512,19 +554,6 @@ section::before {
     transition: all 0.3s ease;
     position: relative;
     z-index: 11;
-}
-
-/* Featured-work cards are <button>s (so click opens the CAD-tab modal) —
-   reset button chrome to look identical to a plain project-card. */
-.featured-card {
-    display: block;
-    width: 100%;
-    border: none;
-    padding: 0;
-    text-align: left;
-    font: inherit;
-    color: inherit;
-    cursor: pointer;
 }
 
 .project-card:hover {
@@ -1173,6 +1202,7 @@ section::before {
 /* Awards Section */
 .awards {
     background: var(--bg-primary);
+    position: relative;
 }
 
 .awards-grid {
