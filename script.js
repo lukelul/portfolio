@@ -443,8 +443,10 @@ document.addEventListener('DOMContentLoaded', function () {
             subline.textContent = 'Hardware winner · ' + weeksAgo + ' week' + (weeksAgo === 1 ? '' : 's') + ' ago';
         }
 
+        var autoDismiss = setTimeout(function () { toast.classList.remove('show'); }, 1200 + 8000);
         setTimeout(function () { toast.classList.add('show'); }, 1200);
         toast.querySelector('.toast-close').addEventListener('click', function () {
+            clearTimeout(autoDismiss);
             toast.classList.remove('show');
         });
     }

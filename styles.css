@@ -738,24 +738,17 @@ section::before {
 }
 
 .contact-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
+    display: flex;
+    justify-content: center;
     max-width: 900px;
     margin: 0 auto;
     position: relative;
     z-index: 11;
 }
 
-.contact-info {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-
 .contact-item {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 1rem;
 }
 
@@ -791,39 +784,6 @@ section::before {
 .contact-item p {
     color: var(--text-secondary);
     margin: 0;
-}
-
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    position: relative;
-    z-index: 11;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-}
-
-.form-group input,
-.form-group textarea {
-    padding: 1rem;
-    border: 2px solid var(--border-color);
-    border-radius: 8px;
-    font-size: 1rem;
-    font-family: inherit;
-    transition: border-color 0.3s ease;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--teal-blue);
-}
-
-.form-group textarea {
-    resize: vertical;
 }
 
 /* Experience Section */
@@ -1407,10 +1367,6 @@ section::before {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .contact-content {
-        grid-template-columns: 1fr;
-    }
-
     .footer .container {
         flex-direction: column;
         gap: 1rem;
@@ -1696,8 +1652,8 @@ section::before {
     column-gap: 1.25rem;
 }
 
-@media (max-width: 900px) { .cad-gallery { columns: 2; } }
-@media (max-width: 480px) { .cad-gallery { columns: 1; } }
+@media (max-width: 900px) { .cad-gallery { columns: 2; column-gap: 0.75rem; } }
+@media (max-width: 480px) { .cad-gallery { columns: 2; column-gap: 0.5rem; } }
 
 .cad-photo-wrap {
     break-inside: avoid;
