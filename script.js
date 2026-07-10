@@ -76,6 +76,40 @@ var cadData = {
         desc: 'Designed the complete hardware chassis and CAD casing for a handheld projector pen that can write and draw on any wall surface. The device packs a compact micro-projector, control electronics, and battery into an ergonomic handheld enclosure, all designed from scratch. Every dimension of the housing was modeled around tight spatial constraints — balancing heat dissipation, electronics clearance, button placement, and a form factor slim enough to hold comfortably like a pen.',
         tools: ['SolidWorks', 'FDM 3D Printing', 'Electronics Integration', 'Surface Modeling', 'Thermal Management', 'Embedded Hardware Design', 'Ergonomic Form Design'],
         video: 'cad-11.mp4'
+    },
+    'clothes-fold': {
+        title: 'XLE Robot Arm — Clothes-Folding Training Rig',
+        desc: 'Built at the UT Center for Autonomy to train a robot arm to fold laundry — a dual-arm rig used to collect demonstration data and evaluate a learned folding policy against real fabric. Cloth is one of the hardest manipulation problems in robotics: it deforms continuously, self-occludes, and never has a fixed geometry, so the rig had to be rigid and repeatable enough for consistent data collection across hundreds of folding attempts.',
+        tools: ['SolidWorks', 'Servo Actuators', 'Imitation Learning', 'Data Collection Rig Design', '3D Printing']
+    },
+    'hand-v1': {
+        title: '5-Finger Robot Hand — Linkage-Driven, No Tendons',
+        desc: 'A cheap 5-finger robot hand built for the UC Berkeley AI Hackathon, driven entirely off 9g servos through printed linkages instead of tendons — no cable stretch, no re-tensioning, no drift over time. Every finger joint is a direct mechanical linkage back to its servo, which keeps the hand fully repeatable and dramatically cheaper to build and maintain than a tendon-driven hand.',
+        tools: ['SolidWorks', '9g Servos', 'Linkage Mechanism Design', 'FDM 3D Printing', 'Low-Cost Manipulator Design']
+    },
+    'ai-glasses': {
+        title: 'Waveguide AI Research Glasses',
+        desc: 'A wearable display built around a waveguide optic that projects text and images directly in front of the wearer, paired with an AI that listens in real time and helps with research — surfacing information and drafting responses on the fly as you talk. Designed and built the full hardware enclosure around the waveguide combiner, driver electronics, and battery.',
+        tools: ['SolidWorks', 'Waveguide Optics', 'Embedded Hardware Design', 'Real-time AI Integration', 'FDM 3D Printing'],
+        video: 'cad-14.mp4'
+    },
+    'act-filament': {
+        title: 'ACT Policy — Autonomous Filament Pickup',
+        desc: 'Trained an ACT (Action Chunking Transformer) policy on a rig built for the UC Berkeley AI Hackathon, teaching a robot arm to pick up a 3D-printing filament spool and place it into a basket — learned entirely from about 30 minutes of demonstration data, no hand-coded motion planning.',
+        tools: ['ACT / Imitation Learning', 'SolidWorks', 'Teleoperation Rig Design', 'Data Collection', 'Python'],
+        video: 'cad-15.mp4'
+    },
+    'hand-fistbump': {
+        title: '5-Finger Robot Hand — Fist Bump Demo',
+        desc: 'The finalized version of the linkage-driven 5-finger hand, mounted to the end of a PiperX arm for the UC Berkeley AI Hackathon — recreating the fist bump from Big Hero 6 as a demo of the hand\'s compliance and grip.',
+        tools: ['SolidWorks', '9g Servos', 'Linkage Mechanism Design', 'PiperX Integration', 'FDM 3D Printing'],
+        video: 'cad-16.mp4'
+    },
+    'paradigm-fire': {
+        title: 'Firefighting & Recon Robot — Paradigm Robotics',
+        desc: 'Helped fix up and get running a firefighting and information-gathering robot at Paradigm Robotics, built to scout hazardous environments and relay information back before a human has to step in.',
+        tools: ['Hardware Debugging', 'Mechanical Repair', 'Field Robotics', 'Paradigm Robotics'],
+        video: 'cad-17.mp4'
     }
 };
 
