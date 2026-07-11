@@ -1318,13 +1318,13 @@ section::before {
    CAD SECTION
    ============================================================ */
 .cad-hero {
-    min-height: 44vh;
+    min-height: 0;
     background: #000000;
     color: white;
     display: flex;
     align-items: center;
     padding-top: 7rem;
-    padding-bottom: 3rem;
+    padding-bottom: 1.5rem;
     position: relative;
     overflow: hidden;
 }
@@ -1348,7 +1348,7 @@ section::before {
     text-transform: uppercase;
     letter-spacing: -2px;
     color: #ffffff;
-    margin-bottom: 1.2rem;
+    margin-bottom: 0;
     text-shadow: 0 0 30px rgba(255, 255, 255,0.4);
 }
 
@@ -1362,7 +1362,7 @@ section::before {
 }
 
 .cad-gallery-section {
-    padding: 4rem 0 6rem;
+    padding: 2rem 0 6rem;
     background: var(--bg-primary);
 }
 
