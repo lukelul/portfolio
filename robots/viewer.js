@@ -69,29 +69,26 @@ export function mountRobotViewer(canvas, { urdfUrl, meshBaseUrl, mode = "thumb",
     controls.target.set(0, 0, 0);
   }
 
-  // Handle — a bright core marking the grabbable end effector, wrapped in two
-  // additive-blended, depth-unwritten halo shells to fake a soft glow (there's
-  // no bloom postprocessing pass here), plus a generous invisible sphere for
+  // Handle — the end effector is marked purely by a soft glow (no visible
+  // solid core), built from three additive-blended, depth-unwritten shells
+  // at decreasing opacity to fake a smooth bloom falloff (there's no real
+  // bloom postprocessing pass here), plus a generous invisible sphere for
   // easy hit-testing.
-  let handle = null;
   let handleHit = null;
-  let handleGlowInner = null;
+  let handleGlowCore = null;
+  let handleGlowMid = null;
   let handleGlowOuter = null;
   if (canDrag) {
-    handle = new THREE.Mesh(
-      new THREE.SphereGeometry(0.04, 16, 16),
-      new THREE.MeshStandardMaterial({ color: 0x0c1216, emissive: 0xb8ff3c, emissiveIntensity: 2.2, roughness: 0.3 }),
-    );
-    handle.renderOrder = 10;
-    scene.add(handle);
-
     const glowMaterial = (opacity) => new THREE.MeshBasicMaterial({
       color: 0xb8ff3c, transparent: true, opacity, blending: THREE.AdditiveBlending, depthWrite: false,
     });
-    handleGlowInner = new THREE.Mesh(new THREE.SphereGeometry(0.075, 16, 16), glowMaterial(0.45));
-    handleGlowInner.renderOrder = 9;
-    scene.add(handleGlowInner);
-    handleGlowOuter = new THREE.Mesh(new THREE.SphereGeometry(0.13, 16, 16), glowMaterial(0.2));
+    handleGlowCore = new THREE.Mesh(new THREE.SphereGeometry(0.045, 16, 16), glowMaterial(0.3));
+    handleGlowCore.renderOrder = 10;
+    scene.add(handleGlowCore);
+    handleGlowMid = new THREE.Mesh(new THREE.SphereGeometry(0.085, 16, 16), glowMaterial(0.14));
+    handleGlowMid.renderOrder = 9;
+    scene.add(handleGlowMid);
+    handleGlowOuter = new THREE.Mesh(new THREE.SphereGeometry(0.13, 16, 16), glowMaterial(0.06));
     handleGlowOuter.renderOrder = 8;
     scene.add(handleGlowOuter);
 
@@ -230,16 +227,16 @@ export function mountRobotViewer(canvas, { urdfUrl, meshBaseUrl, mode = "thumb",
           joints[name].set(Math.sin(t * freq + i * 1.9) * amp);
         });
       }
-      if (handle && tipObject) {
+      if (handleGlowCore && tipObject) {
         const p = new THREE.Vector3();
         tipObject.getWorldPosition(p);
-        handle.position.copy(p);
         handleHit.position.copy(p);
-        handleGlowInner.position.copy(p);
+        handleGlowCore.position.copy(p);
+        handleGlowMid.position.copy(p);
         handleGlowOuter.position.copy(p);
         const pulse = 1 + Math.sin(t * 3) * 0.15;
-        handle.scale.setScalar(pulse);
-        handleGlowInner.scale.setScalar(pulse);
+        handleGlowCore.scale.setScalar(pulse);
+        handleGlowMid.scale.setScalar(pulse);
         handleGlowOuter.scale.setScalar(1 + Math.sin(t * 3) * 0.25);
       }
     }
