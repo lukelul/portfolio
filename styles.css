@@ -2189,7 +2189,8 @@ section::before {
         background: #fff;
         mix-blend-mode: difference;
         pointer-events: none;
-        z-index: 9999;
+        z-index: 999999; /* must beat every other fixed overlay (modal,
+                             lightbox, toast are all 9999) regardless of DOM order */
         opacity: 0; /* hidden until first mousemove, so it can't sit at a
                        stale 0,0 position before the user has moved the mouse */
         transform: translate(-50%, -50%);
@@ -2206,7 +2207,7 @@ section::before {
         border-radius: 50%;
         mix-blend-mode: difference;
         pointer-events: none;
-        z-index: 9998;
+        z-index: 999998;
         opacity: 0;
         transform: translate(-50%, -50%);
         transition: width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
