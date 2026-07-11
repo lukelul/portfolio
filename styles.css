@@ -185,11 +185,12 @@ p, li, span, a, div, button, input, textarea {
 }
 
 .nav-brand {
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     font-weight: 700;
     color: var(--dark-teal);
     text-transform: uppercase;
-    letter-spacing: -1px;
+    letter-spacing: -0.5px;
+    white-space: nowrap;
 }
 
 .nav-menu {
@@ -410,6 +411,7 @@ p, li, span, a, div, button, input, textarea {
         align-self: center;
     }
     .hero-buttons { justify-content: center; }
+    .nav-brand { font-size: 0.85rem; }
 }
 
 /* Section Styles */
