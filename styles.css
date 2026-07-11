@@ -282,7 +282,9 @@ p, li, span, a, div, button, input, textarea {
    hero. Everything that used to live in separate Education/Awards/
    Languages/Contact sections now lives in About's prose instead. */
 .intro {
-    padding: 4rem 0 1.5rem;
+    /* top padding must clear the fixed .navbar's own height (~90px) or the
+       name heading renders partly behind/under it */
+    padding: 5.5rem 0 0.75rem;
 }
 
 .intro-grid {
@@ -299,25 +301,25 @@ p, li, span, a, div, button, input, textarea {
 }
 
 .intro-name {
-    font-size: 1.6rem;
+    font-size: 1.3rem;
     font-weight: 600;
     letter-spacing: -0.02em;
     color: var(--text-primary);
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.3rem;
 }
 
 .intro-role {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     font-weight: 500;
     color: var(--text-secondary);
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.4rem;
 }
 
 .intro-contact {
-    font-size: 0.75rem;
-    margin-bottom: 1rem;
+    font-size: 0.68rem;
+    margin-bottom: 0.7rem;
 }
 
 .intro-contact a {
@@ -333,13 +335,13 @@ p, li, span, a, div, button, input, textarea {
 
 .intro-photo {
     flex-shrink: 0;
-    width: 260px;
-    height: 260px;
+    width: 150px;
+    height: 150px;
     border-radius: 12px;
     overflow: hidden;
     align-self: flex-end;
-    margin-left: -2rem;
-    margin-top: 2.5rem;
+    margin-left: -1.5rem;
+    margin-top: 1.25rem;
 }
 
 .intro-photo img {
@@ -356,7 +358,7 @@ p, li, span, a, div, button, input, textarea {
 }
 
 .btn {
-    padding: 0.875rem 2rem;
+    padding: 0.55rem 1.3rem;
     border-radius: 8px;
     text-decoration: none;
     font-weight: normal;
@@ -364,7 +366,7 @@ p, li, span, a, div, button, input, textarea {
     display: inline-block;
     cursor: pointer;
     border: none;
-    font-size: 0.7rem;
+    font-size: 0.62rem;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -445,13 +447,14 @@ section::before {
 /* About Section */
 .about {
     background: var(--bg-primary);
-    padding-top: 2.5rem;
+    padding: 1rem 0 1.5rem;
     position: relative;
     z-index: 1;
 }
 
 .about .section-title {
-    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
 }
 
 .about-text {
@@ -460,10 +463,10 @@ section::before {
 }
 
 .about-text p {
-    font-size: 0.8rem;
+    font-size: 0.68rem;
     color: var(--text-secondary);
-    margin-bottom: 0.9rem;
-    line-height: 1.55;
+    margin-bottom: 0.55rem;
+    line-height: 1.4;
 }
 
 .about-text a {
