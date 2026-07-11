@@ -799,47 +799,8 @@ section::before {
     text-align: center;
     color: var(--text-secondary);
     font-size: 1.1rem;
-    margin-bottom: 3rem;
     max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.contact-content {
-    display: flex;
-    justify-content: center;
-    max-width: 900px;
     margin: 0 auto;
-    position: relative;
-    z-index: 11;
-}
-
-.contact-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.contact-item h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: var(--text-primary);
-}
-
-.contact-item a {
-    color: var(--teal-blue);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.contact-item a:hover {
-    color: var(--dark-teal);
-}
-
-.contact-item p {
-    color: var(--text-secondary);
-    margin: 0;
 }
 
 /* Experience Section */

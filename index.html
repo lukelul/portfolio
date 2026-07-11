@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yanda (Luke) Lu - Portfolio</title>
-    <link rel="stylesheet" href="styles.css?v=33">
+    <link rel="stylesheet" href="styles.css?v=34">
     <!-- Minecraft Font from CDN -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -83,7 +83,7 @@
                     </p>
                     <div class="hero-buttons">
                         <a href="#" class="btn btn-primary tab-btn" data-tab="cad">View My Work</a>
-                        <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                        <a href="#" id="get-in-touch-btn" class="btn btn-secondary">Get In Touch</a>
                     </div>
                 </div>
                 <div class="hero-image">
@@ -219,21 +219,15 @@
             </div>
         </section>
 
-        <!-- Contact Section -->
+        <!-- Contact Section — email itself lives in the footer just below,
+             so this is just the lead-in; the "Get In Touch" hero button
+             scrolls straight past this to the footer's email link. -->
         <section id="contact" class="contact">
             <div class="container">
                 <h2 class="section-title">Get In Touch</h2>
                 <p class="contact-description">
                     I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
                 </p>
-                <div class="contact-content">
-                    <div class="contact-item">
-                        <div>
-                            <h3>Email</h3>
-                            <a href="mailto:lukelupvp@gmail.com">lukelupvp@gmail.com</a>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -700,7 +694,7 @@
         </div>
     </div>
 
-    <script src="script.js?v=17"></script>
+    <script src="script.js?v=18"></script>
     <script type="module" src="robots/main.js?v=5"></script>
 </body>
 </html>

@@ -418,6 +418,17 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // "Get In Touch" — the email itself lives in the footer now, so this
+    // scrolls all the way down instead of to the (now email-less) contact
+    // section, landing on the footer regardless of which tab is open.
+    var getInTouchBtn = document.getElementById('get-in-touch-btn');
+    if (getInTouchBtn) {
+        getInTouchBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
+        });
+    }
+
     // Mobile nav
     var hamburger = document.querySelector('.hamburger');
     var navMenu = document.querySelector('.nav-menu');
