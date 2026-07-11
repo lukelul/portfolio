@@ -185,11 +185,11 @@ p, li, span, a, div, button, input, textarea {
 }
 
 .nav-brand {
-    font-size: 1.1rem;
+    font-size: 0.85rem;
     font-weight: 700;
     color: var(--dark-teal);
     text-transform: uppercase;
-    letter-spacing: -0.5px;
+    letter-spacing: -0.3px;
     white-space: nowrap;
 }
 
@@ -411,7 +411,7 @@ p, li, span, a, div, button, input, textarea {
         align-self: center;
     }
     .hero-buttons { justify-content: center; }
-    .nav-brand { font-size: 0.85rem; }
+    .nav-brand { font-size: 0.65rem; }
 }
 
 /* Section Styles */
