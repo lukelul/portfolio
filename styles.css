@@ -299,7 +299,7 @@ p, li, span, a, div, button, input, textarea {
 }
 
 .intro-name {
-    font-size: 2rem;
+    font-size: 1.6rem;
     font-weight: 600;
     letter-spacing: -0.02em;
     color: var(--text-primary);
@@ -307,7 +307,7 @@ p, li, span, a, div, button, input, textarea {
 }
 
 .intro-role {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--text-secondary);
     margin-bottom: 0.6rem;
 }
@@ -330,10 +330,13 @@ p, li, span, a, div, button, input, textarea {
 
 .intro-photo {
     flex-shrink: 0;
-    width: 150px;
-    height: 150px;
+    width: 210px;
+    height: 210px;
     border-radius: 12px;
     overflow: hidden;
+    align-self: flex-end;
+    margin-left: -1.5rem;
+    margin-top: 2rem;
 }
 
 .intro-photo img {
@@ -396,9 +399,10 @@ p, li, span, a, div, button, input, textarea {
         align-items: stretch;
     }
     .intro-photo {
-        width: 120px;
-        height: 120px;
+        width: 140px;
+        height: 140px;
         margin: 0 auto;
+        align-self: center;
     }
     .hero-buttons { justify-content: center; }
 }
@@ -449,10 +453,10 @@ section::before {
 }
 
 .about-text p {
-    font-size: 1.1rem;
+    font-size: 0.92rem;
     color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-    line-height: 1.8;
+    margin-bottom: 1.3rem;
+    line-height: 1.7;
 }
 
 .about-text a {
