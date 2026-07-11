@@ -743,6 +743,17 @@ section::before {
     font-weight: bold;
 }
 
+.experience-details a {
+    color: var(--text-primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: opacity 0.2s ease;
+}
+
+.experience-details a:hover {
+    opacity: 0.6;
+}
+
 .experience-video {
     margin-top: 1.5rem;
     position: relative;
