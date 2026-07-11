@@ -266,7 +266,7 @@ function triggerVisibleReveals() {
 var tabConfig = {
     'experience': {
         sections: ['experience', 'projects', 'skills'],
-        labels:   ['Experience', 'Projects', 'Skills']
+        labels:   ['Experience', 'Builds', 'Skills']
     }
 };
 
