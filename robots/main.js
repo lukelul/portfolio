@@ -1,4 +1,4 @@
-import { mountRobotViewer } from "./viewer.js?v=4";
+import { mountRobotViewer } from "./viewer.js?v=5";
 
 // Single source of truth for each live-mesh tile's config, read straight off
 // its data attributes — used for both the auto-rotating thumbnail and (by
@@ -14,6 +14,8 @@ document.querySelectorAll(".cad-3d-tile").forEach((wrap) => {
     meshBaseUrl: wrap.dataset.robotMeshes,
     chain: wrap.dataset.robotChain ? wrap.dataset.robotChain.split(",") : undefined,
     tipLinkName: wrap.dataset.robotTip || undefined,
+    glowScale: wrap.dataset.robotGlowScale ? parseFloat(wrap.dataset.robotGlowScale) : undefined,
+    glowOpacityScale: wrap.dataset.robotGlowOpacity ? parseFloat(wrap.dataset.robotGlowOpacity) : undefined,
   };
   configByKey[key] = config;
   mountRobotViewer(canvas, { ...config, mode: "thumb" });

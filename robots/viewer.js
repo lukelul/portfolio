@@ -12,9 +12,12 @@ import { solveIK } from "./ik.js";
  * @param {object} opts
  * @param {string[]} [opts.chain] - joint names, base -> tip (modal mode only)
  * @param {string} [opts.tipLinkName] - link whose world position is the effective end-effector
+ * @param {number} [opts.glowScale] - per-robot size multiplier for the handle glow (some
+ *   meshes read brighter/bigger than others at the same absolute glow size)
+ * @param {number} [opts.glowOpacityScale] - per-robot brightness multiplier for the handle glow
  * @returns {{ dispose(): void }}
  */
-export function mountRobotViewer(canvas, { urdfUrl, meshBaseUrl, mode = "thumb", targetSize = 1.5, chain, tipLinkName }) {
+export function mountRobotViewer(canvas, { urdfUrl, meshBaseUrl, mode = "thumb", targetSize = 1.5, chain, tipLinkName, glowScale = 1, glowOpacityScale = 1 }) {
   const parent = canvas.parentElement;
   if (parent && getComputedStyle(parent).position === "static") parent.style.position = "relative";
 
@@ -80,19 +83,19 @@ export function mountRobotViewer(canvas, { urdfUrl, meshBaseUrl, mode = "thumb",
   let handleGlowOuter = null;
   if (canDrag) {
     const glowMaterial = (opacity) => new THREE.MeshBasicMaterial({
-      color: 0xb8ff3c, transparent: true, opacity, blending: THREE.AdditiveBlending, depthWrite: false,
+      color: 0xb8ff3c, transparent: true, opacity: opacity * glowOpacityScale, blending: THREE.AdditiveBlending, depthWrite: false,
     });
-    handleGlowCore = new THREE.Mesh(new THREE.SphereGeometry(0.045, 16, 16), glowMaterial(0.3));
+    handleGlowCore = new THREE.Mesh(new THREE.SphereGeometry(0.045 * glowScale, 16, 16), glowMaterial(0.3));
     handleGlowCore.renderOrder = 10;
     scene.add(handleGlowCore);
-    handleGlowMid = new THREE.Mesh(new THREE.SphereGeometry(0.085, 16, 16), glowMaterial(0.14));
+    handleGlowMid = new THREE.Mesh(new THREE.SphereGeometry(0.085 * glowScale, 16, 16), glowMaterial(0.14));
     handleGlowMid.renderOrder = 9;
     scene.add(handleGlowMid);
-    handleGlowOuter = new THREE.Mesh(new THREE.SphereGeometry(0.13, 16, 16), glowMaterial(0.06));
+    handleGlowOuter = new THREE.Mesh(new THREE.SphereGeometry(0.13 * glowScale, 16, 16), glowMaterial(0.06));
     handleGlowOuter.renderOrder = 8;
     scene.add(handleGlowOuter);
 
-    handleHit = new THREE.Mesh(new THREE.SphereGeometry(0.09, 12, 12), new THREE.MeshBasicMaterial({ visible: false }));
+    handleHit = new THREE.Mesh(new THREE.SphereGeometry(0.09 * glowScale, 12, 12), new THREE.MeshBasicMaterial({ visible: false }));
     scene.add(handleHit);
   }
 
