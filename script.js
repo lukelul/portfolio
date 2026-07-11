@@ -440,6 +440,56 @@ document.addEventListener('DOMContentLoaded', function () {
             : '0 1px 2px 0 rgba(0,0,0,0.05)';
     }, { passive: true });
 
+    // Theme toggle (light/dark)
+    var themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', function () {
+            var isDark = document.documentElement.hasAttribute('data-theme');
+            if (isDark) {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.removeItem('theme');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    }
+
+    // Custom cursor — dot follows the pointer directly, ring trails behind
+    var cursorDot = document.getElementById('cursorDot');
+    var cursorRing = document.getElementById('cursorRing');
+    if (cursorDot && cursorRing && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        var mx = 0, my = 0, rx = 0, ry = 0;
+        document.addEventListener('mousemove', function (e) {
+            mx = e.clientX; my = e.clientY;
+            cursorDot.style.left = mx + 'px';
+            cursorDot.style.top = my + 'px';
+        });
+        (function followRing() {
+            rx += (mx - rx) * 0.18;
+            ry += (my - ry) * 0.18;
+            cursorRing.style.left = rx + 'px';
+            cursorRing.style.top = ry + 'px';
+            requestAnimationFrame(followRing);
+        })();
+        document.addEventListener('mouseover', function (e) {
+            var t = e.target.closest('a, button, .tab-btn, .cad-photo-wrap, .project-card, .youtube-facade, .toast-close, [data-open-cad]');
+            cursorDot.classList.toggle('hovering', !!t);
+            cursorRing.classList.toggle('hovering', !!t);
+        });
+    }
+
+    // Footer height — sized once (footer content is constant across tabs)
+    // so the spacer that reveals the fixed footer stays accurate on resize.
+    function setFooterHeight() {
+        var f = document.querySelector('.footer');
+        if (f) document.documentElement.style.setProperty('--footer-height', f.offsetHeight + 'px');
+    }
+    setFooterHeight();
+    window.addEventListener('resize', setFooterHeight);
+    window.addEventListener('load', setFooterHeight);
+    setTimeout(setFooterHeight, 500);
+
     // Hero parallax
     window.addEventListener('scroll', function () {
         var scrolled = window.pageYOffset;

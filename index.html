@@ -4,16 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yanda (Luke) Lu - Portfolio</title>
-    <link rel="stylesheet" href="styles.css?v=29">
+    <link rel="stylesheet" href="styles.css?v=30">
     <!-- Minecraft Font from CDN -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;700&family=Playfair+Display:wght@400;700&family=Space+Mono:wght@400;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;700&family=Playfair+Display:wght@400;700&family=Space+Mono:wght@400;700&family=Caveat:wght@400;700&family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&display=swap" rel="stylesheet">
     <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.module.min.js"}}</script>
+    <script>
+        (function(){var t=localStorage.getItem('theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');})();
+    </script>
 </head>
 <body>
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
     <!-- Navigation -->
     <nav class="navbar">
+        <div class="navbar-blur"><div></div><div></div><div></div></div>
         <div class="container">
             <div class="nav-brand">Yanda Lu</div>
             <ul class="nav-menu">
@@ -22,6 +29,24 @@
                 <li><a href="#" class="nav-link tab-btn" data-tab="cad">CAD</a></li>
             </ul>
             <button id="font-toggle" class="font-toggle" title="Change font">Aa <span id="font-label">SANS</span></button>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+                <span class="icon-sun">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="4.5" fill="currentColor"/>
+                        <g stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                            <path d="M12 2.5V5"/><path d="M12 19V21.5"/>
+                            <path d="M4.2 4.2L6 6"/><path d="M18 18L19.8 19.8"/>
+                            <path d="M2.5 12H5"/><path d="M19 12H21.5"/>
+                            <path d="M4.2 19.8L6 18"/><path d="M18 6L19.8 4.2"/>
+                        </g>
+                    </svg>
+                </span>
+                <span class="icon-moon">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 14.5C18.9 15.3 17.5 15.8 16 15.8C12.1 15.8 9 12.7 9 8.8C9 7.3 9.5 5.9 10.3 4.8C6.6 5.6 4 8.9 4 12.8C4 17.2 7.6 20.8 12 20.8C15.8 20.8 19 18.3 20 14.5Z" fill="currentColor"/>
+                    </svg>
+                </span>
+            </button>
             <div class="hamburger">
                 <span></span>
                 <span></span>
@@ -39,6 +64,8 @@
         <div class="sdot"><div class="sdot-ring"></div><span class="sdot-label">Languages</span></div>
         <div class="sdot"><div class="sdot-ring"></div><span class="sdot-label">Contact</span></div>
     </div>
+
+    <div class="page-content">
 
     <!-- HOME TAB -->
     <div id="tab-home" class="tab-panel active">
@@ -619,15 +646,24 @@
 
     </div><!-- end #tab-cad -->
 
+    </div><!-- end .page-content -->
+
+    <div class="footer-spacer"></div>
+
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 Yanda (Luke) Lu. All rights reserved.</p>
-            <div class="footer-links">
-                <a href="#" class="tab-btn" data-tab="home">Home</a>
-                <a href="#" class="tab-btn" data-tab="experience">Experience</a>
-                <a href="#" class="tab-btn" data-tab="cad">CAD</a>
+        <div class="container footer-content">
+            <div class="footer-row">
+                <div class="footer-left">
+                    <a href="mailto:lukelupvp@gmail.com" class="big-email">lukelupvp@gmail.com</a>
+                    <div class="footer-links">
+                        <a href="#" class="tab-btn" data-tab="home">Home</a>
+                        <a href="#" class="tab-btn" data-tab="experience">Experience</a>
+                        <a href="#" class="tab-btn" data-tab="cad">CAD</a>
+                    </div>
+                </div>
             </div>
+            <p class="footer-copy">&copy; 2024 Yanda (Luke) Lu. All rights reserved.</p>
         </div>
     </footer>
 
@@ -664,7 +700,7 @@
         </div>
     </div>
 
-    <script src="script.js?v=15"></script>
+    <script src="script.js?v=16"></script>
     <script type="module" src="robots/main.js?v=4"></script>
 </body>
 </html>
