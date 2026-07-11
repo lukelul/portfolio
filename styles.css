@@ -282,14 +282,14 @@ p, li, span, a, div, button, input, textarea {
    hero. Everything that used to live in separate Education/Awards/
    Languages/Contact sections now lives in About's prose instead. */
 .intro {
-    padding: 7rem 0 3rem;
+    padding: 4rem 0 1.5rem;
 }
 
 .intro-grid {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 3rem;
+    gap: 1.5rem;
 }
 
 .intro-text {
@@ -314,7 +314,7 @@ p, li, span, a, div, button, input, textarea {
 
 .intro-contact {
     font-size: 0.75rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .intro-contact a {
@@ -330,13 +330,13 @@ p, li, span, a, div, button, input, textarea {
 
 .intro-photo {
     flex-shrink: 0;
-    width: 210px;
-    height: 210px;
+    width: 260px;
+    height: 260px;
     border-radius: 12px;
     overflow: hidden;
     align-self: flex-end;
-    margin-left: -1.5rem;
-    margin-top: 2rem;
+    margin-left: -2rem;
+    margin-top: 2.5rem;
 }
 
 .intro-photo img {
@@ -442,9 +442,13 @@ section::before {
 /* About Section */
 .about {
     background: var(--bg-primary);
-    padding-top: 2rem; /* Add extra padding at top so content is visible */
+    padding-top: 2.5rem;
     position: relative;
-    z-index: 1; /* Ensure it's above hero */
+    z-index: 1;
+}
+
+.about .section-title {
+    margin-bottom: 1.5rem;
 }
 
 .about-text {
@@ -453,10 +457,10 @@ section::before {
 }
 
 .about-text p {
-    font-size: 0.92rem;
+    font-size: 0.8rem;
     color: var(--text-secondary);
-    margin-bottom: 1.3rem;
-    line-height: 1.7;
+    margin-bottom: 0.9rem;
+    line-height: 1.55;
 }
 
 .about-text a {
