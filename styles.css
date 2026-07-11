@@ -451,7 +451,7 @@ section::before {
 /* About Section */
 .about {
     background: var(--bg-primary);
-    padding: 2.25rem 0 1.5rem;
+    padding: 3.25rem 0 1.5rem;
     position: relative;
     z-index: 1;
 }
