@@ -338,13 +338,13 @@ p, li, span, a, div, button, input, textarea {
 
 .intro-photo {
     flex-shrink: 0;
-    width: 150px;
-    height: 150px;
+    width: 190px;
+    height: 190px;
     border-radius: 12px;
     overflow: hidden;
-    align-self: flex-end;
+    align-self: flex-start;
     margin-left: -1.5rem;
-    margin-top: 1.25rem;
+    margin-top: 0;
 }
 
 .intro-photo img {
