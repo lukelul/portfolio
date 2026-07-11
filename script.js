@@ -258,48 +258,15 @@ function triggerVisibleReveals() {
 }
 
 // ============================================================
-//  COUNTER ANIMATION
-// ============================================================
-function animateCounter(el) {
-    var raw = el.textContent.trim();
-    var match = raw.match(/([\d.]+)/);
-    if (!match) return;
-    var num = parseFloat(match[1]);
-    var before = raw.slice(0, match.index);
-    var after = raw.slice(match.index + match[1].length);
-    var duration = 1400;
-    var t0 = performance.now();
-    function tick(now) {
-        var p = Math.min((now - t0) / duration, 1);
-        var eased = 1 - Math.pow(1 - p, 3);
-        el.textContent = before + Math.round(eased * num) + after;
-        if (p < 1) requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
-}
-
-var counterObserver = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-            animateCounter(entry.target);
-            counterObserver.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.6 });
-
-// ============================================================
 //  SCROLL SIDEBAR
 // ============================================================
+// Home has no anchor points worth a progress sidebar anymore (just Intro +
+// About), so it's intentionally absent here — getActiveTab()==='home' means
+// tabConfig[activeTab] is undefined and updateScrollSidebar() hides it.
 var tabConfig = {
-    'home': {
-        sections: ['about', 'education', 'awards', 'languages', 'contact'],
-        labels:   ['About', 'Education', 'Awards', 'Languages', 'Contact'],
-        heroThreshold: true
-    },
     'experience': {
         sections: ['experience', 'projects', 'skills'],
-        labels:   ['Experience', 'Projects', 'Skills'],
-        heroThreshold: false
+        labels:   ['Experience', 'Projects', 'Skills']
     }
 };
 
@@ -341,10 +308,6 @@ function updateScrollSidebar() {
     });
 
     var threshold = 100;
-    if (config.heroThreshold) {
-        var hero = document.querySelector('.hero');
-        threshold = hero ? hero.offsetHeight * 0.45 : 600;
-    }
 
     if (scrollY > threshold) {
         sidebarEl.style.opacity = '1';
@@ -369,26 +332,6 @@ function updateScrollSidebar() {
         var totalH = document.documentElement.scrollHeight - window.innerHeight;
         var pct = totalH > 0 ? Math.min((scrollY / totalH) * 100, 100) : 0;
         sidebarFillEl.style.height = pct + '%';
-    }
-}
-
-// ============================================================
-//  HERO PARTICLES
-// ============================================================
-function createParticles() {
-    var hero = document.querySelector('.hero');
-    if (!hero) return;
-    for (var i = 0; i < 10; i++) {
-        var p = document.createElement('div');
-        p.className = 'hero-particle';
-        var size = Math.random() * 20 + 7;
-        p.style.cssText =
-            'width:' + size + 'px;height:' + size + 'px;' +
-            'left:' + (Math.random() * 100) + '%;' +
-            'top:' + (Math.random() * 100) + '%;' +
-            'animation-delay:' + (Math.random() * 8) + 's;' +
-            'animation-duration:' + (7 + Math.random() * 6) + 's;';
-        hero.appendChild(p);
     }
 }
 
@@ -507,18 +450,6 @@ document.addEventListener('DOMContentLoaded', function () {
     setTimeout(setFooterHeight, 500);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(setFooterHeight);
 
-    // Hero parallax
-    window.addEventListener('scroll', function () {
-        var scrolled = window.pageYOffset;
-        var hero = document.querySelector('.hero');
-        if (!hero) return;
-        if (scrolled > 200 && scrolled < window.innerHeight) {
-            hero.style.transform = 'translateY(' + ((scrolled - 200) * 0.3) + 'px)';
-        } else if (scrolled <= 200) {
-            hero.style.transform = 'translateY(0)';
-        }
-    }, { passive: true });
-
     // YouTube facade
     document.querySelectorAll('.youtube-facade').forEach(function (facade) {
         facade.addEventListener('click', function () {
@@ -621,21 +552,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // ── Scroll reveals ───────────────────────────────────────
     setupReveal('.section-title',    'up');
     setupReveal('.about-text p',     'up',    80);
-    setupReveal('.about-info',       'up');
-    setupReveal('.stat-item',        'up',   100);
-    setupReveal('.education-item',   'left',  120);
-    setupReveal('.award-card',       'up',    70);
-    setupReveal('.language-item',    'right', 150);
     setupReveal('.experience-item',  'left',  80);
     setupReveal('.project-card',     'up',   100);
     setupReveal('.skill-category',   'up',   120);
     setupReveal('.cad-photo-wrap',   'up',    60);
     setupReveal('.cad-hero-content', 'up');
-
-    // ── Counter animation ────────────────────────────────────
-    document.querySelectorAll('.stat-number').forEach(function (el) {
-        counterObserver.observe(el);
-    });
 
     // ── Scroll sidebar ───────────────────────────────────────
     sidebarEl      = document.getElementById('scroll-sidebar');
@@ -673,18 +594,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // ── Home page "Featured Work" cards — jump straight to that project's
-    // spot in the CAD tab and open its detail modal ──────────────────────
-    document.querySelectorAll('[data-open-cad]').forEach(function (card) {
-        card.addEventListener('click', function () {
-            var key = card.getAttribute('data-open-cad');
-            var wrap = document.querySelector('.cad-photo-wrap[data-key="' + key + '"]');
-            if (!wrap) return;
-            switchTab('cad');
-            openPhotoModal(wrap);
-        });
-    });
-
     var modal = document.getElementById('photo-modal');
     if (modal) {
         modal.querySelector('.pm-backdrop').addEventListener('click', closePhotoModal);
@@ -694,9 +603,6 @@ document.addEventListener('DOMContentLoaded', function () {
     document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') closePhotoModal();
     });
-
-    // ── Hero particles ───────────────────────────────────────
-    createParticles();
 
     // ── Scroll handler ───────────────────────────────────────
     window.addEventListener('scroll', function () {

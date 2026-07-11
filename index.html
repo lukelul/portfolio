@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yanda (Luke) Lu - Portfolio</title>
-    <link rel="stylesheet" href="styles.css?v=34">
+    <link rel="stylesheet" href="styles.css?v=35">
     <!-- Minecraft Font from CDN -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -70,164 +70,44 @@
     <!-- HOME TAB -->
     <div id="tab-home" class="tab-panel active">
 
-        <!-- Hero Section -->
-        <section id="home" class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <h1 class="hero-title">
-                        Hi, I'm <span class="highlight">Yanda (Luke) Lu</span>
-                    </h1>
-                    <p class="hero-subtitle">Mechanical Engineer & Robotics Innovator</p>
-                    <p class="hero-description">
-                        Aspiring mechanical engineer and robotics innovator with global experience in design, leadership, and AI integration. Passionate about applying engineering principles to real-world problems through interdisciplinary collaboration and rapid prototyping.
-                    </p>
+        <!-- Intro — compact header, not a full-viewport hero: name, role,
+             contact line, and a plain photo. Everything else lives in prose
+             in About below, or on the Experience/CAD tabs. -->
+        <section id="home" class="intro">
+            <div class="container intro-grid">
+                <div class="intro-text">
+                    <h1 class="intro-name">Yanda (Luke) Lu</h1>
+                    <p class="intro-role">Mechanical Engineering Student, UT Austin</p>
+                    <p class="intro-contact"><a href="mailto:lukelupvp@gmail.com">lukelupvp@gmail.com</a></p>
                     <div class="hero-buttons">
                         <a href="#" class="btn btn-primary tab-btn" data-tab="cad">View My Work</a>
                         <a href="#" id="get-in-touch-btn" class="btn btn-secondary">Get In Touch</a>
                     </div>
                 </div>
-                <div class="hero-image">
-                    <div class="floating-card">
-                        <img src="profile-photo.webp" alt="Yanda (Luke) Lu" class="profile-photo">
-                    </div>
+                <div class="intro-photo">
+                    <img src="profile-photo.webp" alt="Yanda (Luke) Lu">
                 </div>
-            </div>
-            <div class="scroll-indicator">
-                <span></span>
             </div>
         </section>
 
         <!-- About Section -->
         <section id="about" class="about">
             <div class="container">
-                <h2 class="section-title">About Me</h2>
-                <div class="about-content">
-                    <div class="about-text">
-                        <p>
-                            Mechanical engineering student at UT Austin building real robots — from humanoid arms at YouiBot to Inhabit's teleoperation hardware.
-                        </p>
-                        <p class="about-belief">
-                            Robotics is the next platform shift, and whoever makes hardware and data collection radically cheaper wins it.
-                        </p>
-                        <div class="about-stats">
-                            <div class="stat-item">
-                                <div class="stat-number">20+</div>
-                                <div class="stat-label">Robots Designed</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-number">14K+</div>
-                                <div class="stat-label">Community Members</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-number">2024</div>
-                                <div class="stat-label">World Champion</div>
-                            </div>
-                        </div>
-                    </div>
+                <h2 class="section-title">About</h2>
+                <div class="about-text">
+                    <p>
+                        Mechanical engineering student at UT Austin building real robots — from humanoid arms at YouiBot to Inhabit's teleoperation hardware.
+                    </p>
+                    <p class="about-belief">
+                        Robotics is the next platform shift, and whoever makes hardware and data collection radically cheaper wins it.
+                    </p>
+                    <p>
+                        I'm pursuing a BS in Mechanical Engineering at UT Austin (expected May 2029), focused on robotics and rapid prototyping through the UT Center for Autonomy. Along the way I've designed 20+ robots, built a robotics education community of 14,000+ members, and won the 2024 VEX Robotics World Championship, plus hardware wins at the UC Berkeley AI Hackathon and the Texas Venture Group Hackathon. (I'm a native speaker of English and Mandarin.)
+                    </p>
+                    <p>
+                        For the full project history and work experience, see <a href="#" class="tab-btn" data-tab="experience">Experience</a> and <a href="#" class="tab-btn" data-tab="cad">CAD</a> above.
+                    </p>
                 </div>
-            </div>
-        </section>
-
-        <!-- Education Section -->
-        <section id="education" class="education">
-            <div class="side-float pos-left sf-a" data-open-cad="inhabit-compat" style="top:20%;">
-                <img src="cad-10.webp" alt="Inhabit V2 — Universal Robot Compatibility">
-            </div>
-            <div class="container">
-                <h2 class="section-title">Education</h2>
-                <div class="education-timeline">
-                    <div class="education-item">
-                        <div class="education-header">
-                            <h3 class="education-degree">BS in Mechanical Engineering</h3>
-                            <span class="education-school">University of Texas at Austin</span>
-                            <span class="education-date">Expected: May 2029</span>
-                        </div>
-                        <p class="education-description">
-                            Focus: robotics, rapid prototyping, and mechanical systems design — hands-on through UT Center for Autonomy.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="side-float pos-right sf-b" data-open-cad="youibot" style="top:65%;">
-                <img src="cad-1.jpeg" alt="YouiBot Humanoid — Forearm and InspireHand Linkage Design">
-            </div>
-        </section>
-
-        <!-- Awards Section -->
-        <section id="awards" class="awards">
-            <div class="side-float pos-left sf-c" data-open-cad="vex-2024" style="top:45%;">
-                <img src="cad-12.webp" alt="VEX Robot — 2024 Texas States, US Open, World Champion">
-            </div>
-            <div class="container">
-                <h2 class="section-title">Awards & Recognition</h2>
-                <div class="awards-grid">
-                    <div class="award-card">
-                        <h3 class="award-title">VEX Robotics World Champion 2024</h3>
-                        <p class="award-description">
-                            Awarded to the top global team with the highest combined Programming and Driver Skills scores out of 12,000+ teams.
-                        </p>
-                    </div>
-
-                    <div class="award-card">
-                        <h3 class="award-title">YouTube Bronze Creator Award</h3>
-                        <p class="award-description">
-                            Channels with over 10,000 verified subscribers.
-                        </p>
-                    </div>
-
-                    <div class="award-card">
-                        <h3 class="award-title">Google Community Challenge Award</h3>
-                        <p class="award-description">
-                            Recognized for making significant contributions to the global robotics community through education, mentorship, and innovation.
-                        </p>
-                    </div>
-
-                    <div class="award-card">
-                        <h3 class="award-title">Multi-Time Hackathon Winner</h3>
-                        <p class="award-description">
-                            Hardware Winner at the UC Berkeley AI Hackathon and winner of the Texas Venture Group Hackathon with team HeatSync, competing against top student entrepreneurs and innovators.
-                        </p>
-                    </div>
-
-                    <div class="award-card">
-                        <h3 class="award-title">CIE/USA Young Achiever</h3>
-                        <p class="award-description">
-                            Presented to top-performing students nationwide through a competitive selection process based on academic excellence and STEM impact.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Languages Section -->
-        <section id="languages" class="languages">
-            <div class="side-float pos-right sf-d" data-open-cad="exo-torso" style="top:30%;">
-                <img src="cad-5.png" alt="Robotic Exoskeleton with Picatinny Rail Attachments SolidWorks">
-            </div>
-            <div class="container">
-                <h2 class="section-title">Languages</h2>
-                <div class="languages-list">
-                    <div class="language-item">
-                        <span class="language-name">English</span>
-                        <span class="language-level">Native</span>
-                    </div>
-                    <div class="language-item">
-                        <span class="language-name">Mandarin</span>
-                        <span class="language-level">Native</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section — email itself lives in the footer just below,
-             so this is just the lead-in; the "Get In Touch" hero button
-             scrolls straight past this to the footer's email link. -->
-        <section id="contact" class="contact">
-            <div class="container">
-                <h2 class="section-title">Get In Touch</h2>
-                <p class="contact-description">
-                    I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
-                </p>
             </div>
         </section>
 
@@ -694,7 +574,7 @@
         </div>
     </div>
 
-    <script src="script.js?v=18"></script>
+    <script src="script.js?v=19"></script>
     <script type="module" src="robots/main.js?v=7"></script>
 </body>
 </html>
