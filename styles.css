@@ -307,7 +307,10 @@ p, li, span, a, div, button, input, textarea {
 }
 
 .intro-role {
-    font-size: 0.8rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    font-weight: 500;
     color: var(--text-secondary);
     margin-bottom: 0.6rem;
 }
