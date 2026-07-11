@@ -131,6 +131,7 @@ p, li, span, a, div, button, input, textarea {
 .navbar-blur > div:nth-child(1) {
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
+    background: var(--bg-primary); /* fallback if color-mix() is unsupported */
     background: color-mix(in srgb, var(--bg-primary) 80%, transparent);
     mask: linear-gradient(to bottom, black 55%, transparent 95%);
     -webkit-mask: linear-gradient(to bottom, black 55%, transparent 95%);
@@ -139,6 +140,7 @@ p, li, span, a, div, button, input, textarea {
 .navbar-blur > div:nth-child(2) {
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
+    background: var(--bg-primary);
     background: color-mix(in srgb, var(--bg-primary) 90%, transparent);
     mask: linear-gradient(to bottom, black 30%, transparent 70%);
     -webkit-mask: linear-gradient(to bottom, black 30%, transparent 70%);
@@ -146,6 +148,7 @@ p, li, span, a, div, button, input, textarea {
 .navbar-blur > div:nth-child(3) {
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
+    background: var(--bg-primary);
     background: color-mix(in srgb, var(--bg-primary) 97%, transparent);
     mask: linear-gradient(to bottom, black 12%, transparent 40%);
     -webkit-mask: linear-gradient(to bottom, black 12%, transparent 40%);
@@ -2187,6 +2190,8 @@ section::before {
         mix-blend-mode: difference;
         pointer-events: none;
         z-index: 9999;
+        opacity: 0; /* hidden until first mousemove, so it can't sit at a
+                       stale 0,0 position before the user has moved the mouse */
         transform: translate(-50%, -50%);
         transition: width 0.2s ease, height 0.2s ease;
     }
@@ -2202,7 +2207,7 @@ section::before {
         mix-blend-mode: difference;
         pointer-events: none;
         z-index: 9998;
-        opacity: 0.6;
+        opacity: 0;
         transform: translate(-50%, -50%);
         transition: width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
     }

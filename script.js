@@ -464,6 +464,11 @@ document.addEventListener('DOMContentLoaded', function () {
             mx = e.clientX; my = e.clientY;
             cursorDot.style.left = mx + 'px';
             cursorDot.style.top = my + 'px';
+            if (!cursorDot.style.opacity) {
+                cursorDot.style.opacity = '1';
+                cursorRing.style.opacity = '0.6';
+                rx = mx; ry = my;
+            }
         });
         (function followRing() {
             rx += (mx - rx) * 0.18;
@@ -489,6 +494,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('resize', setFooterHeight);
     window.addEventListener('load', setFooterHeight);
     setTimeout(setFooterHeight, 500);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(setFooterHeight);
 
     // Hero parallax
     window.addEventListener('scroll', function () {
