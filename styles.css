@@ -2143,6 +2143,11 @@ section::before {
     .pm-info { padding: 1.4rem 1.2rem; }
     #pm-title { font-size: 0.85rem; }
     #pm-desc { font-size: 0.63rem; }
+    /* The drag/orbit/zoom hint is long enough to cover most of the model
+       in the cramped mobile image pane — the gestures are discoverable
+       without it there, so just drop it. !important since script.js sets
+       an inline display:block on this element when a robot model opens. */
+    .pm-canvas-hint { display: none !important; }
 }
 
 /* Video gallery tile play overlay */

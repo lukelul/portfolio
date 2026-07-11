@@ -69,17 +69,32 @@ export function mountRobotViewer(canvas, { urdfUrl, meshBaseUrl, mode = "thumb",
     controls.target.set(0, 0, 0);
   }
 
-  // Handle — a visible glow marking the grabbable end effector, plus a
-  // generous invisible sphere for easy hit-testing.
+  // Handle — a bright core marking the grabbable end effector, wrapped in two
+  // additive-blended, depth-unwritten halo shells to fake a soft glow (there's
+  // no bloom postprocessing pass here), plus a generous invisible sphere for
+  // easy hit-testing.
   let handle = null;
   let handleHit = null;
+  let handleGlowInner = null;
+  let handleGlowOuter = null;
   if (canDrag) {
     handle = new THREE.Mesh(
-      new THREE.SphereGeometry(0.028, 16, 16),
-      new THREE.MeshStandardMaterial({ color: 0x0c1216, emissive: 0xb8ff3c, emissiveIntensity: 1.4, roughness: 0.3 }),
+      new THREE.SphereGeometry(0.04, 16, 16),
+      new THREE.MeshStandardMaterial({ color: 0x0c1216, emissive: 0xb8ff3c, emissiveIntensity: 2.2, roughness: 0.3 }),
     );
     handle.renderOrder = 10;
     scene.add(handle);
+
+    const glowMaterial = (opacity) => new THREE.MeshBasicMaterial({
+      color: 0xb8ff3c, transparent: true, opacity, blending: THREE.AdditiveBlending, depthWrite: false,
+    });
+    handleGlowInner = new THREE.Mesh(new THREE.SphereGeometry(0.075, 16, 16), glowMaterial(0.45));
+    handleGlowInner.renderOrder = 9;
+    scene.add(handleGlowInner);
+    handleGlowOuter = new THREE.Mesh(new THREE.SphereGeometry(0.13, 16, 16), glowMaterial(0.2));
+    handleGlowOuter.renderOrder = 8;
+    scene.add(handleGlowOuter);
+
     handleHit = new THREE.Mesh(new THREE.SphereGeometry(0.09, 12, 12), new THREE.MeshBasicMaterial({ visible: false }));
     scene.add(handleHit);
   }
@@ -220,8 +235,12 @@ export function mountRobotViewer(canvas, { urdfUrl, meshBaseUrl, mode = "thumb",
         tipObject.getWorldPosition(p);
         handle.position.copy(p);
         handleHit.position.copy(p);
+        handleGlowInner.position.copy(p);
+        handleGlowOuter.position.copy(p);
         const pulse = 1 + Math.sin(t * 3) * 0.15;
         handle.scale.setScalar(pulse);
+        handleGlowInner.scale.setScalar(pulse);
+        handleGlowOuter.scale.setScalar(1 + Math.sin(t * 3) * 0.25);
       }
     }
 

@@ -1,4 +1,4 @@
-import { mountRobotViewer } from "./viewer.js?v=2";
+import { mountRobotViewer } from "./viewer.js?v=3";
 
 // Single source of truth for each live-mesh tile's config, read straight off
 // its data attributes — used for both the auto-rotating thumbnail and (by
