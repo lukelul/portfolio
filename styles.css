@@ -492,9 +492,23 @@ section::before {
     padding-left: 1rem;
 }
 
-/* Projects Section */
+/* Projects Section — sits on the home flow under About, so it runs tighter
+   than a default 5rem section and its title matches About's smaller scale */
 .projects {
     background: var(--bg-primary);
+    padding: 2.5rem 0 3.25rem;
+}
+
+.projects .section-title {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+.projects-cta {
+    text-align: center;
+    margin-top: 2.25rem;
+    position: relative;
+    z-index: 11;
 }
 
 .projects-grid {

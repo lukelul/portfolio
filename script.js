@@ -260,13 +260,16 @@ function triggerVisibleReveals() {
 // ============================================================
 //  SCROLL SIDEBAR
 // ============================================================
-// Home has no anchor points worth a progress sidebar anymore (just Intro +
-// About), so it's intentionally absent here — getActiveTab()==='home' means
-// tabConfig[activeTab] is undefined and updateScrollSidebar() hides it.
+// Builds (#projects) now lives on the home flow under About, so home gets a
+// progress sidebar too; the experience tab keeps Experience + Skills.
 var tabConfig = {
+    'home': {
+        sections: ['about', 'projects'],
+        labels:   ['About', 'Builds']
+    },
     'experience': {
-        sections: ['experience', 'projects', 'skills'],
-        labels:   ['Experience', 'Builds', 'Skills']
+        sections: ['experience', 'skills'],
+        labels:   ['Experience', 'Skills']
     }
 };
 
