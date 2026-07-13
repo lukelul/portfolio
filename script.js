@@ -553,6 +553,58 @@ document.addEventListener('DOMContentLoaded', function () {
     setupReveal('.skill-category',   'up',   120);
     setupReveal('.cad-photo-wrap',   'up',    60);
 
+    // ── Lazy videos ──────────────────────────────────────────
+    // Tiles ship preload="none" (no autoplay attribute), so the ~7 MB of
+    // loops costs nothing at page load; each video fetches + plays as it
+    // nears the viewport and pauses again off-screen.
+    var lazyVideos = document.querySelectorAll('video.cad-tile-video');
+    function videoNear(v) {
+        var r = v.getBoundingClientRect();
+        return r.bottom > -120 && r.top < window.innerHeight + 120;
+    }
+    if ('IntersectionObserver' in window && lazyVideos.length) {
+        // the collapsed pre-image masonry makes everything "intersect" at
+        // t=0 — recheck after a beat so first paint fetches no video bytes
+        var videoIO = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                var v = entry.target;
+                if (entry.isIntersecting) {
+                    setTimeout(function () {
+                        if (videoNear(v)) {
+                            var p = v.play();
+                            if (p && p.catch) p.catch(function () {});
+                        }
+                    }, 600);
+                } else if (!v.paused) {
+                    v.pause();
+                }
+            });
+        }, { rootMargin: '120px 0px' });
+        // don't observe until the masonry has stopped reflowing — see
+        // robots/main.js whenLayoutSettled for the same trick
+        (function armWhenSettled() {
+            var last = -1, stableMs = 0, done = false;
+            function arm() {
+                if (done) return;
+                done = true;
+                lazyVideos.forEach(function (v) { videoIO.observe(v); });
+            }
+            var iv = setInterval(function () {
+                var h = document.documentElement.scrollHeight;
+                if (h === last) {
+                    stableMs += 250;
+                    if (stableMs >= 500) { clearInterval(iv); arm(); }
+                } else { stableMs = 0; last = h; }
+            }, 250);
+            setTimeout(function () { clearInterval(iv); arm(); }, 5000);
+        })();
+    } else {
+        lazyVideos.forEach(function (v) {
+            var p = v.play();
+            if (p && p.catch) p.catch(function () {});
+        });
+    }
+
     // ── Scroll sidebar ───────────────────────────────────────
     sidebarEl      = document.getElementById('scroll-sidebar');
     sidebarFillEl  = document.getElementById('sidebar-fill');
