@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yanda (Luke) Lu - Portfolio</title>
-    <link rel="stylesheet" href="styles.css?v=50">
+    <link rel="stylesheet" href="styles.css?v=51">
     <!-- Minecraft Font from CDN -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -61,8 +61,6 @@
         <div class="sdot"><div class="sdot-ring"></div><span class="sdot-label">Experience</span></div>
         <div class="sdot"><div class="sdot-ring"></div><span class="sdot-label">Builds</span></div>
         <div class="sdot"><div class="sdot-ring"></div><span class="sdot-label">Skills</span></div>
-        <div class="sdot"><div class="sdot-ring"></div><span class="sdot-label"></span></div>
-        <div class="sdot"><div class="sdot-ring"></div><span class="sdot-label"></span></div>
     </div>
 
     <div class="page-content">
@@ -262,12 +260,99 @@
             </div>
         </section>
 
-        <!-- Projects Section — selected publications + builds, on the home
-             flow right under About; the full CAD gallery stays on the
-             Projects tab, and the CTA below hands off to Experience. -->
-        <section id="projects" class="projects">
+        <!-- Experience + Skills — moved from their own tab; the whole site
+             is one page now. -->
+        <section id="experience" class="experience">
             <div class="container">
-                <h2 class="section-title">Publications + Builds</h2>
+                <h2 class="section-title">Experience</h2>
+                <div class="experience-timeline">
+
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <h3 class="experience-title">Mechanical Engineer</h3>
+                            <span class="experience-company">YouiBot, Shenzhen</span>
+                            <span class="experience-date">June 2025 - July 2025</span>
+                        </div>
+                        <ul class="experience-details">
+                            <li>Led design of a humanoid robot arm and forearm in SolidWorks</li>
+                            <li>Delivered production CAD on tight deadlines alongside electrical and controls teams</li>
+                        </ul>
+                        <div class="youtube-facade" data-videoid="ZP2O0Cz-5no">
+                            <img src="https://img.youtube.com/vi/ZP2O0Cz-5no/maxresdefault.jpg" alt="YouiBot video thumbnail" class="youtube-thumb">
+                            <button class="youtube-play" aria-label="Play video">&#9654;</button>
+                        </div>
+                        <p class="video-views">100K+ views</p>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <h3 class="experience-title">Robotics Researcher</h3>
+                            <span class="experience-company">UT Center for Autonomy, Austin</span>
+                            <span class="experience-date">August 2025 - Present</span>
+                        </div>
+                        <ul class="experience-details">
+                            <li>Designed a 6-DOF humanoid arm and unified test bench (HopeJr + SO101) for autonomous manipulation research</li>
+                        </ul>
+                        <div class="youtube-facade" data-videoid="f3KUGk-C5i0">
+                            <img src="https://img.youtube.com/vi/f3KUGk-C5i0/maxresdefault.jpg" alt="UT Autonomy video thumbnail" class="youtube-thumb">
+                            <button class="youtube-play" aria-label="Play video">&#9654;</button>
+                        </div>
+                        <p class="video-views">25K views</p>
+                    </div>
+
+                    <div class="experience-rows">
+                    <div class="experience-row">
+                        <div class="experience-header">
+                            <h3 class="experience-title">Founder in Residence</h3>
+                            <span class="experience-company">Founders Inc.</span>
+                            <span class="experience-date">2026 - Present</span>
+                        </div>
+                        <p class="experience-line">Building Inhabit, a robotics teleoperation hardware company, backed by <a href="https://www.f.inc/" target="_blank" rel="noopener">Founders Inc.</a> and <a href="https://www.nvidia.com/en-us/startups/" target="_blank" rel="noopener">NVIDIA Inception</a></p>
+                    </div>
+                    <div class="experience-row">
+                        <div class="experience-header">
+                            <h3 class="experience-title">Engineer</h3>
+                            <span class="experience-company">Stealth Startup</span>
+                            <span class="experience-date">June 2026 - September 2026</span>
+                        </div>
+                        <p class="experience-line">Hardware and robotics engineering at an early-stage stealth startup — details under NDA</p>
+                    </div>
+                    <div class="experience-row">
+                        <div class="experience-header">
+                            <h3 class="experience-title">Intern</h3>
+                            <span class="experience-company">Tess Ventures</span>
+                            <span class="experience-date">March 2026 - June 2026</span>
+                        </div>
+                        <p class="experience-line">Sourced and evaluated deep tech and robotics startups for early-stage investment</p>
+                    </div>
+                    <div class="experience-row">
+                        <div class="experience-header">
+                            <h3 class="experience-title">Founder, CEO, Consultant</h3>
+                            <span class="experience-company">Robocoaching, Online</span>
+                            <span class="experience-date">August 2021 - Present</span>
+                        </div>
+                        <p class="experience-line">Built the Robolytics coaching brand — 11,000+ members, 2M+ views, paid mentorship with top-tier robotics teams</p>
+                    </div>
+                    <div class="experience-row">
+                        <div class="experience-header">
+                            <h3 class="experience-title">Robotics Team Leader</h3>
+                            <span class="experience-company">VEX Robotics, Dallas</span>
+                            <span class="experience-date">May 2021 - July 2025</span>
+                        </div>
+                        <p class="experience-line">2024 World Champion, U.S. Open Champion, Skills World Record Holder — 30+ awards, 20+ robots designed in Inventor</p>
+                    </div>
+                    <div class="experience-row">
+                        <div class="experience-header">
+                            <h3 class="experience-title">Mechanical Engineer Co-op</h3>
+                            <span class="experience-company">Paradigm Robotics</span>
+                            <span class="experience-date">December 2025 - February 2026</span>
+                        </div>
+                        <p class="experience-line">Robotics hardware design and rapid prototyping as a mechanical engineering co-op</p>
+                    </div>
+                    </div>
+                </div>
+
+                <h3 class="experience-subtitle">Publications + Builds</h3>
                 <div class="projects-grid">
                     <div class="project-card">
                         <div class="project-image">
@@ -317,193 +402,6 @@
                             </div>
                         </div>
                         <p class="video-views">10K views</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Experience + Skills — moved from their own tab; the whole site
-             is one page now. -->
-        <section id="experience" class="experience">
-            <div class="container">
-                <h2 class="section-title">Experience</h2>
-                <div class="experience-timeline">
-
-                    <div class="experience-item">
-                        <div class="experience-header">
-                            <h3 class="experience-title">Mechanical Engineer</h3>
-                            <span class="experience-company">YouiBot, Shenzhen</span>
-                            <span class="experience-date">June 2025 - July 2025</span>
-                        </div>
-                        <ul class="experience-details">
-                            <li>Led design of a humanoid robot arm and forearm in SolidWorks</li>
-                            <li>Delivered production CAD on tight deadlines alongside electrical and controls teams</li>
-                        </ul>
-                        <div class="youtube-facade" data-videoid="ZP2O0Cz-5no">
-                            <img src="https://img.youtube.com/vi/ZP2O0Cz-5no/maxresdefault.jpg" alt="YouiBot video thumbnail" class="youtube-thumb">
-                            <button class="youtube-play" aria-label="Play video">&#9654;</button>
-                        </div>
-                        <p class="video-views">100K+ views</p>
-                    </div>
-
-                    <div class="experience-item">
-                        <div class="experience-header">
-                            <h3 class="experience-title">Robotics Researcher</h3>
-                            <span class="experience-company">UT Center for Autonomy, Austin</span>
-                            <span class="experience-date">August 2025 - Present</span>
-                        </div>
-                        <ul class="experience-details">
-                            <li>Designed a 6-DOF humanoid arm and unified test bench (HopeJr + SO101) for autonomous manipulation research</li>
-                        </ul>
-                        <div class="youtube-facade" data-videoid="f3KUGk-C5i0">
-                            <img src="https://img.youtube.com/vi/f3KUGk-C5i0/maxresdefault.jpg" alt="UT Autonomy video thumbnail" class="youtube-thumb">
-                            <button class="youtube-play" aria-label="Play video">&#9654;</button>
-                        </div>
-                        <p class="video-views">25K views</p>
-                    </div>
-
-                    <div class="experience-item">
-                        <div class="experience-header">
-                            <h3 class="experience-title">Founder in Residence</h3>
-                            <span class="experience-company">Founders Inc.</span>
-                            <span class="experience-date">2026 - Present</span>
-                        </div>
-                        <ul class="experience-details">
-                            <li>Building Inhabit, a robotics teleoperation hardware company, backed by <em><a href="https://www.f.inc/" target="_blank" rel="noopener">Founders Inc.</a></em> and <em><a href="https://www.nvidia.com/en-us/startups/" target="_blank" rel="noopener">NVIDIA Inception</a></em></li>
-                        </ul>
-                    </div>
-
-                    <div class="experience-item">
-                        <div class="experience-header">
-                            <h3 class="experience-title">Engineer</h3>
-                            <span class="experience-company">Stealth Startup</span>
-                            <span class="experience-date">June 2026 - September 2026</span>
-                        </div>
-                        <ul class="experience-details">
-                            <li>Hardware and robotics engineering at an early-stage stealth startup — details under NDA</li>
-                        </ul>
-                    </div>
-
-                    <div class="experience-item">
-                        <div class="experience-header">
-                            <h3 class="experience-title">Intern</h3>
-                            <span class="experience-company">Tess Ventures</span>
-                            <span class="experience-date">March 2026 - June 2026</span>
-                        </div>
-                        <ul class="experience-details">
-                            <li>Sourced and evaluated deep tech and robotics startups for early-stage investment</li>
-                        </ul>
-                    </div>
-
-                    <div class="experience-item">
-                        <div class="experience-header">
-                            <h3 class="experience-title">Founder, CEO, Consultant</h3>
-                            <span class="experience-company">Robocoaching, Online</span>
-                            <span class="experience-date">August 2021 - Present</span>
-                        </div>
-                        <ul class="experience-details">
-                            <li>Built a global coaching program under the Robolytics brand — 11,000+ members, 2M+ views</li>
-                            <li>Paid mentorship connecting top-tier robotics teams with competitors worldwide</li>
-                        </ul>
-                    </div>
-
-                    <div class="experience-item">
-                        <div class="experience-header">
-                            <h3 class="experience-title">Robotics Team Leader</h3>
-                            <span class="experience-company">VEX Robotics, Dallas</span>
-                            <span class="experience-date">May 2021 - July 2025</span>
-                        </div>
-                        <ul class="experience-details">
-                            <li>2024 World Champion, U.S. Open Champion, Skills World Record Holder</li>
-                            <li>Led team to 30+ awards; designed 20+ robots in Autodesk Inventor</li>
-                        </ul>
-                    </div>
-
-                    <div class="experience-item">
-                        <div class="experience-header">
-                            <h3 class="experience-title">Mechanical Engineer Co-op</h3>
-                            <span class="experience-company">Paradigm Robotics</span>
-                            <span class="experience-date">December 2025 - February 2026</span>
-                        </div>
-                        <ul class="experience-details">
-                            <li>Robotics hardware design and rapid prototyping as a mechanical engineering co-op</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills" class="skills">
-            <div class="container">
-                <h2 class="section-title">Skills & Technologies</h2>
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h3 class="skill-category-title">CAD Software</h3>
-                        <div class="skill-items">
-                            <div class="skill-item">
-                                <span class="skill-name">SolidWorks</span>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 95%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <span class="skill-name">Autodesk Inventor</span>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 90%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <span class="skill-name">Onshape</span>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 85%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="skill-category">
-                        <h3 class="skill-category-title">Programming</h3>
-                        <div class="skill-items">
-                            <div class="skill-item">
-                                <span class="skill-name">Python</span>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 90%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <span class="skill-name">Java</span>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 85%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <span class="skill-name">C++</span>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 80%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <span class="skill-name">JavaScript</span>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 75%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="skill-category">
-                        <h3 class="skill-category-title">AI & Tools</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">GPT Systems</span>
-                            <span class="skill-tag">ML Models</span>
-                            <span class="skill-tag">Git</span>
-                            <span class="skill-tag">Replit</span>
-                            <span class="skill-tag">VoiceFlow</span>
-                            <span class="skill-tag">OBS</span>
-                            <span class="skill-tag">Leadership</span>
-                            <span class="skill-tag">Content Creation</span>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -569,7 +467,7 @@
         </div>
     </div>
 
-    <script src="script.js?v=22"></script>
+    <script src="script.js?v=23"></script>
     <script type="module" src="robots/main.js?v=7"></script>
 </body>
 </html>

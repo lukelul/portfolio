@@ -778,6 +778,58 @@ section::before {
     opacity: 0.6;
 }
 
+/* Compact text-only roles — no card block, just hairline-separated rows;
+   only entries with videos/media keep the full .experience-item treatment */
+.experience-rows {
+    margin: 0.35rem 0 1rem;
+    border-top: 1px solid var(--border-color);
+    position: relative;
+    z-index: 11;
+}
+
+.experience-row {
+    padding: 0.75rem 0.2rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.experience-row .experience-header {
+    margin-bottom: 0.1rem;
+}
+
+.experience-row .experience-title {
+    font-size: 1.25rem;
+}
+
+.experience-line {
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.experience-line a {
+    color: var(--text-primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: opacity 0.2s ease;
+}
+
+.experience-line a:hover {
+    opacity: 0.6;
+}
+
+/* Publications + Builds subheading inside the experience section */
+.experience-subtitle {
+    font-size: 1.1rem;
+    font-weight: normal;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    color: var(--text-primary);
+    margin: 3rem 0 1.5rem;
+    position: relative;
+    z-index: 11;
+}
+
 .experience-video {
     margin-top: 1.5rem;
     position: relative;

@@ -263,8 +263,8 @@ function triggerVisibleReveals() {
 // The whole site is one page now, so the sidebar tracks every section of it.
 var tabConfig = {
     'home': {
-        sections: ['about', 'cad-gallery', 'projects', 'experience', 'skills'],
-        labels:   ['About', 'Projects', 'Builds', 'Experience', 'Skills']
+        sections: ['about', 'cad-gallery', 'experience'],
+        labels:   ['About', 'Projects', 'Experience']
     }
 };
 
