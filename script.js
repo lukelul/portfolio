@@ -264,8 +264,8 @@ function triggerVisibleReveals() {
 // progress sidebar too; the experience tab keeps Experience + Skills.
 var tabConfig = {
     'home': {
-        sections: ['about', 'projects', 'cad-gallery'],
-        labels:   ['About', 'Builds', 'Projects']
+        sections: ['about', 'cad-gallery', 'projects'],
+        labels:   ['About', 'Projects', 'Builds']
     },
     'experience': {
         sections: ['experience', 'skills'],
