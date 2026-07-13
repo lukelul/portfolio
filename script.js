@@ -260,16 +260,11 @@ function triggerVisibleReveals() {
 // ============================================================
 //  SCROLL SIDEBAR
 // ============================================================
-// Builds (#projects) now lives on the home flow under About, so home gets a
-// progress sidebar too; the experience tab keeps Experience + Skills.
+// The whole site is one page now, so the sidebar tracks every section of it.
 var tabConfig = {
     'home': {
-        sections: ['about', 'cad-gallery', 'projects'],
-        labels:   ['About', 'Projects', 'Builds']
-    },
-    'experience': {
-        sections: ['experience', 'skills'],
-        labels:   ['Experience', 'Skills']
+        sections: ['about', 'cad-gallery', 'projects', 'experience', 'skills'],
+        labels:   ['About', 'Projects', 'Builds', 'Experience', 'Skills']
     }
 };
 
@@ -277,9 +272,7 @@ var sidebarEl = null;
 var sidebarFillEl = null;
 
 function getActiveTab() {
-    if (document.getElementById('tab-home').classList.contains('active'))       return 'home';
-    if (document.getElementById('tab-experience').classList.contains('active')) return 'experience';
-    return null;
+    return 'home'; // single-page site — the home panel is all there is
 }
 
 function updateScrollSidebar() {

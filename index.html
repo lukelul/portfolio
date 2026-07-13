@@ -24,8 +24,9 @@
         <div class="container">
             <div class="nav-brand">lukedoesrobotics.com</div>
             <ul class="nav-menu">
-                <li><a href="#" class="nav-link tab-btn active" data-tab="home">Home</a></li>
-                <li><a href="#" class="nav-link tab-btn" data-tab="experience">Experience</a></li>
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#cad-gallery" class="nav-link">Projects</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
             </ul>
             <button id="font-toggle" class="font-toggle" title="Change font">Aa <span id="font-label">SANS</span></button>
             <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
@@ -60,6 +61,8 @@
         <div class="sdot"><div class="sdot-ring"></div><span class="sdot-label">Experience</span></div>
         <div class="sdot"><div class="sdot-ring"></div><span class="sdot-label">Builds</span></div>
         <div class="sdot"><div class="sdot-ring"></div><span class="sdot-label">Skills</span></div>
+        <div class="sdot"><div class="sdot-ring"></div><span class="sdot-label"></span></div>
+        <div class="sdot"><div class="sdot-ring"></div><span class="sdot-label"></span></div>
     </div>
 
     <div class="page-content">
@@ -95,7 +98,7 @@
                         I'm a mechanical engineering student at the University of Texas at Austin, currently building Inhabit — my own robotics teleoperation hardware company, backed by <em><a href="https://www.f.inc/" target="_blank" rel="noopener">Founders Inc.</a></em> and <em><a href="https://www.nvidia.com/en-us/startups/" target="_blank" rel="noopener">NVIDIA Inception</a></em> — alongside robotics research through the UT Center for Autonomy.
                     </p>
                     <p>
-                        Selected builds and the full project gallery are below — my work history lives in <a href="#" class="tab-btn" data-tab="experience">Experience</a>.
+                        Selected builds and the full project gallery are below, with my full <a href="#experience">work history</a> at the bottom.
                     </p>
                     <p>
                         Previously, I built the forearm and hand linkage for a humanoid arm at YouiBot in Shenzhen. I also led a VEX Robotics team to win the 2024 World Championship, and won hardware awards at multiple hackathons with 1,000+ competitors, including UC Berkeley AI and Texas Venture Group.
@@ -319,12 +322,8 @@
             </div>
         </section>
 
-    </div><!-- end #tab-home -->
-
-    <!-- EXPERIENCE TAB -->
-    <div id="tab-experience" class="tab-panel">
-
-        <!-- Experience Section -->
+        <!-- Experience + Skills — moved from their own tab; the whole site
+             is one page now. -->
         <section id="experience" class="experience">
             <div class="container">
                 <h2 class="section-title">Experience</h2>
@@ -510,7 +509,9 @@
             </div>
         </section>
 
-    </div><!-- end #tab-experience -->
+    </div><!-- end #tab-home -->
+
+
 
 
 
@@ -525,8 +526,9 @@
                 <div class="footer-left">
                     <a href="mailto:lukelupvp@gmail.com" class="big-email">lukelupvp@gmail.com</a>
                     <div class="footer-links">
-                        <a href="#" class="tab-btn" data-tab="home">Home</a>
-                        <a href="#" class="tab-btn" data-tab="experience">Experience</a>
+                        <a href="#home">Home</a>
+                        <a href="#cad-gallery">Projects</a>
+                        <a href="#experience">Experience</a>
                     </div>
                 </div>
             </div>
@@ -567,7 +569,7 @@
         </div>
     </div>
 
-    <script src="script.js?v=21"></script>
+    <script src="script.js?v=22"></script>
     <script type="module" src="robots/main.js?v=7"></script>
 </body>
 </html>
