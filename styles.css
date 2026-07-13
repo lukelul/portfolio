@@ -817,6 +817,18 @@ section::before {
     opacity: 0.6;
 }
 
+/* video rows: the clip sits under the line, sized down so the row stays compact */
+.experience-row .youtube-facade {
+    max-width: 460px;
+    margin-top: 0.65rem;
+    border-radius: 5px;
+    padding-bottom: min(258.75px, 56.25%);
+}
+
+.experience-row .video-views {
+    margin-top: 6px;
+}
+
 /* Publications + Builds subheading inside the experience section */
 .experience-subtitle {
     font-size: 1.1rem;
