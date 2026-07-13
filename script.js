@@ -468,7 +468,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var weeksAgo = Math.max(1, Math.floor((Date.now() - HACKATHON_WEEK_ONE.getTime()) / msPerWeek) + 1);
         var subline = document.getElementById('toast-subline');
         if (subline) {
-            subline.textContent = 'Hardware winner · ' + weeksAgo + ' week' + (weeksAgo === 1 ? '' : 's') + ' ago';
+            subline.textContent = weeksAgo + ' week' + (weeksAgo === 1 ? '' : 's') + ' ago';
         }
 
         var autoDismiss = setTimeout(function () { toast.classList.remove('show'); }, 1200 + 8000);
