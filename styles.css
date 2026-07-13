@@ -1378,8 +1378,15 @@ section::before {
 }
 
 .cad-gallery-section {
-    padding: 2rem 0 6rem;
+    padding: 2rem 0 5rem;
     background: var(--bg-primary);
+}
+
+/* on the home flow the gallery has a standard section title right above the
+   filter line, so pull them together */
+.cad-gallery-section .section-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
 }
 
 .cad-gallery-title {

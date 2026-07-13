@@ -264,8 +264,8 @@ function triggerVisibleReveals() {
 // progress sidebar too; the experience tab keeps Experience + Skills.
 var tabConfig = {
     'home': {
-        sections: ['about', 'projects'],
-        labels:   ['About', 'Builds']
+        sections: ['about', 'projects', 'cad-gallery'],
+        labels:   ['About', 'Builds', 'Projects']
     },
     'experience': {
         sections: ['experience', 'skills'],
@@ -559,7 +559,6 @@ document.addEventListener('DOMContentLoaded', function () {
     setupReveal('.project-card',     'up',   100);
     setupReveal('.skill-category',   'up',   120);
     setupReveal('.cad-photo-wrap',   'up',    60);
-    setupReveal('.cad-hero-content', 'up');
 
     // ── Scroll sidebar ───────────────────────────────────────
     sidebarEl      = document.getElementById('scroll-sidebar');

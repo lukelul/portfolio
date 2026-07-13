@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yanda (Luke) Lu - Portfolio</title>
-    <link rel="stylesheet" href="styles.css?v=49">
+    <link rel="stylesheet" href="styles.css?v=50">
     <!-- Minecraft Font from CDN -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,7 +26,6 @@
             <ul class="nav-menu">
                 <li><a href="#" class="nav-link tab-btn active" data-tab="home">Home</a></li>
                 <li><a href="#" class="nav-link tab-btn" data-tab="experience">Experience</a></li>
-                <li><a href="#" class="nav-link tab-btn" data-tab="cad">Projects</a></li>
             </ul>
             <button id="font-toggle" class="font-toggle" title="Change font">Aa <span id="font-label">SANS</span></button>
             <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
@@ -78,7 +77,7 @@
                     <p class="intro-role">Mechanical Engineering Student, UT Austin</p>
                     <p class="intro-contact"><a href="mailto:lukelupvp@gmail.com">lukelupvp@gmail.com</a></p>
                     <div class="hero-buttons">
-                        <a href="#" class="btn btn-primary tab-btn" data-tab="cad">View My Work</a>
+                        <a href="#cad-gallery" class="btn btn-primary">View My Work</a>
                         <a href="#" id="get-in-touch-btn" class="btn btn-secondary">Get In Touch</a>
                     </div>
                 </div>
@@ -96,7 +95,7 @@
                         I'm a mechanical engineering student at the University of Texas at Austin, currently building Inhabit — my own robotics teleoperation hardware company, backed by <em><a href="https://www.f.inc/" target="_blank" rel="noopener">Founders Inc.</a></em> and <em><a href="https://www.nvidia.com/en-us/startups/" target="_blank" rel="noopener">NVIDIA Inception</a></em> — alongside robotics research through the UT Center for Autonomy.
                     </p>
                     <p>
-                        Selected builds are just below — the full CAD gallery lives in <a href="#" class="tab-btn" data-tab="cad">Projects</a>, and my work history in <a href="#" class="tab-btn" data-tab="experience">Experience</a>.
+                        Selected builds and the full project gallery are below — my work history lives in <a href="#" class="tab-btn" data-tab="experience">Experience</a>.
                     </p>
                     <p>
                         Previously, I built the forearm and hand linkage for a humanoid arm at YouiBot in Shenzhen. I also led a VEX Robotics team to win the 2024 World Championship, and won hardware awards at multiple hackathons with 1,000+ competitors, including UC Berkeley AI and Texas Venture Group.
@@ -168,8 +167,154 @@
                         <p class="video-views">10K views</p>
                     </div>
                 </div>
-                <div class="projects-cta">
-                    <a href="#" class="btn btn-primary tab-btn" data-tab="experience">View full experience &rarr;</a>
+            </div>
+        </section>
+
+        <!-- Projects — the full CAD/build gallery, moved from its own tab
+             onto the home flow. Tiles, filters, and the live 3D viewers all
+             bind by class/data attributes, so they work unchanged here. -->
+        <section id="cad-gallery" class="cad-gallery-section">
+            <div class="container">
+                <h2 class="section-title">Projects</h2>
+                <p class="cad-filter">
+                    filter by
+                    <a href="#" class="cad-filter-link active" data-filter="all">all</a>,
+                    <a href="#" class="cad-filter-link" data-filter="industrial">industrial</a>,
+                    <a href="#" class="cad-filter-link" data-filter="wearables">wearables</a>,
+                    <a href="#" class="cad-filter-link" data-filter="competition">competition</a>,
+                    or <a href="#" class="cad-filter-link" data-filter="hardware">hardware</a>.
+                </p>
+                <div class="cad-gallery">
+                    <div class="cad-photo-wrap" data-key="youibot" data-category="industrial">
+                        <div class="cad-media">
+                        <img src="cad-1.jpeg" alt="YouiBot Humanoid — Forearm and InspireHand Linkage Design" loading="lazy">
+                        <div class="cad-photo-cap">YouiBot · Forearm & InspireHand Linkage · SolidWorks</div>
+                        </div>
+                    </div>
+                    <div class="cad-photo-wrap cad-3d-tile" data-key="live-inhabit" data-category="industrial" data-robot-urdf="robots/inhabit-leader/inhabit-leader.urdf" data-robot-meshes="robots/inhabit-leader/meshes/" data-robot-chain="Joint_1,Joint_2,Joint_3,Joint_4,Joint_5,Joint_6,Joint_7" data-robot-tip="Link_7" data-robot-glow-scale="1.3">
+                        <div class="cad-media">
+                        <canvas width="520" height="600" aria-label="Live 3D viewer — Inhabit leader arm, drag the handle"></canvas>
+                        <div class="cad-photo-cap">Inhabit V2 · Live mesh · Drag the handle</div>
+                        </div>
+                    </div>
+                    <div class="cad-photo-wrap" data-key="inhabit-arm" data-category="industrial">
+                        <div class="cad-media">
+                        <img src="cad-7.png" alt="Inhabit V1 — 6-DOF Arm and Exoskeleton Glove" loading="lazy">
+                        <div class="cad-photo-cap">Inhabit V1 · 6-DOF Arm & Exoskeleton Glove</div>
+                        </div>
+                    </div>
+                    <div class="cad-photo-wrap" data-key="inhabit-compat" data-category="industrial">
+                        <div class="cad-media">
+                        <img src="cad-10.webp" alt="Inhabit V2 — Universal Robot Compatibility" loading="lazy">
+                        <div class="cad-photo-cap">Inhabit V2 · Universal Robot Compatibility</div>
+                        </div>
+                    </div>
+                    <div class="cad-photo-wrap cad-3d-tile" data-key="live-ur5" data-category="industrial" data-robot-urdf="robots/ur5/ur5.urdf" data-robot-meshes="robots/ur5/meshes/ur5/visual/" data-robot-chain="shoulder_pan_joint,shoulder_lift_joint,elbow_joint,wrist_1_joint,wrist_2_joint,wrist_3_joint" data-robot-tip="wrist_3_link" data-robot-glow-scale="1.3">
+                        <div class="cad-media">
+                        <canvas width="520" height="600" aria-label="Live 3D viewer — Universal Robots UR5"></canvas>
+                        <div class="cad-photo-cap">Universal Robots UR5 · Live mesh · Driven via Inhabit</div>
+                        </div>
+                    </div>
+                    <div class="cad-photo-wrap cad-3d-tile" data-key="live-g1" data-category="industrial" data-robot-urdf="robots/g1/g1_29dof.urdf" data-robot-meshes="robots/g1/meshes/" data-robot-chain="waist_yaw_joint,waist_roll_joint,waist_pitch_joint,right_shoulder_pitch_joint,right_shoulder_roll_joint,right_shoulder_yaw_joint,right_elbow_joint,right_wrist_roll_joint,right_wrist_pitch_joint,right_wrist_yaw_joint" data-robot-tip="right_rubber_hand" data-robot-glow-scale="0.75" data-robot-glow-opacity="0.6">
+                        <div class="cad-media">
+                        <canvas width="520" height="600" aria-label="Live 3D viewer — Unitree G1 humanoid"></canvas>
+                        <div class="cad-photo-cap">Unitree G1 · Live mesh · Driven via Inhabit</div>
+                        </div>
+                    </div>
+                    <div class="cad-photo-wrap" data-key="exo-hand" data-category="wearables">
+                        <div class="cad-media">
+                        <img src="cad-8.webp" alt="Inhabit V1 — Exoskeleton Glove Build vs CAD" loading="lazy">
+                        <div class="cad-photo-cap">Inhabit V1 · Exoskeleton Glove · Build vs. CAD</div>
+                        </div>
+                    </div>
+                    <div class="cad-photo-wrap" data-key="exo-torso" data-category="wearables">
+                        <div class="cad-media">
+                        <img src="cad-5.png" alt="Robotic Exoskeleton with Picatinny Rail Attachments SolidWorks" loading="lazy">
+                        <div class="cad-photo-cap">Robotic Exoskeleton · Picatinny Rail Attachments · SolidWorks</div>
+                        </div>
+                    </div>
+                    <div class="cad-photo-wrap" data-key="hackutd" data-category="hardware competition">
+                        <div class="cad-media">
+                        <img src="cad-4.png" alt="HackUTD 2025 LED Matrix Interactive Game Hardware SolidWorks" loading="lazy">
+                        <div class="cad-photo-cap">HackUTD 2025 · LED Matrix Game Hardware · SolidWorks</div>
+                        </div>
+                    </div>
+                    <div class="cad-photo-wrap" data-key="cleaner" data-category="industrial">
+                        <div class="cad-media">
+                        <img src="cad-3.png" alt="Autonomous Cleaning Robot SolidWorks" loading="lazy">
+                        <div class="cad-photo-cap">Autonomous Cleaning Robot · SolidWorks</div>
+                        </div>
+                    </div>
+                    <div class="cad-photo-wrap" data-key="paradigm" data-category="hardware">
+                        <div class="cad-media">
+                        <img src="cad-2.png" alt="Battery and Charger Storage Tower Paradigm Robotics SolidWorks" loading="lazy">
+                        <div class="cad-photo-cap">Battery & Charger Storage · Paradigm Robotics · SolidWorks</div>
+                        </div>
+                    </div>
+                    <div class="cad-photo-wrap" data-key="vex-2024" data-category="competition">
+                        <div class="cad-media">
+                        <img src="cad-12.webp" alt="VEX Robot — 2024 Texas States, US Open, World Champion" loading="lazy">
+                        <div class="cad-photo-cap">VEX Robotics · 2024 World Champion · Co-designed</div>
+                        </div>
+                    </div>
+                    <div class="cad-photo-wrap" data-key="vex-2025" data-category="competition">
+                        <div class="cad-media">
+                        <img src="cad-13.webp" alt="VEX Robot — 2025 Texas States Champion" loading="lazy">
+                        <div class="cad-photo-cap">VEX Robotics · 2025 Texas States Champion · Solo Design</div>
+                        </div>
+                    </div>
+                    <div class="cad-photo-wrap cad-video-tile" data-key="projector-pen" data-category="hardware">
+                        <div class="cad-media">
+                        <video autoplay muted loop playsinline preload="auto" class="cad-tile-video">
+                            <source src="cad-11.mp4" type="video/mp4">
+                        </video>
+                        <div class="cad-photo-cap">Projector Pen · Hardware Design · CAD Casing</div>
+                        </div>
+                    </div>
+                    <div class="cad-photo-wrap" data-key="clothes-fold" data-category="industrial">
+                        <div class="cad-media">
+                        <img src="xlerobot4arm.webp" alt="XLE Robot Arm — Clothes-Folding Training Rig" loading="lazy">
+                        <div class="cad-photo-cap">XLE Robot Arm · Clothes-Folding Training Rig · UT Center for Autonomy</div>
+                        </div>
+                    </div>
+                    <div class="cad-photo-wrap" data-key="hand-v1" data-category="industrial competition">
+                        <div class="cad-media">
+                        <img src="Berkeleyhackathonrobothand.webp" alt="5-Finger Robot Hand — Linkage-Driven, No Tendons" loading="lazy">
+                        <div class="cad-photo-cap">5-Finger Robot Hand · Linkage-Driven · Berkeley AI Hackathon</div>
+                        </div>
+                    </div>
+                    <div class="cad-photo-wrap cad-video-tile" data-key="ai-glasses" data-category="hardware competition">
+                        <div class="cad-media">
+                        <video autoplay muted loop playsinline preload="auto" class="cad-tile-video">
+                            <source src="cad-14.mp4" type="video/mp4">
+                        </video>
+                        <div class="cad-photo-cap">Waveguide AI Research Glasses · Real-Time Assistant</div>
+                        </div>
+                    </div>
+                    <div class="cad-photo-wrap cad-video-tile" data-key="act-filament" data-category="industrial competition">
+                        <div class="cad-media">
+                        <video autoplay muted loop playsinline preload="auto" class="cad-tile-video">
+                            <source src="cad-15.mp4" type="video/mp4">
+                        </video>
+                        <div class="cad-photo-cap">ACT Policy · Autonomous Filament Pickup · Berkeley AI Hackathon</div>
+                        </div>
+                    </div>
+                    <div class="cad-photo-wrap cad-video-tile" data-key="hand-fistbump" data-category="industrial competition">
+                        <div class="cad-media">
+                        <video autoplay muted loop playsinline preload="auto" class="cad-tile-video">
+                            <source src="cad-16.mp4" type="video/mp4">
+                        </video>
+                        <div class="cad-photo-cap">5-Finger Hand · Fist Bump Demo · PiperX + Berkeley AI Hackathon</div>
+                        </div>
+                    </div>
+                    <div class="cad-photo-wrap cad-video-tile" data-key="paradigm-fire" data-category="industrial">
+                        <div class="cad-media">
+                        <video autoplay muted loop playsinline preload="auto" class="cad-tile-video">
+                            <source src="cad-17.mp4" type="video/mp4">
+                        </video>
+                        <div class="cad-photo-cap">Firefighting & Recon Robot · Paradigm Robotics</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -367,165 +512,7 @@
 
     </div><!-- end #tab-experience -->
 
-    <!-- PROJECTS TAB (still #tab-cad / data-tab="cad" internally) -->
-    <div id="tab-cad" class="tab-panel">
 
-        <!-- Hero Banner -->
-        <div class="cad-hero">
-            <div class="container">
-                <div class="cad-hero-content">
-                    <h1>Projects</h1>
-                </div>
-            </div>
-        </div>
-
-        <!-- Gallery -->
-        <section class="cad-gallery-section">
-            <div class="container">
-                <p class="cad-filter">
-                    filter by
-                    <a href="#" class="cad-filter-link active" data-filter="all">all</a>,
-                    <a href="#" class="cad-filter-link" data-filter="industrial">industrial</a>,
-                    <a href="#" class="cad-filter-link" data-filter="wearables">wearables</a>,
-                    <a href="#" class="cad-filter-link" data-filter="competition">competition</a>,
-                    or <a href="#" class="cad-filter-link" data-filter="hardware">hardware</a>.
-                </p>
-                <div class="cad-gallery">
-                    <div class="cad-photo-wrap" data-key="youibot" data-category="industrial">
-                        <div class="cad-media">
-                        <img src="cad-1.jpeg" alt="YouiBot Humanoid — Forearm and InspireHand Linkage Design" loading="lazy">
-                        <div class="cad-photo-cap">YouiBot · Forearm & InspireHand Linkage · SolidWorks</div>
-                        </div>
-                    </div>
-                    <div class="cad-photo-wrap cad-3d-tile" data-key="live-inhabit" data-category="industrial" data-robot-urdf="robots/inhabit-leader/inhabit-leader.urdf" data-robot-meshes="robots/inhabit-leader/meshes/" data-robot-chain="Joint_1,Joint_2,Joint_3,Joint_4,Joint_5,Joint_6,Joint_7" data-robot-tip="Link_7" data-robot-glow-scale="1.3">
-                        <div class="cad-media">
-                        <canvas width="520" height="600" aria-label="Live 3D viewer — Inhabit leader arm, drag the handle"></canvas>
-                        <div class="cad-photo-cap">Inhabit V2 · Live mesh · Drag the handle</div>
-                        </div>
-                    </div>
-                    <div class="cad-photo-wrap" data-key="inhabit-arm" data-category="industrial">
-                        <div class="cad-media">
-                        <img src="cad-7.png" alt="Inhabit V1 — 6-DOF Arm and Exoskeleton Glove" loading="lazy">
-                        <div class="cad-photo-cap">Inhabit V1 · 6-DOF Arm & Exoskeleton Glove</div>
-                        </div>
-                    </div>
-                    <div class="cad-photo-wrap" data-key="inhabit-compat" data-category="industrial">
-                        <div class="cad-media">
-                        <img src="cad-10.webp" alt="Inhabit V2 — Universal Robot Compatibility" loading="lazy">
-                        <div class="cad-photo-cap">Inhabit V2 · Universal Robot Compatibility</div>
-                        </div>
-                    </div>
-                    <div class="cad-photo-wrap cad-3d-tile" data-key="live-ur5" data-category="industrial" data-robot-urdf="robots/ur5/ur5.urdf" data-robot-meshes="robots/ur5/meshes/ur5/visual/" data-robot-chain="shoulder_pan_joint,shoulder_lift_joint,elbow_joint,wrist_1_joint,wrist_2_joint,wrist_3_joint" data-robot-tip="wrist_3_link" data-robot-glow-scale="1.3">
-                        <div class="cad-media">
-                        <canvas width="520" height="600" aria-label="Live 3D viewer — Universal Robots UR5"></canvas>
-                        <div class="cad-photo-cap">Universal Robots UR5 · Live mesh · Driven via Inhabit</div>
-                        </div>
-                    </div>
-                    <div class="cad-photo-wrap cad-3d-tile" data-key="live-g1" data-category="industrial" data-robot-urdf="robots/g1/g1_29dof.urdf" data-robot-meshes="robots/g1/meshes/" data-robot-chain="waist_yaw_joint,waist_roll_joint,waist_pitch_joint,right_shoulder_pitch_joint,right_shoulder_roll_joint,right_shoulder_yaw_joint,right_elbow_joint,right_wrist_roll_joint,right_wrist_pitch_joint,right_wrist_yaw_joint" data-robot-tip="right_rubber_hand" data-robot-glow-scale="0.75" data-robot-glow-opacity="0.6">
-                        <div class="cad-media">
-                        <canvas width="520" height="600" aria-label="Live 3D viewer — Unitree G1 humanoid"></canvas>
-                        <div class="cad-photo-cap">Unitree G1 · Live mesh · Driven via Inhabit</div>
-                        </div>
-                    </div>
-                    <div class="cad-photo-wrap" data-key="exo-hand" data-category="wearables">
-                        <div class="cad-media">
-                        <img src="cad-8.webp" alt="Inhabit V1 — Exoskeleton Glove Build vs CAD" loading="lazy">
-                        <div class="cad-photo-cap">Inhabit V1 · Exoskeleton Glove · Build vs. CAD</div>
-                        </div>
-                    </div>
-                    <div class="cad-photo-wrap" data-key="exo-torso" data-category="wearables">
-                        <div class="cad-media">
-                        <img src="cad-5.png" alt="Robotic Exoskeleton with Picatinny Rail Attachments SolidWorks" loading="lazy">
-                        <div class="cad-photo-cap">Robotic Exoskeleton · Picatinny Rail Attachments · SolidWorks</div>
-                        </div>
-                    </div>
-                    <div class="cad-photo-wrap" data-key="hackutd" data-category="hardware competition">
-                        <div class="cad-media">
-                        <img src="cad-4.png" alt="HackUTD 2025 LED Matrix Interactive Game Hardware SolidWorks" loading="lazy">
-                        <div class="cad-photo-cap">HackUTD 2025 · LED Matrix Game Hardware · SolidWorks</div>
-                        </div>
-                    </div>
-                    <div class="cad-photo-wrap" data-key="cleaner" data-category="industrial">
-                        <div class="cad-media">
-                        <img src="cad-3.png" alt="Autonomous Cleaning Robot SolidWorks" loading="lazy">
-                        <div class="cad-photo-cap">Autonomous Cleaning Robot · SolidWorks</div>
-                        </div>
-                    </div>
-                    <div class="cad-photo-wrap" data-key="paradigm" data-category="hardware">
-                        <div class="cad-media">
-                        <img src="cad-2.png" alt="Battery and Charger Storage Tower Paradigm Robotics SolidWorks" loading="lazy">
-                        <div class="cad-photo-cap">Battery & Charger Storage · Paradigm Robotics · SolidWorks</div>
-                        </div>
-                    </div>
-                    <div class="cad-photo-wrap" data-key="vex-2024" data-category="competition">
-                        <div class="cad-media">
-                        <img src="cad-12.webp" alt="VEX Robot — 2024 Texas States, US Open, World Champion" loading="lazy">
-                        <div class="cad-photo-cap">VEX Robotics · 2024 World Champion · Co-designed</div>
-                        </div>
-                    </div>
-                    <div class="cad-photo-wrap" data-key="vex-2025" data-category="competition">
-                        <div class="cad-media">
-                        <img src="cad-13.webp" alt="VEX Robot — 2025 Texas States Champion" loading="lazy">
-                        <div class="cad-photo-cap">VEX Robotics · 2025 Texas States Champion · Solo Design</div>
-                        </div>
-                    </div>
-                    <div class="cad-photo-wrap cad-video-tile" data-key="projector-pen" data-category="hardware">
-                        <div class="cad-media">
-                        <video autoplay muted loop playsinline preload="auto" class="cad-tile-video">
-                            <source src="cad-11.mp4" type="video/mp4">
-                        </video>
-                        <div class="cad-photo-cap">Projector Pen · Hardware Design · CAD Casing</div>
-                        </div>
-                    </div>
-                    <div class="cad-photo-wrap" data-key="clothes-fold" data-category="industrial">
-                        <div class="cad-media">
-                        <img src="xlerobot4arm.webp" alt="XLE Robot Arm — Clothes-Folding Training Rig" loading="lazy">
-                        <div class="cad-photo-cap">XLE Robot Arm · Clothes-Folding Training Rig · UT Center for Autonomy</div>
-                        </div>
-                    </div>
-                    <div class="cad-photo-wrap" data-key="hand-v1" data-category="industrial competition">
-                        <div class="cad-media">
-                        <img src="Berkeleyhackathonrobothand.webp" alt="5-Finger Robot Hand — Linkage-Driven, No Tendons" loading="lazy">
-                        <div class="cad-photo-cap">5-Finger Robot Hand · Linkage-Driven · Berkeley AI Hackathon</div>
-                        </div>
-                    </div>
-                    <div class="cad-photo-wrap cad-video-tile" data-key="ai-glasses" data-category="hardware competition">
-                        <div class="cad-media">
-                        <video autoplay muted loop playsinline preload="auto" class="cad-tile-video">
-                            <source src="cad-14.mp4" type="video/mp4">
-                        </video>
-                        <div class="cad-photo-cap">Waveguide AI Research Glasses · Real-Time Assistant</div>
-                        </div>
-                    </div>
-                    <div class="cad-photo-wrap cad-video-tile" data-key="act-filament" data-category="industrial competition">
-                        <div class="cad-media">
-                        <video autoplay muted loop playsinline preload="auto" class="cad-tile-video">
-                            <source src="cad-15.mp4" type="video/mp4">
-                        </video>
-                        <div class="cad-photo-cap">ACT Policy · Autonomous Filament Pickup · Berkeley AI Hackathon</div>
-                        </div>
-                    </div>
-                    <div class="cad-photo-wrap cad-video-tile" data-key="hand-fistbump" data-category="industrial competition">
-                        <div class="cad-media">
-                        <video autoplay muted loop playsinline preload="auto" class="cad-tile-video">
-                            <source src="cad-16.mp4" type="video/mp4">
-                        </video>
-                        <div class="cad-photo-cap">5-Finger Hand · Fist Bump Demo · PiperX + Berkeley AI Hackathon</div>
-                        </div>
-                    </div>
-                    <div class="cad-photo-wrap cad-video-tile" data-key="paradigm-fire" data-category="industrial">
-                        <div class="cad-media">
-                        <video autoplay muted loop playsinline preload="auto" class="cad-tile-video">
-                            <source src="cad-17.mp4" type="video/mp4">
-                        </video>
-                        <div class="cad-photo-cap">Firefighting & Recon Robot · Paradigm Robotics</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </div><!-- end #tab-cad -->
 
     </div><!-- end .page-content -->
 
@@ -540,7 +527,6 @@
                     <div class="footer-links">
                         <a href="#" class="tab-btn" data-tab="home">Home</a>
                         <a href="#" class="tab-btn" data-tab="experience">Experience</a>
-                        <a href="#" class="tab-btn" data-tab="cad">Projects</a>
                     </div>
                 </div>
             </div>
