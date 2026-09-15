@@ -262,23 +262,28 @@ p, li, span, a, div, button, input, textarea {
 
 .lang-toggle:hover { border-color: var(--text-primary); }
 
+/* Half the padding box wide, so translateX(100%) lands it exactly over the
+   second label whatever the two labels measure. The slid state keys off the
+   lang attribute the head script sets before first paint, so the thumb is
+   already in the right place on a Chinese page load — no jump. */
 .lang-toggle .lang-thumb {
     position: absolute;
     top: 2px;
     left: 2px;
-    width: 34px;
+    width: calc(50% - 2px);
     height: calc(100% - 4px);
     border-radius: 999px;
     background: var(--text-primary);
     transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.lang-toggle.is-zh .lang-thumb { transform: translateX(34px); }
+:root[lang="zh"] .lang-toggle .lang-thumb { transform: translateX(100%); }
 
 .lang-toggle .lang-opt {
     position: relative;
     z-index: 1;
-    width: 34px;
+    flex: 0 0 38px;
+    width: 38px;
     text-align: center;
     padding: 4px 0;
     font-size: 0.6rem;
@@ -290,14 +295,12 @@ p, li, span, a, div, button, input, textarea {
 }
 
 .lang-toggle .lang-opt[data-lang="en"] { color: var(--bg-primary); }
-.lang-toggle.is-zh .lang-opt[data-lang="en"] { color: var(--text-primary); }
-.lang-toggle.is-zh .lang-opt[data-lang="zh"] { color: var(--bg-primary); }
+:root[lang="zh"] .lang-toggle .lang-opt[data-lang="en"] { color: var(--text-primary); }
+:root[lang="zh"] .lang-toggle .lang-opt[data-lang="zh"] { color: var(--bg-primary); }
 
 @media (max-width: 768px) {
     .lang-toggle { margin-right: 0.5rem; }
-    .lang-toggle .lang-thumb,
-    .lang-toggle .lang-opt { width: 30px; }
-    .lang-toggle.is-zh .lang-thumb { transform: translateX(30px); }
+    .lang-toggle .lang-opt { flex: 0 0 32px; width: 32px; }
 }
 
 .font-toggle {

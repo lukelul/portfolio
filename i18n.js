@@ -210,7 +210,7 @@ var ZH_ENTRIES = [
     ['[data-key="paradigm-fire"] .cad-photo-cap', '消防与侦察机器人 · Paradigm Robotics'],
 
     // ── experience rows ───────────────────────────────────
-    ['[data-exp="bsi"] .experience-title', '机器人业务负责人'],
+    ['[data-exp="bsi"] .experience-title', '机器人负责人'],
     ['[data-exp="bsi"] .experience-company', '<a href="https://brightsaverindustries.com" target="_blank" rel="noopener">Bright Saver Industries</a> · 奥斯汀与旧金山'],
     ['[data-exp="bsi"] .experience-date', '2026 年 9 月 — 至今'],
     ['[data-exp="bsi"] .experience-line', '负责机器人业务与运营：用中文直接对接中国机器人厂商，帮助他们拿到美国的有条件批准，并与我们的制造合作伙伴一起把他们的产线在美国重建起来'],
@@ -218,7 +218,7 @@ var ZH_ENTRIES = [
     ['[data-exp="pantheon"] .experience-title', '机械工程师'],
     ['[data-exp="pantheon"] .experience-company', '<a href="https://pantheon.inc" target="_blank" rel="noopener">Pantheon Inc.</a> · 旧金山'],
     ['[data-exp="pantheon"] .experience-date', '2026 年 6 月 — 2026 年 9 月'],
-    ['[data-exp="pantheon"] .experience-line', '为一家前沿机器人基础模型实验室在 Fusion 360 中设计了可变形蜗轮末端执行器，接入实验室的遥操作数据采集流程（累计采集 1,000+ 小时数据），并在 Isaac Sim 中训练操作策略，仿真到实机迁移后抓放成功率达 90%'],
+    ['[data-exp="pantheon"] .experience-line', '在 Fusion 360 中为一家前沿机器人基础模型实验室设计了可变形蜗轮末端执行器，并接入实验室的遥操作数据采集流程（累计采集 1,000+ 小时数据），并在 Isaac Sim 中训练操作策略，仿真到实机迁移后抓放成功率达 90%'],
 
     ['[data-exp="tess"] .experience-title', '实习生'],
     ['[data-exp="tess"] .experience-company', '<a href="https://www.tessventures.xyz" target="_blank" rel="noopener">Tess Ventures</a> · 旧金山'],
@@ -306,8 +306,9 @@ var ZH_ENTRIES = [
             var en = TEXTS.get(n);
             if (!zh) { n.nodeValue = en; return; }
             var key = en.trim().replace(/\s+/g, ' ');
-            if (key === ', or') n.nodeValue = en.replace(/,\s*or/, GLUE[key]);
-            else if (GLUE[key] !== undefined) n.nodeValue = en.replace(key, GLUE[key]);
+            // Chinese punctuation carries its own spacing, so the English
+            // newlines and indentation around it go away with it.
+            if (GLUE[key] !== undefined) n.nodeValue = GLUE[key];
         });
     }
 
