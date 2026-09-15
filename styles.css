@@ -1,5 +1,5 @@
 :root {
-    --site-font: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    --site-font: 'Inter', 'Helvetica Neue', 'Noto Sans SC', Arial, sans-serif;
     --root-font-size: 22px;
     --base-letter-spacing: 0px;
     /* Black & White Palette */
@@ -239,6 +239,65 @@ p, li, span, a, div, button, input, textarea {
     background: var(--text-primary);
     border-radius: 3px;
     transition: all 0.3s ease;
+}
+
+/* Language switch — a two-state slider; the thumb travels under the
+   active label. Sits left of the font cycler in the navbar. */
+.lang-toggle {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex-shrink: 0;
+    margin-right: 0.9rem;
+    padding: 2px;
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    background: none;
+    cursor: pointer;
+    font-family: var(--site-font);
+    line-height: 1;
+    transition: border-color 0.3s ease;
+}
+
+.lang-toggle:hover { border-color: var(--text-primary); }
+
+.lang-toggle .lang-thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 34px;
+    height: calc(100% - 4px);
+    border-radius: 999px;
+    background: var(--text-primary);
+    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lang-toggle.is-zh .lang-thumb { transform: translateX(34px); }
+
+.lang-toggle .lang-opt {
+    position: relative;
+    z-index: 1;
+    width: 34px;
+    text-align: center;
+    padding: 4px 0;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    color: var(--text-primary);
+    transition: color 0.28s ease;
+    white-space: nowrap;
+}
+
+.lang-toggle .lang-opt[data-lang="en"] { color: var(--bg-primary); }
+.lang-toggle.is-zh .lang-opt[data-lang="en"] { color: var(--text-primary); }
+.lang-toggle.is-zh .lang-opt[data-lang="zh"] { color: var(--bg-primary); }
+
+@media (max-width: 768px) {
+    .lang-toggle { margin-right: 0.5rem; }
+    .lang-toggle .lang-thumb,
+    .lang-toggle .lang-opt { width: 30px; }
+    .lang-toggle.is-zh .lang-thumb { transform: translateX(30px); }
 }
 
 .font-toggle {

@@ -170,15 +170,17 @@ function openPhotoModal(wrap) {
         if (img) { pmImg.src = img.src; pmImg.alt = img.alt; }
     }
 
-    document.getElementById('pm-title').textContent = data.title;
-    document.getElementById('pm-desc').textContent = data.desc;
+    var zh = (typeof isZh === 'function') && isZh();
+    var zhData = (zh && window.CAD_ZH) ? window.CAD_ZH[key] : null;
+    document.getElementById('pm-title').textContent = (zhData && zhData.title) || data.title;
+    document.getElementById('pm-desc').textContent = (zhData && zhData.desc) || data.desc;
 
     var toolsList = document.getElementById('pm-tools-list');
     toolsList.innerHTML = '';
     data.tools.forEach(function (tool) {
         var tag = document.createElement('span');
         tag.className = 'pm-tool-tag';
-        tag.textContent = tool;
+        tag.textContent = (zh && window.TOOLS_ZH && window.TOOLS_ZH[tool]) || tool;
         toolsList.appendChild(tag);
     });
 
@@ -264,9 +266,14 @@ function triggerVisibleReveals() {
 var tabConfig = {
     'home': {
         sections: ['about', 'cad-gallery', 'experience'],
-        labels:   ['About', 'Projects', 'Experience']
+        labels:   ['About', 'Projects', 'Experience'],
+        labelsZh: ['\u5173\u4e8e', '\u9879\u76ee', '\u7ecf\u5386']
     }
 };
+
+function isZh() {
+    return document.documentElement.lang === 'zh';
+}
 
 var sidebarEl = null;
 var sidebarFillEl = null;
@@ -295,7 +302,8 @@ function updateScrollSidebar() {
     dots.forEach(function (dot, i) {
         var label = dot.querySelector('.sdot-label');
         if (i < config.labels.length) {
-            if (label) label.textContent = config.labels[i];
+            var names = (isZh() && config.labelsZh) ? config.labelsZh : config.labels;
+            if (label) label.textContent = names[i];
             dot.style.display = '';
         } else {
             dot.style.display = 'none';
@@ -467,9 +475,19 @@ document.addEventListener('DOMContentLoaded', function () {
         var msPerWeek = 7 * 24 * 60 * 60 * 1000;
         var weeksAgo = Math.max(1, Math.floor((Date.now() - HACKATHON_WEEK_ONE.getTime()) / msPerWeek) + 1);
         var subline = document.getElementById('toast-subline');
-        if (subline) {
-            subline.textContent = weeksAgo + ' week' + (weeksAgo === 1 ? '' : 's') + ' ago';
+        function paintSubline() {
+            if (!subline) return;
+            subline.textContent = isZh()
+                ? weeksAgo + ' \u5468\u524d'
+                : weeksAgo + ' week' + (weeksAgo === 1 ? '' : 's') + ' ago';
         }
+        paintSubline();
+
+        // Re-render the bits the translation layer cannot reach by selector.
+        window.refreshLangDependent = function () {
+            paintSubline();
+            if (typeof updateScrollSidebar === 'function') updateScrollSidebar();
+        };
 
         var autoDismiss = setTimeout(function () { toast.classList.remove('show'); }, 1200 + 8000);
         setTimeout(function () { toast.classList.add('show'); }, 1200);
@@ -481,11 +499,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Font cycler
     var fonts = [
-        { label: 'PIXEL', value: "'Press Start 2P', 'Minecraft', 'Courier New', monospace", rootSize: '16px', spacing: '-1px' },
-        { label: 'SANS',  value: "'Inter', 'Helvetica Neue', Arial, sans-serif",             rootSize: '22px', spacing: '0px'  },
-        { label: 'SERIF', value: "'Playfair Display', Georgia, serif",                       rootSize: '22px', spacing: '0px'  },
-        { label: 'MONO',  value: "'Space Mono', 'Courier New', monospace",                   rootSize: '20px', spacing: '0px'  },
-        { label: 'HAND',  value: "'Caveat', cursive",                                        rootSize: '24px', spacing: '0px'  },
+        { label: 'PIXEL', value: "'Press Start 2P', 'Minecraft', 'Noto Sans SC', 'Courier New', monospace", rootSize: '16px', spacing: '-1px' },
+        { label: 'SANS',  value: "'Inter', 'Helvetica Neue', 'Noto Sans SC', Arial, sans-serif",             rootSize: '22px', spacing: '0px'  },
+        { label: 'SERIF', value: "'Playfair Display', 'Noto Sans SC', Georgia, serif",                       rootSize: '22px', spacing: '0px'  },
+        { label: 'MONO',  value: "'Space Mono', 'Noto Sans SC', 'Courier New', monospace",                   rootSize: '20px', spacing: '0px'  },
+        { label: 'HAND',  value: "'Caveat', 'Noto Sans SC', cursive",                                        rootSize: '24px', spacing: '0px'  },
     ];
     var fontIndex = 1;
     var fontToggle = document.getElementById('font-toggle');
