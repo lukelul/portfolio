@@ -164,7 +164,7 @@ var ZH_ENTRIES = [
     ['.nav-menu li:nth-child(3) a, .footer-links a[href="#experience"]', '经历'],
 
     // ── intro ─────────────────────────────────────────────
-    ['.intro-role', '19 岁 · 德克萨斯大学奥斯汀分校 机械工程在读'],
+    ['.intro-role', '20 岁 · 机器人世界冠军 · 德克萨斯大学奥斯汀分校 机械工程在读'],
     ['.hero-buttons .btn-primary', '查看作品'],
     ['#get-in-touch-btn', '联系我'],
 
