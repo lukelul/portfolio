@@ -11,6 +11,11 @@
 // ============================================================
 
 var CAD_ZH = {
+    'pantheon': {
+        title: 'Pantheon — 末端执行器机械设计',
+        desc: '在 Pantheon，我使用 Fusion 360 参与末端执行器的机械设计与原型制作，包括用于团队遥操作数据采集流程的可变形蜗轮机构。图中是 Pantheon 于 2026 年 10 月研究文章中公开的三代 UMI 硬件，公开研究与图片来源：Pantheon，硬件负责人为 Sixtus Klein。',
+        sourceLabel: '查看 Pantheon 公开的 UMI 研究 ↗'
+    },
     'youibot': {
         title: 'YouiBot 人形机器人 — 小臂与 InspireHand 集成',
         desc: '在深圳 YouiBot，我独立主导了人形机器人手臂的设计——整个小臂总成，以及连接 InspireHand 末端执行器的运动连杆，全部由我一人完成。这条手臂属于 Ling Shu（灵枢）——全球首台采用"一脑多形"架构的跨场景人形机器人，由 YouiBot 与具身智能机器人研究院（与西安交通大学合资）联合开发。在节奏极快的研发环境和紧张的交付压力下，我围绕严格的电气约束做设计：在臂体结构内部规划线束走向，从第一性原理计算关节扭矩以选定电机，并做到实物原型当天迭代。'
@@ -170,7 +175,7 @@ var ZH_ENTRIES = [
 
     // ── about ─────────────────────────────────────────────
     ['.about-text p:nth-of-type(1)', '目前我负责 <a href="https://brightsaverindustries.com" target="_blank" rel="noopener">Bright Saver Industries</a> 的机器人业务。'],
-    ['.about-text p:nth-of-type(2)', '下面是精选作品和完整的项目图集，页面底部是完整的<a href="#experience">工作经历</a>。我在 Pantheon 的项目图片受保密协议约束，暂不展示，待项目正式公开后再补充。'],
+    ['.about-text p:nth-of-type(2)', '下面是精选作品和完整的项目图集，页面底部是完整的<a href="#experience">工作经历</a>。下方 Pantheon 图片来自其公开研究，我的个人贡献另行说明。'],
     ['.about-text p:nth-of-type(3)', '此前，我在旧金山的前沿机器人基础模型实验室 Pantheon Inc. 做机械工程师，在德克萨斯大学自主系统中心做机器人研究，并在深圳 YouiBot 设计了人形机械臂的小臂和手部连杆。我还带领 VEX 机器人战队拿下 2024 年世界锦标赛冠军，并在多场千人以上规模的黑客松中获得硬件奖，包括加州大学伯克利分校 AI 黑客松和 Texas Venture Group。'],
     ['.about-text p:nth-of-type(4)', '机器人是下一次平台级的转变，谁能把硬件和数据采集的成本大幅降下来，谁就赢下它。'],
     ['.about-text p:nth-of-type(5)', '一路走来，我设计过 20 多台机器人，并建立了一个 14,000 多人的机器人教育社区。（中英文都是我的母语。）'],
@@ -191,7 +196,8 @@ var ZH_ENTRIES = [
     ['[data-key="youibot"] .cad-photo-cap', 'YouiBot · 小臂与 InspireHand 连杆 · SolidWorks'],
     ['[data-key="live-inhabit"] .cad-photo-cap', 'Inhabit V2 · 实时模型 · 拖动手柄'],
     ['[data-key="inhabit-arm"] .cad-photo-cap', 'Inhabit V1 · 六自由度机械臂与外骨骼手套'],
-    ['[data-key="inhabit-compat"] .cad-photo-cap', 'Inhabit V2 · 通用机器人兼容'],
+    ['[data-key="inhabit-compat"] .cad-photo-cap', 'Inhabit V2 · 模块化遥操作'],
+      ['[data-key="pantheon"] .cad-photo-cap', 'Pantheon · 末端执行器设计 · 公开研究'],
     ['[data-key="live-ur5"] .cad-photo-cap', 'Universal Robots UR5 · 实时模型 · 由 Inhabit 驱动'],
     ['[data-key="live-g1"] .cad-photo-cap', '宇树 G1 · 实时模型 · 由 Inhabit 驱动'],
     ['[data-key="exo-hand"] .cad-photo-cap', 'Inhabit V1 · 外骨骼手套 · 实物与 CAD 对比'],

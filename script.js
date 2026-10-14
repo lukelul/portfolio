@@ -2,6 +2,14 @@
 //  CAD PHOTO DATA
 // ============================================================
 var cadData = {
+    'pantheon': {
+        title: 'Pantheon — End-Effector Engineering',
+        desc: "At Pantheon, I worked on end-effector mechanical design and prototyping in Fusion 360, including a deformable worm-gear mechanism used in the team's teleoperation data pipeline. This public visualization shows three generations of Pantheon's UMI hardware from its October 2026 research release. Public research and visualization: Pantheon, with hardware led by Sixtus Klein.",
+        tools: ['Autodesk Fusion 360', 'Mechanical Design', 'Rapid Prototyping', 'Teleoperation'],
+        source: 'https://pantheon.inc/research/diverse-umi#our-hardware',
+        sourceLabel: 'View Pantheon’s public UMI research ↗'
+    },
+
     'youibot': {
         title: 'YouiBot Humanoid — Forearm & InspireHand Integration',
         desc: 'At YouiBot in Shenzhen, I independently led the design of the humanoid robot arm — designing and fabricating the entire forearm assembly and the kinematic linkage to the InspireHand end effector entirely myself. The arm is part of Ling Shu, the world\'s first cross-scenario humanoid robot featuring a "one-brain-multi-form" architecture, co-developed by YouiBot Robotics and the Embodied Intelligent Robot Research Institute (a joint venture with Xi\'an Jiaotong University). Working under intense deadlines in a fast-paced R&D environment, I engineered around strict electrical constraints — routing harnesses through the arm structure, calculating joint torque requirements from first principles to select the right motors, and turning physical prototypes around same-day.',
@@ -16,7 +24,7 @@ var cadData = {
         title: 'Inhabit V2 — Modular Arm & Universal Robot Compatibility',
         desc: 'Inhabit V2 is the refined evolution of the platform — redesigned modular joint architecture, cleaner manufacturing, and universal robot compatibility. The standardized joint interface lets the arm be fully reconfigured in under a minute without any tooling, and the end effector mount is hot-swappable. V2 is hardware-agnostic by design: the same operator interface drives Universal Robots arms, Hugging Face\'s LeRobot platform, and Unitree humanoid robots, dramatically cutting setup cost for AI robotics teams collecting demonstration data.',
         tools: ['SolidWorks', 'Keyshot', 'ROS2', 'Modular Joint Architecture', 'Tolerance Stack Analysis', 'URDF Export', 'Cross-platform Integration', '3D Printing'],
-        images: ['cad-10.webp', 'cad-9.webp', 'cad-6.png']
+        images: ['cad-9.webp', 'cad-6.png', 'cad-10.webp']
     },
     'live-inhabit': {
         title: 'Inhabit Leader Arm — Live 3D Mesh',
@@ -174,6 +182,16 @@ function openPhotoModal(wrap) {
     var zhData = (zh && window.CAD_ZH) ? window.CAD_ZH[key] : null;
     document.getElementById('pm-title').textContent = (zhData && zhData.title) || data.title;
     document.getElementById('pm-desc').textContent = (zhData && zhData.desc) || data.desc;
+    var sourceLink = document.getElementById('pm-source');
+    sourceLink.hidden = !data.source;
+    modal.classList.toggle('public-research', !!data.source);
+    if (data.source) {
+        sourceLink.href = data.source;
+        sourceLink.textContent = (zhData && zhData.sourceLabel) || data.sourceLabel;
+    } else {
+        sourceLink.removeAttribute('href');
+        sourceLink.textContent = '';
+    }
 
     var toolsList = document.getElementById('pm-tools-list');
     toolsList.innerHTML = '';

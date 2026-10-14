@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yanda (Luke) Lu - Portfolio</title>
-    <link rel="stylesheet" href="styles.css?v=59">
+    <link rel="stylesheet" href="styles.css?v=60">
     <!-- Minecraft Font from CDN -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -102,7 +102,7 @@
                         Right now I'm running the robotics business at <a href="https://brightsaverindustries.com" target="_blank" rel="noopener">Bright Saver Industries</a>.
                     </p>
                     <p>
-                        Selected builds and the full project gallery are below, with my full <a href="#experience">work history</a> at the bottom. Project images from my work at Pantheon aren't shown yet because they're under NDA; I'll add them once the work goes public.
+                        Selected builds and the full project gallery are below, with my full <a href="#experience">work history</a> at the bottom. The Pantheon visual below comes from its published research, with my contribution described separately.
                     </p>
                     <p>
                         Previously, I was a mechanical engineer at Pantheon Inc., a frontier robotics foundation-model lab in San Francisco, did robotics research at the UT Center for Autonomy, and built the forearm and hand linkage for a humanoid arm at YouiBot in Shenzhen. I also led a VEX Robotics team to win the 2024 World Championship, and won hardware awards at multiple hackathons with 1,000+ competitors, including UC Berkeley AI and Texas Venture Group.
@@ -131,13 +131,27 @@
                     <a href="#" class="cad-filter-link" data-filter="competition">competition</a>,
                     or <a href="#" class="cad-filter-link" data-filter="hardware">hardware</a>.
                 </p>
-                <div class="cad-gallery">
+                <div class="featured-projects">
+                    <div class="cad-photo-wrap" data-key="inhabit-compat" data-category="industrial">
+                        <div class="cad-media">
+                        <img src="cad-9.webp" width="2190" height="1232" alt="Inhabit V2 — Modular Teleoperation" loading="lazy">
+                        <div class="cad-photo-cap">Inhabit V2 · Modular Teleoperation</div>
+                        </div>
+                    </div>
+                    <div class="cad-photo-wrap" data-key="pantheon" data-category="industrial hardware">
+                        <div class="cad-media">
+                        <img src="pantheon-umi-public.png" width="855" height="280" alt="Three UMI gripper generations from Pantheon’s published research; company visualization" loading="lazy">
+                        <div class="cad-photo-cap">Pantheon · End-Effector Engineering · Public research</div>
+                        </div>
+                    </div>
                     <div class="cad-photo-wrap" data-key="youibot" data-category="industrial">
                         <div class="cad-media">
                         <img src="cad-1.jpeg" width="1200" height="720" alt="YouiBot Humanoid — Forearm and InspireHand Linkage Design" loading="lazy">
                         <div class="cad-photo-cap">YouiBot · Forearm & InspireHand Linkage · SolidWorks</div>
                         </div>
                     </div>
+                </div>
+                <div class="cad-gallery">
                     <div class="cad-photo-wrap cad-3d-tile" data-key="live-inhabit" data-category="industrial" data-robot-urdf="robots/inhabit-leader/inhabit-leader.urdf" data-robot-meshes="robots/inhabit-leader/meshes/" data-robot-chain="Joint_1,Joint_2,Joint_3,Joint_4,Joint_5,Joint_6,Joint_7" data-robot-tip="Link_7" data-robot-glow-scale="1.3">
                         <div class="cad-media">
                         <canvas width="520" height="600" aria-label="Live 3D viewer — Inhabit leader arm, drag the handle"></canvas>
@@ -150,12 +164,7 @@
                         <div class="cad-photo-cap">Inhabit V1 · 6-DOF Arm & Exoskeleton Glove</div>
                         </div>
                     </div>
-                    <div class="cad-photo-wrap" data-key="inhabit-compat" data-category="industrial">
-                        <div class="cad-media">
-                        <img src="cad-10.webp" width="600" height="1019" alt="Inhabit V2 — Universal Robot Compatibility" loading="lazy">
-                        <div class="cad-photo-cap">Inhabit V2 · Universal Robot Compatibility</div>
-                        </div>
-                    </div>
+
                     <div class="cad-photo-wrap cad-3d-tile" data-key="live-ur5" data-category="industrial" data-robot-urdf="robots/ur5/ur5.urdf" data-robot-meshes="robots/ur5/meshes/ur5/visual/" data-robot-chain="shoulder_pan_joint,shoulder_lift_joint,elbow_joint,wrist_1_joint,wrist_2_joint,wrist_3_joint" data-robot-tip="wrist_3_link" data-robot-glow-scale="1.3">
                         <div class="cad-media">
                         <canvas width="520" height="600" aria-label="Live 3D viewer — Universal Robots UR5"></canvas>
@@ -466,6 +475,7 @@
             <div class="pm-info">
                 <h2 id="pm-title"></h2>
                 <p id="pm-desc"></p>
+                <a id="pm-source" target="_blank" rel="noopener noreferrer" hidden></a>
                 <div class="pm-tools">
                     <div class="pm-tools-label">Tools &amp; Tech</div>
                     <div id="pm-tools-list"></div>
@@ -474,8 +484,8 @@
         </div>
     </div>
 
-    <script src="i18n.js?v=9"></script>
-    <script src="script.js?v=26"></script>
+    <script src="i18n.js?v=10"></script>
+    <script src="script.js?v=27"></script>
     <script type="module" src="robots/main.js?v=8"></script>
 </body>
 </html>
