@@ -24,7 +24,7 @@ var cadData = {
         title: 'Inhabit V2 — Modular Arm & Universal Robot Compatibility',
         desc: 'Inhabit V2 is the refined evolution of the platform — redesigned modular joint architecture, cleaner manufacturing, and universal robot compatibility. The standardized joint interface lets the arm be fully reconfigured in under a minute without any tooling, and the end effector mount is hot-swappable. V2 is hardware-agnostic by design: the same operator interface drives Universal Robots arms, Hugging Face\'s LeRobot platform, and Unitree humanoid robots, dramatically cutting setup cost for AI robotics teams collecting demonstration data.',
         tools: ['SolidWorks', 'Keyshot', 'ROS2', 'Modular Joint Architecture', 'Tolerance Stack Analysis', 'URDF Export', 'Cross-platform Integration', '3D Printing'],
-        images: ['cad-9.webp', 'cad-6.png', 'cad-10.webp']
+        images: ['cad-9.webp', 'cad-6.webp', 'cad-10.webp']
     },
     'live-inhabit': {
         title: 'Inhabit Leader Arm — Live 3D Mesh',
@@ -153,6 +153,7 @@ function openPhotoModal(wrap) {
         if (window.RobotShowcase) window.RobotShowcase.mountModal(pmCanvas, key);
     } else if (data.video) {
         pmVideo.style.display = 'block';
+        pmVideo.poster = data.video.replace('.mp4', '-poster.jpg');
         pmVideo.src = data.video;
         pmVideo.load();
     } else if (data.images) {
@@ -596,7 +597,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var lazyVideos = document.querySelectorAll('video.cad-tile-video');
     function videoNear(v) {
         var r = v.getBoundingClientRect();
-        return r.bottom > -120 && r.top < window.innerHeight + 120;
+        return r.bottom > -600 && r.top < window.innerHeight + 600;
     }
     if ('IntersectionObserver' in window && lazyVideos.length) {
         // the collapsed pre-image masonry makes everything "intersect" at
@@ -615,7 +616,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     v.pause();
                 }
             });
-        }, { rootMargin: '120px 0px' });
+        }, { rootMargin: '600px 0px' });
         // don't observe until the masonry has stopped reflowing — see
         // robots/main.js whenLayoutSettled for the same trick
         (function armWhenSettled() {

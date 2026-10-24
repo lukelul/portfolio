@@ -39,7 +39,7 @@ function mountTile(wrap) {
   });
 }
 
-const NEAR_PX = 150;
+const NEAR_PX = 400;
 
 function stillNear(el) {
   const r = el.getBoundingClientRect();
