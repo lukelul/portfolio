@@ -266,6 +266,12 @@ var ZH_ENTRIES = [
     ['[data-proj="talking-face"] .project-description', '在 UT Dallas CAST 主导并展示了改进音频驱动面部动画的研究，使用 FLAME 与 BEAT 模型，获得第一名。'],
     ['[data-proj="talking-face"] .project-tags', '<span class="tag">AI / 机器学习</span><span class="tag">研究</span><span class="tag">Python</span>'],
 
+    ['[data-proj="hackathon-vid"] .project-title', '我是怎么靠机器人赢下最大的黑客松的'],
+    ['[data-proj="hackathon-vid"] .project-description', '带着机械臂和 3D 打印机参加伯克利 AI 黑客松，24 小时内做出一套便携机器人平台：能自己干活，卡住时再交给人通过摄像头远程接管。'],
+    ['[data-proj="hackathon-vid"] .project-tags', '<span class="tag">机器人</span><span class="tag">遥操作</span><span class="tag">AI/ML</span>'],
+    ['[data-proj="sequoia-vid"] .project-title', '我是怎么在红杉 10 万美元量化挑战中拿到第一的'],
+    ['[data-proj="sequoia-vid"] .project-description', '在红杉、OpenAI 和 Citadel Securities 联合举办的 10 万美元 AI 扑克锦标赛策略挑战中并列第一：100 名士兵、5 座城堡，每位申请者的分配方案都要和其他所有人的对战。'],
+    ['[data-proj="sequoia-vid"] .project-tags', '<span class="tag">博弈论</span><span class="tag">量化</span><span class="tag">Python</span>'],
     ['[data-proj="ai-glasses-vid"] .project-title', '来自未来的眼镜（这东西本不该存在）'],
     ['[data-proj="ai-glasses-vid"] .project-description', '24 小时内从零做出一副悬浮显示眼镜原型。'],
     ['[data-proj="ai-glasses-vid"] .project-tags', '<span class="tag">硬件</span><span class="tag">快速原型</span>'],

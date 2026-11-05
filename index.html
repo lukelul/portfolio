@@ -152,7 +152,7 @@
                     </div>
                 </div>
                 <div class="cad-gallery">
-                    <div class="cad-photo-wrap cad-3d-tile" data-key="live-inhabit" data-category="industrial" data-robot-urdf="robots/inhabit-leader/inhabit-leader.urdf" data-robot-meshes="robots/inhabit-leader/meshes/" data-robot-chain="Joint_1,Joint_2,Joint_3,Joint_4,Joint_5,Joint_6,Joint_7" data-robot-tip="Link_7" data-robot-glow-scale="1.3">
+                    <div class="cad-photo-wrap cad-3d-tile" data-key="live-inhabit" data-category="industrial" data-robot-urdf="robots/inhabit-leader/inhabit-leader.urdf" data-robot-meshes="robots/inhabit-leader/meshes/" data-robot-chain="Joint_1,Joint_2,Joint_3,Joint_4,Joint_5,Joint_6,Joint_7" data-robot-tip="Link_7" data-robot-glow-scale="1.3" data-robot-thumb-size="1.0">
                         <div class="cad-media">
                         <canvas width="520" height="600" aria-label="Live 3D viewer — Inhabit leader arm, drag the handle"></canvas>
                         <div class="cad-photo-cap">Inhabit V2 · Live mesh · Drag the handle</div>
@@ -165,12 +165,6 @@
                         </div>
                     </div>
 
-                    <div class="cad-photo-wrap cad-3d-tile" data-key="live-ur5" data-category="industrial" data-robot-urdf="robots/ur5/ur5.urdf" data-robot-meshes="robots/ur5/meshes/ur5/visual/" data-robot-chain="shoulder_pan_joint,shoulder_lift_joint,elbow_joint,wrist_1_joint,wrist_2_joint,wrist_3_joint" data-robot-tip="wrist_3_link" data-robot-glow-scale="1.3">
-                        <div class="cad-media">
-                        <canvas width="520" height="600" aria-label="Live 3D viewer — Universal Robots UR5"></canvas>
-                        <div class="cad-photo-cap">Universal Robots UR5 · Live mesh · Driven via Inhabit</div>
-                        </div>
-                    </div>
                     <div class="cad-photo-wrap cad-3d-tile" data-key="live-g1" data-category="industrial" data-robot-urdf="robots/g1/g1_29dof.urdf" data-robot-meshes="robots/g1/meshes/" data-robot-chain="waist_yaw_joint,waist_roll_joint,waist_pitch_joint,right_shoulder_pitch_joint,right_shoulder_roll_joint,right_shoulder_yaw_joint,right_elbow_joint,right_wrist_roll_joint,right_wrist_pitch_joint,right_wrist_yaw_joint" data-robot-tip="right_rubber_hand" data-robot-glow-scale="0.75" data-robot-glow-opacity="0.6">
                         <div class="cad-media">
                         <canvas width="520" height="600" aria-label="Live 3D viewer — Unitree G1 humanoid"></canvas>
@@ -370,6 +364,38 @@
 
                 <h3 class="experience-subtitle">Publications + Builds</h3>
                 <div class="projects-grid">
+                    <div class="project-card" data-proj="hackathon-vid">
+                        <div class="youtube-facade" data-videoid="uFLRQGhMrFg">
+                            <img src="https://img.youtube.com/vi/uFLRQGhMrFg/maxresdefault.jpg" alt="How I Won The Biggest Hackathon With Robots" class="youtube-thumb" loading="lazy" decoding="async">
+                            <button class="youtube-play" aria-label="Play video">&#9654;</button>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">How I Won The Biggest Hackathon With Robots</h3>
+                            <p class="project-description">Brought robot arms and a 3D printer to Berkeley's AI Hackathon and built, in 24 hours, a portable robot rig that works on its own and hands control to a person over a webcam when it gets stuck.</p>
+                            <div class="project-tags">
+                                <span class="tag">Robotics</span>
+                                <span class="tag">Teleoperation</span>
+                                <span class="tag">AI/ML</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-proj="sequoia-vid">
+                        <div class="youtube-facade" data-videoid="mdb-GdJnpDs">
+                            <img src="https://img.youtube.com/vi/mdb-GdJnpDs/maxresdefault.jpg" alt="How I Ranked #1 in Sequoia's $100K Quant Challenge" class="youtube-thumb" loading="lazy" decoding="async">
+                            <button class="youtube-play" aria-label="Play video">&#9654;</button>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">How I Ranked #1 in Sequoia's $100K Quant Challenge</h3>
+                            <p class="project-description">Tied for #1 on the strategy challenge of the Sequoia, OpenAI and Citadel Securities $100K AI poker tournament: 100 soldiers, 5 castles, and every applicant's split played against everyone else's.</p>
+                            <div class="project-tags">
+                                <span class="tag">Game Theory</span>
+                                <span class="tag">Quant</span>
+                                <span class="tag">Python</span>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="project-card" data-proj="talking-face">
                         <div class="project-image">
                             <img src="cast-poster.webp" width="1600" height="1066" alt="CAST STEM Team 003 Poster - Audio Driven Talking Face" class="project-img" loading="lazy" decoding="async">
@@ -484,8 +510,8 @@
         </div>
     </div>
 
-    <script src="i18n.js?v=10"></script>
+    <script src="i18n.js?v=11"></script>
     <script src="script.js?v=28"></script>
-    <script type="module" src="robots/main.js?v=9"></script>
+    <script type="module" src="robots/main.js?v=10"></script>
 </body>
 </html>

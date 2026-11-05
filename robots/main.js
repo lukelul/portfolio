@@ -20,6 +20,7 @@ document.querySelectorAll(".cad-3d-tile").forEach((wrap) => {
     tipLinkName: wrap.dataset.robotTip || undefined,
     glowScale: wrap.dataset.robotGlowScale ? parseFloat(wrap.dataset.robotGlowScale) : undefined,
     glowOpacityScale: wrap.dataset.robotGlowOpacity ? parseFloat(wrap.dataset.robotGlowOpacity) : undefined,
+    thumbSize: wrap.dataset.robotThumbSize ? parseFloat(wrap.dataset.robotThumbSize) : undefined,   // long thin arms need a smaller thumbnail fit
   };
   pendingTiles.set(wrap, { canvas, key });
 });
@@ -35,7 +36,8 @@ function mountTile(wrap) {
   if (!tile) return;
   pendingTiles.delete(wrap);
   loadViewer().then(({ mountRobotViewer }) => {
-    mountRobotViewer(tile.canvas, { ...configByKey[tile.key], mode: "thumb" });
+    const cfg = configByKey[tile.key];
+    mountRobotViewer(tile.canvas, { ...cfg, mode: "thumb", ...(cfg.thumbSize ? { targetSize: cfg.thumbSize } : {}) });
   });
 }
 
