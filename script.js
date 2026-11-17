@@ -670,7 +670,7 @@ document.addEventListener('DOMContentLoaded', function () {
             var filter = link.getAttribute('data-filter');
             document.querySelectorAll('.cad-filter-link').forEach(function (l) { l.classList.remove('active'); });
             link.classList.add('active');
-            document.querySelectorAll('.cad-photo-wrap').forEach(function (wrap) {
+            document.querySelectorAll('#cad-gallery .cad-photo-wrap').forEach(function (wrap) {
                 var categories = (wrap.getAttribute('data-category') || '').split(' ');
                 var show = filter === 'all' || categories.indexOf(filter) !== -1;
                 wrap.classList.toggle('cad-filtered-out', !show);
@@ -696,4 +696,268 @@ document.addEventListener('DOMContentLoaded', function () {
     // ── Initial state ────────────────────────────────────────
     updateScrollSidebar();
     triggerVisibleReveals();
+});
+
+// ============================================================
+//  SKETCH COVER + X-RAY LENS
+//  Tiles with data-sketch get a pencil-sketch layer on top of the
+//  real media. On mouse devices a soft lens follows the cursor
+//  (eased position + radius) and reveals the real photo/video.
+//  On touch devices the tile nearest the screen centre opens up.
+// ============================================================
+document.addEventListener('DOMContentLoaded', function () {
+    var wraps = document.querySelectorAll('.cad-photo-wrap[data-sketch]');
+    if (!wraps.length) return;
+    var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    wraps.forEach(function (wrap) {
+        var media = wrap.querySelector('.cad-media');
+        var base = media && media.querySelector('img, video');
+        if (!base) return;
+        wrap.classList.add('has-sketch');
+
+        var sketch = new Image();
+        sketch.className = 'cad-sketch';
+        sketch.alt = '';
+        sketch.setAttribute('aria-hidden', 'true');
+        sketch.decoding = 'async';
+        sketch.loading = 'lazy';
+        sketch.onload = function () { sketch.classList.add('is-loaded'); };
+        sketch.src = wrap.getAttribute('data-sketch');
+        base.insertAdjacentElement('afterend', sketch);
+
+        var lens = document.createElement('div');
+        lens.className = 'cad-lens';
+        sketch.insertAdjacentElement('afterend', lens);
+
+        // x/y/r ease toward tx/ty/tr each frame
+        var s = { x: 0, y: 0, r: 0, tx: 0, ty: 0, tr: 0, raf: 0, w: 0, h: 0 };
+
+        function paint() {
+            sketch.style.setProperty('--x', s.x.toFixed(1) + 'px');
+            sketch.style.setProperty('--y', s.y.toFixed(1) + 'px');
+            sketch.style.setProperty('--r', Math.max(0, s.r).toFixed(1) + 'px');
+            // feather scales with the radius so a closed lens leaves no smudge
+            sketch.style.setProperty('--f', Math.min(10, Math.max(0, s.r) * 0.12).toFixed(1) + 'px');
+            var d = Math.max(0, s.r) * 2;
+            lens.style.width = d + 'px';
+            lens.style.height = d + 'px';
+            lens.style.transform = 'translate(' + (s.x - s.r) + 'px,' + (s.y - s.r) + 'px)';
+            lens.style.opacity = finePointer ? Math.min(1, s.r / 40).toFixed(2) : '0';
+        }
+        function tick() {
+            var k = reduceMotion ? 1 : 0.2, kr = reduceMotion ? 1 : 0.12;
+            s.x += (s.tx - s.x) * k;
+            s.y += (s.ty - s.y) * k;
+            s.r += (s.tr - s.r) * kr;
+            paint();
+            if (Math.abs(s.tx - s.x) + Math.abs(s.ty - s.y) + Math.abs(s.tr - s.r) > 0.3) {
+                s.raf = requestAnimationFrame(tick);
+            } else {
+                s.x = s.tx; s.y = s.ty; s.r = s.tr; paint(); s.raf = 0;
+            }
+        }
+        function kick() { if (!s.raf) s.raf = requestAnimationFrame(tick); }
+        function measure() {
+            var rect = media.getBoundingClientRect();
+            s.w = rect.width; s.h = rect.height;
+            return rect;
+        }
+        function lensRadius() {
+            return Math.max(70, Math.min(150, Math.min(s.w, s.h) * 0.34));
+        }
+
+        if (finePointer) {
+            var inside = false;
+            wrap.addEventListener('pointermove', function (e) {
+                var rect = measure();
+                s.tx = e.clientX - rect.left;
+                s.ty = e.clientY - rect.top;
+                if (!inside) {
+                    inside = true;
+                    s.x = s.tx; s.y = s.ty; // open from the entry point, don't slide in
+                    document.body.classList.add('lens-active');
+                }
+                s.tr = lensRadius();
+                kick();
+            });
+            wrap.addEventListener('pointerleave', function () {
+                inside = false;
+                s.tr = 0;
+                document.body.classList.remove('lens-active');
+                kick();
+            });
+        } else if ('IntersectionObserver' in window) {
+            // touch: the tile crossing the middle of the screen develops
+            // from the centre out into the full photo, then folds back
+            new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    measure();
+                    s.tx = s.x = s.w / 2;
+                    s.ty = s.y = s.h / 2;
+                    s.tr = entry.isIntersecting ? Math.hypot(s.w, s.h) / 2 + 20 : 0;
+                    kick();
+                });
+            }, { rootMargin: '-48% 0px -48% 0px' }).observe(wrap);
+        }
+    });
+});
+
+// ============================================================
+//  SHOWCASE — pinned intro + a stacked deck of featured builds
+//  The deck opens on the middle card with cards peeking above
+//  and below. Scrolling the page drives a target index; the
+//  shown index follows it through a heavy spring (low stiffness,
+//  high mass) and the scroll mapping dwells on each card, so the
+//  deck moves with weight and settles card by card.
+// ============================================================
+document.addEventListener('DOMContentLoaded', function () {
+    var rail = document.querySelector('.showcase-rail');
+    if (!rail) return;
+    var items = Array.prototype.slice.call(rail.querySelectorAll('.showcase-item'));
+    var N = items.length;
+    if (!N) return;
+    var dotsNav = document.querySelector('.showcase-dots');
+    var idxEl = document.getElementById('showcase-idx');
+    var totalEl = document.getElementById('showcase-total');
+    var titleEl = document.getElementById('showcase-title');
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var desktop = window.matchMedia('(min-width: 901px)');
+    var START = Math.floor(N / 2);          // open in the middle of the stack
+    var STEP_VH = 38;                       // scroll distance per card
+    function pad(n) { return (n < 10 ? '0' : '') + n; }
+    function wrap(i) { return ((i % N) + N) % N; }
+    if (totalEl) totalEl.textContent = pad(N);
+
+    // build stage > deck and move the cards into it
+    var stage = document.createElement('div');
+    stage.className = 'showcase-stage';
+    var deck = document.createElement('div');
+    deck.className = 'showcase-deck';
+    stage.appendChild(deck);
+    items.forEach(function (it) { deck.appendChild(it); });
+    rail.appendChild(stage);
+
+    // The deck owns the wheel while the page sits at the top: each wheel
+    // gesture turns the deck (one full lap from the middle card), and only
+    // once the lap is done does the wheel go back to scrolling the page.
+    // Scrolling up at the top of the page rewinds the deck.
+    function setTrack() { rail.style.height = ''; }
+    var target = START, END = START + N, snapTimer = 0;
+    function targetIndex() { return target; }
+    function atTop() { return window.scrollY <= 2; }
+    window.addEventListener('wheel', function (e) {
+        if (!desktop.matches || e.ctrlKey) return;
+        var dy = e.deltaMode === 1 ? e.deltaY * 32 : e.deltaY;
+        if (!atTop() || dy === 0) return;
+        if ((dy > 0 && target >= END - 0.001) || (dy < 0 && target <= START + 0.001)) return;
+        e.preventDefault();
+        // ~1 card per mouse-wheel notch, proportional for trackpads
+        target = Math.max(START, Math.min(END, target + Math.max(-1, Math.min(1, dy / 110))));
+        clearTimeout(snapTimer);
+        snapTimer = setTimeout(function () {
+            target = Math.max(START, Math.min(END, Math.round(target)));
+            kick();
+        }, 120);
+        kick();
+    }, { passive: false });
+    window.addEventListener('keydown', function (e) {
+        if (!desktop.matches || !atTop()) return;
+        var k = e.key, dir = (k === 'ArrowDown' || k === 'PageDown' || k === ' ') ? 1 : (k === 'ArrowUp' || k === 'PageUp') ? -1 : 0;
+        if (!dir) return;
+        var next = Math.round(target) + dir;
+        if (next < START || next > END) return;
+        e.preventDefault();
+        target = next; kick();
+    });
+
+    var dots = items.map(function (item, i) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.setAttribute('aria-label', 'Project ' + (i + 1));
+        b.addEventListener('click', function () { target = START + wrap(i - START); kick(); });
+        if (dotsNav) dotsNav.appendChild(b);
+        return b;
+    });
+
+    function captionOf(item) {
+        var cap = item.querySelector('.cad-photo-cap');
+        return cap ? cap.textContent.trim() : '';
+    }
+    var active = -1, swapTimer = 0;
+    function setActive(i, force) {
+        if (i === active && !force) return;
+        active = i;
+        dots.forEach(function (d, j) { d.classList.toggle('is-active', j === i); });
+        items.forEach(function (it, j) { it.classList.toggle('is-front', j === i); });
+        if (idxEl) idxEl.textContent = pad(i + 1);
+        if (!titleEl) return;
+        clearTimeout(swapTimer);
+        if (force) { titleEl.textContent = captionOf(items[i]); return; }
+        titleEl.classList.add('is-swapping');
+        swapTimer = setTimeout(function () {
+            titleEl.textContent = captionOf(items[active]);
+            titleEl.classList.remove('is-swapping');
+        }, 180);
+    }
+    var prevRefresh = window.refreshLangDependent;
+    window.refreshLangDependent = function () {
+        if (typeof prevRefresh === 'function') prevRefresh();
+        if (active >= 0) setActive(active, true);
+    };
+
+    function place(f) {
+        items.forEach(function (it, i) {
+            // signed distance from the front card, wrapped into (-N/2, N/2]
+            var d = i - f;
+            d = d - N * Math.round(d / N);
+            var a = Math.abs(d);
+            // cards travel a full card height and shrink as they leave, so only
+            // a sliver of the neighbours shows behind the front card
+            // each card behind sits a clear step further out, so two cards
+            // stick out above and two below the front one
+            var y = d * (a < 1 ? 26 : 26 - (a - 1) * 6);
+            var s = 1 - Math.min(a, 3) * 0.08;
+            var rx = -d * 4;
+            var z = -a * 80;
+            it.style.transform = 'translate3d(0,' + y.toFixed(2) + '%,' + z.toFixed(1) + 'px) rotateX(' + rx.toFixed(2) + 'deg) scale(' + s.toFixed(4) + ')';
+            it.style.zIndex = String(100 - Math.round(a * 10));
+            it.style.opacity = a > 2.2 ? Math.max(0, 1 - (a - 2.2) / 0.6).toFixed(3) : '1';
+            it.style.setProperty('--shade', Math.min(0.3, a * 0.12).toFixed(3));
+        });
+        setActive(wrap(Math.round(f)));
+    }
+
+    // heavy spring: x chases the target with low stiffness + strong damping
+    var x = targetIndex(), v = 0, raf = 0;
+    var K = 0.09, DAMP = 0.74;
+    function frame() {
+        if (!desktop.matches) { raf = 0; return; }
+        var t = targetIndex();
+        if (reduceMotion) { x = t; v = 0; }
+        else { v = (v + (t - x) * K) * DAMP; x += v; }
+        place(x);
+        raf = (Math.abs(t - x) > 0.0005 || Math.abs(v) > 0.0005) ? requestAnimationFrame(frame) : 0;
+    }
+    function kick() { if (!raf) raf = requestAnimationFrame(frame); }
+
+    function reset() {
+        setTrack();
+        if (desktop.matches) { place(x); kick(); }
+        else {
+            items.forEach(function (it) {
+                it.style.transform = ''; it.style.zIndex = ''; it.style.opacity = '';
+                it.style.removeProperty('--shade'); it.classList.add('is-front');
+            });
+            // mobile carousel: open centred on the middle card too
+            var mid = items[START];
+            rail.scrollLeft = mid.offsetLeft - (rail.clientWidth - mid.clientWidth) / 2;
+        }
+    }
+    window.addEventListener('scroll', kick, { passive: true });
+    window.addEventListener('resize', reset);
+    if (desktop.addEventListener) desktop.addEventListener('change', reset);
+    setActive(START, true);
+    reset();
 });

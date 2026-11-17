@@ -1595,7 +1595,7 @@ section::before {
     transition: transform 0.55s cubic-bezier(0.25,1,0.5,1), filter 0.35s ease;
 }
 
-.cad-photo-wrap:hover img {
+.cad-photo-wrap:not(.has-sketch):hover img {
     transform: scale(1.07);
     filter: brightness(0.68);
 }
@@ -2043,7 +2043,267 @@ section::before {
 .featured-projects .cad-media { height: 230px; background: #fff; }
 .featured-projects .cad-media img { height: 100%; object-fit: contain; }
 .featured-projects [data-key="inhabit-compat"] .cad-media { background: #242424; }
-.featured-projects .cad-photo-cap { opacity: 1; transform: none; }
 #photo-modal.public-research .pm-img-wrap { background: #fff; }
 #photo-modal.public-research #pm-img { object-fit: contain; }
 @media(max-width: 700px) { .featured-projects { grid-template-columns: 1fr; gap: 0.75rem; } }
+
+/* ============================================================
+   SKETCH COVER + X-RAY LENS
+   Each tile shows a pencil sketch; a soft circular lens follows
+   the cursor and reveals the real photo/video underneath.
+   ============================================================ */
+.cad-photo-wrap.has-sketch { cursor: none; }
+.cad-photo-wrap .cad-sketch {
+    --x: 50%; --y: 50%; --r: 0px; --f: 0px;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: #f5f1ea;
+    z-index: 1;
+    pointer-events: none;
+    transform: none !important;
+    filter: none;
+    -webkit-mask-image: radial-gradient(circle at var(--x) var(--y), transparent calc(var(--r) - var(--f)), #000 calc(var(--r) + var(--f)));
+            mask-image: radial-gradient(circle at var(--x) var(--y), transparent calc(var(--r) - var(--f)), #000 calc(var(--r) + var(--f)));
+    transition: opacity 0.5s ease;
+}
+.cad-photo-wrap .cad-sketch:not(.is-loaded) { opacity: 0; }
+.featured-projects .cad-photo-wrap .cad-sketch { object-fit: contain; height: 100%; }
+.cad-lens {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    z-index: 2;
+    pointer-events: none;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.5), 0 0 0 1px rgba(0, 0, 0, 0.08) inset;
+    opacity: 0;
+    will-change: transform, width, height;
+}
+.cad-photo-wrap .cad-photo-cap { z-index: 3; }
+[data-theme="dark"] .cad-photo-wrap .cad-sketch { filter: brightness(0.9); }
+@media (hover: none), (pointer: coarse) {
+    .cad-photo-wrap.has-sketch { cursor: pointer; }
+    .cad-lens { display: none; }
+}
+body.lens-active .cursor-ring { opacity: 0 !important; }
+
+/* ============================================================
+   SHOWCASE — pinned intro left, scrolling featured builds right
+   (layout after robin-noguier.com)
+   ============================================================ */
+.showcase { padding: 0; }
+.showcase-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+    gap: 0 4rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 4rem;
+}
+.showcase-left {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+.showcase-left-inner { max-width: 440px; animation: fadeInUp 0.6s ease; }
+.showcase .intro-name {
+    font-size: 3.1rem;
+    line-height: 0.98;
+    font-weight: 600;
+    letter-spacing: -0.045em;
+    margin-bottom: 1rem;
+}
+.showcase .intro-role {
+    font-family: var(--site-font);
+    font-style: normal;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    font-weight: 400;
+    color: var(--text-primary);
+    margin-bottom: 0.7rem;
+    max-width: 28ch;
+}
+.intro-meta {
+    font-size: 0.6rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.3rem;
+}
+.intro-meta a { color: inherit; text-underline-offset: 2px; }
+.intro-meta a:hover { color: var(--text-primary); }
+.showcase-now {
+    display: flex;
+    align-items: baseline;
+    gap: 0.8rem;
+    margin-top: 2.6rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.56rem;
+    color: var(--text-secondary);
+    min-height: 2.2rem;
+}
+.showcase-count { font-family: 'Space Mono', monospace; letter-spacing: 0.04em; white-space: nowrap; }
+.showcase-title { color: var(--text-primary); transition: opacity 0.25s ease, transform 0.25s ease; }
+.showcase-title.is-swapping { opacity: 0; transform: translateY(4px); }
+
+.showcase-rail {
+    padding: 22vh 0 26vh;
+    display: flex;
+    flex-direction: column;
+    gap: 16vh;
+}
+.showcase-item { transform-origin: 50% 50%; will-change: transform; }
+.showcase-item .cad-photo-wrap { margin: 0; padding: 0; border: 0; border-radius: 14px; box-shadow: none; background: transparent; }
+.showcase-item .cad-media { aspect-ratio: 3 / 2; border-radius: 14px; background: #f5f1ea; }
+.showcase-item .cad-media > img:not(.cad-sketch),
+.showcase-item .cad-media > video { width: 100%; height: 100%; object-fit: cover; }
+.showcase-item [data-key="pantheon"] .cad-media { background: #fff; }
+.showcase-item [data-key="pantheon"] .cad-media > img { object-fit: contain; }
+.showcase-item .cad-photo-cap { font-size: 0.55rem; }
+
+.showcase-dots {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.55rem;
+}
+.showcase-dots button {
+    width: 6px;
+    height: 6px;
+    padding: 0;
+    border: 0;
+    border-radius: 3px;
+    background: var(--text-primary);
+    opacity: 0.22;
+    transition: opacity 0.3s ease, height 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.showcase-dots button:hover { opacity: 0.6; }
+.showcase-dots button.is-active { opacity: 1; height: 20px; }
+
+@media (max-width: 900px) {
+    .showcase-grid { grid-template-columns: 1fr; padding: 0 16px; }
+    .showcase-left { position: static; height: auto; padding: 6rem 0 1.5rem; }
+    .showcase .intro-name { font-size: 2.4rem; }
+    .showcase-now { display: none; }
+    .showcase-rail {
+        flex-direction: row;
+        gap: 12px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        margin: 0 -16px;
+        padding: 0 16px 1rem;
+        scrollbar-width: none;
+    }
+    .showcase-rail::-webkit-scrollbar { display: none; }
+    .showcase-item { flex: 0 0 84%; scroll-snap-align: center; transform: none !important; }
+    .showcase-dots { display: none; }
+}
+
+/* ── Showcase as a stacked deck (desktop) ─────────────────────
+   The rail becomes a tall scroll track; inside it a sticky
+   stage holds the cards absolutely, and JS places each card
+   by its distance from the current (spring-smoothed) index. */
+@media (min-width: 901px) {
+    .showcase-rail {
+        display: block;
+        padding: 0;
+        gap: 0;
+        position: relative;
+        /* height (scroll length) is set by JS from the card count */
+    }
+    .showcase-stage {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        perspective: 1600px;
+    }
+    .showcase-stage { justify-content: flex-end; }
+    .showcase-deck {
+        position: relative;
+        width: min(100%, calc((100vh - 300px) * 1.5));
+        aspect-ratio: 3 / 2;
+        transform-style: preserve-3d;
+    }
+    .showcase-item {
+        position: absolute;
+        inset: 0;
+        transform-origin: 50% 50%;
+        backface-visibility: hidden;
+    }
+    .showcase-item .cad-photo-wrap { height: 100%; box-shadow: 0 30px 60px -28px rgba(0, 0, 0, 0.45); }
+    .showcase-item .cad-media { height: 100%; aspect-ratio: auto; }
+    .showcase-item::after {
+        /* depth shade on cards behind the front one */
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 14px;
+        background: #000;
+        opacity: var(--shade, 0);
+        pointer-events: none;
+        z-index: 4;
+    }
+    .showcase-item:not(.is-front) { pointer-events: none; }
+    .showcase-item:not(.is-front) .cad-photo-cap { opacity: 0 !important; }
+}
+@media (max-width: 900px) {
+    .showcase-stage, .showcase-deck { display: contents; }
+}
+
+/* position dots removed by request (showcase + section sidebar) */
+.showcase-dots, #scroll-sidebar { display: none !important; }
+
+/* Showcase type: Instrument Serif name, Geist text */
+.showcase .intro-name {
+    font-family: 'Instrument Serif', 'Times New Roman', serif;
+    font-weight: 400;
+    font-size: 4.4rem;
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.1rem;
+}
+.showcase .intro-role {
+    font-family: 'Geist', var(--site-font);
+    font-weight: 400;
+    font-size: 0.98rem;
+    letter-spacing: -0.012em;
+}
+.showcase .intro-meta,
+.showcase .hero-buttons .btn,
+.showcase .showcase-now { font-family: 'Geist', var(--site-font); }
+.showcase .showcase-count { font-family: 'Geist', var(--site-font); font-variant-numeric: tabular-nums; }
+:root[lang="zh"] .showcase .intro-role { font-family: 'Noto Sans SC', var(--site-font); }
+
+/* Sharp, frameless tiles: no white card padding/border, square corners */
+.cad-photo-wrap,
+.showcase-item .cad-photo-wrap {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+}
+.cad-media,
+.showcase-item .cad-media,
+.cad-photo-cap,
+.showcase-item::after { border-radius: 0; }
+/* live 3D models sit on the same paper tone as the sketches */
+.cad-3d-tile .cad-media { background: #f5f1ea; }
+
+/* deck is wheel-driven now: the hero is one screen tall, nothing pinned */
+@media (min-width: 901px) {
+    .showcase-left { position: relative; }
+    .showcase-stage { position: relative; }
+}
