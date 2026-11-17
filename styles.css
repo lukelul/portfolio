@@ -1,6 +1,6 @@
 :root {
-    --site-font: 'Inter', 'Helvetica Neue', 'Noto Sans SC', Arial, sans-serif;
-    --root-font-size: 22px;
+    --site-font: 'Space Mono', 'Noto Sans SC', 'Courier New', monospace;
+    --root-font-size: 20px;
     --base-letter-spacing: 0px;
     /* Black & White Palette */
     --dark-teal: #000000;           /* Primary text / dark fills */
@@ -788,8 +788,8 @@ section::before {
 }
 
 .experience-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
+    font-family: var(--site-font);
+    font-style: normal;
     font-size: 1.7rem;
     font-weight: 500;
     color: var(--text-primary);
