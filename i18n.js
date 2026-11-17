@@ -194,6 +194,7 @@ var ZH_ENTRIES = [
     ['.cad-filter-link[data-filter="hardware"]', '硬件'],
 
     // ── gallery captions ──────────────────────────────────
+    ['[data-key="proj-gimbal"] .cad-photo-cap', 'Coco · 电动投影仪云台 · HackTX'],
     ['[data-key="youibot"] .cad-photo-cap', 'YouiBot · 小臂与 InspireHand 连杆 · SolidWorks'],
     ['[data-key="live-inhabit"] .cad-photo-cap', 'Inhabit V2 · 实时模型 · 拖动手柄'],
     ['[data-key="inhabit-arm"] .cad-photo-cap', 'Inhabit V1 · 六自由度机械臂与外骨骼手套'],
