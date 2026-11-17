@@ -2052,7 +2052,7 @@ section::before {
    Each tile shows a pencil sketch; a soft circular lens follows
    the cursor and reveals the real photo/video underneath.
    ============================================================ */
-.cad-photo-wrap.has-sketch { cursor: none; }
+.cad-photo-wrap.has-sketch { cursor: pointer; }
 .cad-photo-wrap .cad-sketch {
     --x: 50%; --y: 50%; --r: 0px; --f: 0px;
     position: absolute;

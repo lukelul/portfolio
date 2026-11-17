@@ -727,80 +727,8 @@ document.addEventListener('DOMContentLoaded', function () {
         sketch.src = wrap.getAttribute('data-sketch');
         base.insertAdjacentElement('afterend', sketch);
 
-        var lens = document.createElement('div');
-        lens.className = 'cad-lens';
-        sketch.insertAdjacentElement('afterend', lens);
-
-        // x/y/r ease toward tx/ty/tr each frame
-        var s = { x: 0, y: 0, r: 0, tx: 0, ty: 0, tr: 0, raf: 0, w: 0, h: 0 };
-
-        function paint() {
-            sketch.style.setProperty('--x', s.x.toFixed(1) + 'px');
-            sketch.style.setProperty('--y', s.y.toFixed(1) + 'px');
-            sketch.style.setProperty('--r', Math.max(0, s.r).toFixed(1) + 'px');
-            // feather scales with the radius so a closed lens leaves no smudge
-            sketch.style.setProperty('--f', Math.min(10, Math.max(0, s.r) * 0.12).toFixed(1) + 'px');
-            var d = Math.max(0, s.r) * 2;
-            lens.style.width = d + 'px';
-            lens.style.height = d + 'px';
-            lens.style.transform = 'translate(' + (s.x - s.r) + 'px,' + (s.y - s.r) + 'px)';
-            lens.style.opacity = finePointer ? Math.min(1, s.r / 40).toFixed(2) : '0';
-        }
-        function tick() {
-            var k = reduceMotion ? 1 : 0.2, kr = reduceMotion ? 1 : 0.12;
-            s.x += (s.tx - s.x) * k;
-            s.y += (s.ty - s.y) * k;
-            s.r += (s.tr - s.r) * kr;
-            paint();
-            if (Math.abs(s.tx - s.x) + Math.abs(s.ty - s.y) + Math.abs(s.tr - s.r) > 0.3) {
-                s.raf = requestAnimationFrame(tick);
-            } else {
-                s.x = s.tx; s.y = s.ty; s.r = s.tr; paint(); s.raf = 0;
-            }
-        }
-        function kick() { if (!s.raf) s.raf = requestAnimationFrame(tick); }
-        function measure() {
-            var rect = media.getBoundingClientRect();
-            s.w = rect.width; s.h = rect.height;
-            return rect;
-        }
-        function lensRadius() {
-            return Math.max(70, Math.min(150, Math.min(s.w, s.h) * 0.34));
-        }
-
-        if (finePointer) {
-            var inside = false;
-            wrap.addEventListener('pointermove', function (e) {
-                var rect = measure();
-                s.tx = e.clientX - rect.left;
-                s.ty = e.clientY - rect.top;
-                if (!inside) {
-                    inside = true;
-                    s.x = s.tx; s.y = s.ty; // open from the entry point, don't slide in
-                    document.body.classList.add('lens-active');
-                }
-                s.tr = lensRadius();
-                kick();
-            });
-            wrap.addEventListener('pointerleave', function () {
-                inside = false;
-                s.tr = 0;
-                document.body.classList.remove('lens-active');
-                kick();
-            });
-        } else if ('IntersectionObserver' in window) {
-            // touch: the tile crossing the middle of the screen develops
-            // from the centre out into the full photo, then folds back
-            new IntersectionObserver(function (entries) {
-                entries.forEach(function (entry) {
-                    measure();
-                    s.tx = s.x = s.w / 2;
-                    s.ty = s.y = s.h / 2;
-                    s.tr = entry.isIntersecting ? Math.hypot(s.w, s.h) / 2 + 20 : 0;
-                    kick();
-                });
-            }, { rootMargin: '-48% 0px -48% 0px' }).observe(wrap);
-        }
+        // no hover reveal: tiles stay sketches; clicking opens the project
+        // modal, which shows the real colour photo/video
     });
 });
 
