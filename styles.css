@@ -1945,46 +1945,6 @@ section::before {
    ============================================================ */
 .cursor-dot, .cursor-ring { display: none; }
 
-@media (min-width: 769px) and (hover: hover) and (pointer: fine) {
-    * , a, button { cursor: none !important; }
-
-    .cursor-dot {
-        display: block;
-        position: fixed;
-        top: 0; left: 0;
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: #fff;
-        mix-blend-mode: difference;
-        pointer-events: none;
-        z-index: 999999; /* must beat every other fixed overlay (modal,
-                             lightbox, toast are all 9999) regardless of DOM order */
-        opacity: 0; /* hidden until first mousemove, so it can't sit at a
-                       stale 0,0 position before the user has moved the mouse */
-        transform: translate(-50%, -50%);
-        transition: width 0.2s ease, height 0.2s ease;
-    }
-
-    .cursor-ring {
-        display: block;
-        position: fixed;
-        top: 0; left: 0;
-        width: 30px;
-        height: 30px;
-        border: 1.5px solid #fff;
-        border-radius: 50%;
-        mix-blend-mode: difference;
-        pointer-events: none;
-        z-index: 999998;
-        opacity: 0;
-        transform: translate(-50%, -50%);
-        transition: width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
-    }
-
-    .cursor-dot.hovering { width: 4px; height: 4px; }
-    .cursor-ring.hovering { width: 52px; height: 52px; opacity: 0.9; }
-}
 
 
 /* ============================================================
