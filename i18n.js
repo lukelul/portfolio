@@ -239,11 +239,6 @@ var ZH_ENTRIES = [
     ['[data-exp="finc"] .experience-date', '2026 年 — 2026 年 9 月'],
     ['[data-exp="finc"] .experience-line', '创办 Inhabit，一家机器人遥操作硬件公司，由 <a href="https://www.f.inc/" target="_blank" rel="noopener">Founders Inc.</a> 和 <a href="https://www.nvidia.com/en-us/startups/" target="_blank" rel="noopener">NVIDIA Inception</a> 支持'],
 
-    ['[data-exp="paradigm"] .experience-title', '工程实习生'],
-    ['[data-exp="paradigm"] .experience-company', '<a href="https://paradigmrobotics.com" target="_blank" rel="noopener">Paradigm Robotics</a> · 奥斯汀'],
-    ['[data-exp="paradigm"] .experience-date', '2025 年 12 月 — 2026 年 2 月'],
-    ['[data-exp="paradigm"] .experience-line', '作为机械工程实习生负责机器人硬件设计与快速原型制作'],
-
     ['[data-exp="utca"] .experience-title', '机器人研究员'],
     ['[data-exp="utca"] .experience-company', '德克萨斯大学自主系统中心 · 奥斯汀'],
     ['[data-exp="utca"] .experience-date', '2025 年 8 月 — 2026 年'],
