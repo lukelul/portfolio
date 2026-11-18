@@ -2307,3 +2307,12 @@ body.lens-active .cursor-ring { opacity: 0 !important; }
     .showcase-left { position: relative; }
     .showcase-stage { position: relative; }
 }
+
+/* deck removed (Nov 18): the hero is just the intro, no pinned/wheel stack */
+.showcase-grid { grid-template-columns: minmax(0, 1fr); }
+
+.showcase-left { position: relative; height: auto; padding: 9rem 0 3.5rem; }
+.showcase-left-inner { max-width: 560px; }
+@media (max-width: 900px) {
+    .showcase-left { padding: 6rem 0 1.5rem; }
+}

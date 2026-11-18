@@ -176,7 +176,7 @@ var ZH_ENTRIES = [
 
     // ── about ─────────────────────────────────────────────
     ['.about-text p:nth-of-type(1)', '目前我负责 <a href="https://brightsaverindustries.com" target="_blank" rel="noopener">Bright Saver Industries</a> 的机器人业务。'],
-    ['.about-text p:nth-of-type(2)', '下面是精选作品和完整的项目图集，页面底部是完整的<a href="#experience">工作经历</a>。下方 Pantheon 图片来自其公开研究，我的个人贡献另行说明。'],
+    ['.about-text p:nth-of-type(2)', '项目中的 Pantheon 图片来自其公开研究，我的个人贡献另行说明。'],
     ['.about-text p:nth-of-type(3)', '此前，我在旧金山的前沿机器人基础模型实验室 Pantheon Inc. 做机械工程师，在德克萨斯大学自主系统中心做机器人研究，并在深圳 YouiBot 设计了人形机械臂的小臂和手部连杆。我还带领 VEX 机器人战队拿下 2024 年世界锦标赛冠军，并在多场千人以上规模的黑客松中获得硬件奖，包括加州大学伯克利分校 AI 黑客松和 Texas Venture Group。'],
     ['.about-text p:nth-of-type(4)', '机器人是下一次平台级的转变，谁能把硬件和数据采集的成本大幅降下来，谁就赢下它。'],
     ['.about-text p:nth-of-type(5)', '一路走来，我设计过 20 多台机器人，并建立了一个 14,000 多人的机器人教育社区。（中英文都是我的母语。）'],
@@ -184,6 +184,7 @@ var ZH_ENTRIES = [
     // ── section titles ────────────────────────────────────
     ['#cad-gallery .section-title', '项目'],
     ['#experience .section-title', '经历'],
+    ['#about .section-title', '关于我'],
     ['.experience-subtitle', '论文与作品'],
 
     // ── project filter links (loose text handled separately) ──
